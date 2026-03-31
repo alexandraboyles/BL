@@ -4,9 +4,9 @@ namespace Addresses;
 use Core\BaseModel;
 
 class AddressToInvoiceCustomerMapping extends BaseModel {
-    public $id;
-    public $customerId;
-    public $addressId;
+    public int $id;
+    public string $customerId;
+    public string $addressId;
 
     public function __construct($id, $customerId, $addressId) {
         parent::__construct();

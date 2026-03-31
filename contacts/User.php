@@ -4,16 +4,18 @@ namespace Contacts;
 use Core\BaseModel;
 
 class User extends BaseModel {
-    public $customerId;
-    public $fullName;
-    public $email;
-    public $roles;
-    public $warehouses;
-    public $mfa;
-    public $is_email_verified;
+    public string $id;
+    public string $customerId;
+    public string $fullName;
+    public string $email;
+    public string $roles;
+    public string $warehouses;
+    public string $mfa;
+    public bool $is_email_verified;
 
-    public function __construct($customerId, $fullName, $email, $roles, $warehouses, $mfa, $is_email_verified) {
+    public function __construct($id, $customerId, $fullName, $email, $roles, $warehouses, $mfa, $is_email_verified) {
         parent::__construct();
+        $this->id = $id;
         $this->customerId = $customerId;
         $this->fullName = $fullName;
         $this->email = $email;

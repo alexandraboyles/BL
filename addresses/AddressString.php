@@ -4,10 +4,10 @@ namespace Addresses;
 use Core\BaseModel;
 
 class AddressString extends BaseModel {
-    public $id;
-    public $customerId;
-    public $addressId;
-    public $text;
+    public int $id;
+    public string $customerId;
+    public string $addressId;
+    public string $text;
 
     public function __construct($id, $customerId, $addressId, $text) {
         parent::__construct();

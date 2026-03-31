@@ -4,10 +4,10 @@ namespace Addresses;
 use Core\BaseModel;
 
 class AddressDefaultInstruction extends BaseModel {
-    public $addressId;
-    public $customerId;
-    public $deliveryInstruction;
-    public $packingInstruction;
+    public string $addressId;
+    public string $customerId;
+    public string $deliveryInstruction;
+    public string $packingInstruction;
 
     public function __construct($addressId, $customerId, $deliveryInstruction, $packingInstruction) {
         parent::__construct();

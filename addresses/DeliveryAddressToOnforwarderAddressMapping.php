@@ -4,10 +4,10 @@ namespace Addresses;
 use Core\BaseModel;
 
 class DeliveryAddressToOnforwarderAddressMapping extends BaseModel {
-    public $id;
-    public $addressId;
-    public $customerId;
-    public $productId;
+    public int $id;
+    public string $addressId;
+    public string $customerId;
+    public string $productId;
 
     public function __construct($id, $addressId, $customerId, $productId) {
         parent::__construct();
