@@ -20,3 +20,102 @@
     "warehouse": "Warehouse A"
 }
 
+[PRINT] Printed Invoice
+{
+    "id": "69cb6eea2f864",
+    "created": "2026-03-31 06:51:22",
+    "title": "Invoice Print",
+    "entity": "Invoice #101",
+    "printer": "HP-LaserJet",
+    "computer": "PC-01",
+    "warehouse": "Warehouse A"
+}
+
+[PRINT] Printed Invoice
+{
+    "id": "69cb6eeded87a",
+    "created": "2026-03-31 06:51:25",
+    "title": "Invoice Print",
+    "entity": "Invoice #101",
+    "printer": "HP-LaserJet",
+    "computer": "PC-01",
+    "warehouse": "Warehouse A"
+}
+
+[PRINT] Printed Invoice
+{
+    "id": "69cb72ec86df6",
+    "created": "2026-03-31 07:08:28",
+    "title": "Invoice Print",
+    "entity": "Invoice #101",
+    "printer": "HP-LaserJet",
+    "computer": "PC-01",
+    "warehouse": "Warehouse A"
+}
+
+[PRINT] Printed Invoice
+{
+    "id": "69cb730d5ec0c",
+    "created": "2026-03-31 07:09:01",
+    "title": "Invoice Print",
+    "entity": "Invoice #101",
+    "printer": "HP-LaserJet",
+    "computer": "PC-01",
+    "warehouse": "Warehouse A"
+}
+
+[PRINT] Printed Invoice
+{
+    "id": "69cb732fec5d0",
+    "created": "2026-03-31 07:09:35",
+    "title": "Invoice Print",
+    "entity": "Invoice #101",
+    "printer": "HP-LaserJet",
+    "computer": "PC-01",
+    "warehouse": "Warehouse A"
+}
+
+[PRINT] Printed Invoice
+{
+    "id": "69cb73b123b47",
+    "created": "2026-03-31 07:11:45",
+    "title": "Invoice Print",
+    "entity": "Invoice #101",
+    "printer": "HP-LaserJet",
+    "computer": "PC-01",
+    "warehouse": "Warehouse A"
+}
+
+[PRINT] Printed Invoice
+{
+    "id": "69cb73b95b08a",
+    "created": "2026-03-31 07:11:53",
+    "title": "Invoice Print",
+    "entity": "Invoice #101",
+    "printer": "HP-LaserJet",
+    "computer": "PC-01",
+    "warehouse": "Warehouse A"
+}
+
+[PRINT] Printed Invoice
+{
+    "id": "69cb73c830df8",
+    "created": "2026-03-31 07:12:08",
+    "title": "Invoice Print",
+    "entity": "Invoice #101",
+    "printer": "HP-LaserJet",
+    "computer": "PC-01",
+    "warehouse": "Warehouse A"
+}
+
+[PRINT] Printed Invoice
+{
+    "id": "69cb73ca1dfc8",
+    "created": "2026-03-31 07:12:10",
+    "title": "Invoice Print",
+    "entity": "Invoice #101",
+    "printer": "HP-LaserJet",
+    "computer": "PC-01",
+    "warehouse": "Warehouse A"
+}
+

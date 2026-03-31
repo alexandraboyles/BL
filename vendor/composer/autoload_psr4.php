@@ -8,8 +8,8 @@ $baseDir = dirname($vendorDir);
 return array(
     'Warehouse\\' => array($baseDir . '/warehouse'),
     'WarehouseSettings\\' => array($baseDir . '/src/WarehouseSettings', $baseDir . '/warehouse_settings'),
-    'Transport\\' => array($baseDir . '/src/Transport'),
-    'Products\\' => array($baseDir . '/src/Products'),
+    'Transport\\' => array($baseDir . '/transport'),
+    'Products\\' => array($baseDir . '/products'),
     'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
     'Logs\\' => array($baseDir . '/logs'),
     'Invoices\\' => array($baseDir . '/src/Invoices'),

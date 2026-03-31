@@ -60,11 +60,11 @@ class ComposerStaticInit09ac42c4c2780bc8e698c823d7efaa8e
         ),
         'Transport\\' =>
         array (
-            0 => __DIR__ . '/../..' . '/src/Transport',
+            0 => __DIR__ . '/../..' . '/transport',
         ),
         'Products\\' =>
         array (
-            0 => __DIR__ . '/../..' . '/src/Products',
+            0 => __DIR__ . '/../..' . '/products',
         ),
         'PhpParser\\' =>
         array (

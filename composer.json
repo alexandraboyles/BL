@@ -6,9 +6,9 @@
             "Core\\": ["src/Core/", "core/"],
             "Addresses\\": "src/Addresses/",
             "Contacts\\": "contacts/",
-            "Transport\\": "src/Transport/",
+            "Transport\\": "transport/",
             "Invoices\\": "src/Invoices/",
-            "Products\\": "src/Products/",
+            "Products\\": "products/",
             "WarehouseSettings\\": ["src/WarehouseSettings/", "warehouse_settings/"],
             "Warehouse\\": "warehouse/",
             "Logs\\": "logs/"
