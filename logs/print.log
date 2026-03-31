@@ -119,3 +119,25 @@
     "warehouse": "Warehouse A"
 }
 
+[PRINT] Printed Invoice
+{
+    "id": "69cb74689d2f9",
+    "created": "2026-03-31 07:14:48",
+    "title": "Invoice Print",
+    "entity": "Invoice #101",
+    "printer": "HP-LaserJet",
+    "computer": "PC-01",
+    "warehouse": "Warehouse A"
+}
+
+[PRINT] Printed Invoice
+{
+    "id": "69cb746c1a806",
+    "created": "2026-03-31 07:14:52",
+    "title": "Invoice Print",
+    "entity": "Invoice #101",
+    "printer": "HP-LaserJet",
+    "computer": "PC-01",
+    "warehouse": "Warehouse A"
+}
+

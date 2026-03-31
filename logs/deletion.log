@@ -97,3 +97,21 @@
     "dateDeleted": "2026-03-31"
 }
 
+[DELETION] Deleted Address
+{
+    "id": "69cb74689cc4b",
+    "model": "Address",
+    "modelId": "69cb74689c68a",
+    "user": "admin",
+    "dateDeleted": "2026-03-31"
+}
+
+[DELETION] Deleted Address
+{
+    "id": "69cb746c1a00e",
+    "model": "Address",
+    "modelId": "ADDR-001",
+    "user": "admin",
+    "dateDeleted": "2026-03-31"
+}
+
