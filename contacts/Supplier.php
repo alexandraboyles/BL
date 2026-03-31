@@ -4,16 +4,14 @@ namespace Contacts;
 use Core\BaseModel;
 
 class Supplier extends BaseModel {
-    public int $id;
-    public int $rateCardId;
-    public string $companyName;
-    public string $email;
-    public string $telNo;
-    public string $accountingConnector;
+    public $rateCardId;
+    public $companyName;
+    public $email;
+    public $telNo;
+    public $accountingConnector;
 
-    public function __construct($id, $rateCardId, $companyName, $email, $telNo, $accountingConnector) {
+    public function __construct($rateCardId, $companyName, $email, $telNo, $accountingConnector) {
         parent::__construct();
-        $this->id = $id;
         $this->rateCardId = $rateCardId;
         $this->companyName = $companyName;
         $this->email = $email;

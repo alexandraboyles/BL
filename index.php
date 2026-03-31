@@ -117,3 +117,24 @@ try {
         // object modeling for business entities
         // validation and logging
         // test coverage via PHPUnit
+
+// {
+//     "name": "alexandra/bl",
+//     "description": "My PHP project",
+//     "autoload": {
+//         "psr-4": {
+//             "Core\\": ["src/Core/", "core/"],
+//             "Addresses\\": "src/Addresses/",
+//             "Contacts\\": "contacts/",
+//             "Transport\\": "transport/",
+//             "Invoices\\": "src/Invoices/",
+//             "Products\\": "products/",
+//             "WarehouseSettings\\": ["src/WarehouseSettings/", "warehouse_settings/"],
+//             "Warehouse\\": "warehouse/",
+//             "Logs\\": "logs/"
+//         }
+//     },
+//     "require-dev": {
+//         "phpunit/phpunit": "*"
+//     }
+// }
