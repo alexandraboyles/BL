@@ -1,0 +1,103 @@
+[PRINT] Printed Invoice | Data: {"id":"69cb5638ad2d7","created":"2026-03-31 05:06:00","title":"Invoice Print","entity":"Invoice #101","printer":"HP-LaserJet","computer":"PC-01","warehouse":"Warehouse A"}
+[PRINT] Printed Invoice | Data: {"id":"69cb56a2b3d3f","created":"2026-03-31 05:07:46","title":"Invoice Print","entity":"Invoice #101","printer":"HP-LaserJet","computer":"PC-01","warehouse":"Warehouse A"}
+[PRINT] Printed Invoice | Data: {"id":"69cb56ea6cf98","created":"2026-03-31 05:08:58","title":"Invoice Print","entity":"Invoice #101","printer":"HP-LaserJet","computer":"PC-01","warehouse":"Warehouse A"}
+[PRINT] Printed Invoice | Data: {"id":"69cb5700792ea","created":"2026-03-31 05:09:20","title":"Invoice Print","entity":"Invoice #101","printer":"HP-LaserJet","computer":"PC-01","warehouse":"Warehouse A"}
+[PRINT] Printed Invoice
+{
+    "id": "69cb57117478a",
+    "created": "2026-03-31 05:09:37",
+    "title": "Invoice Print",
+    "entity": "Invoice #101",
+    "printer": "HP-LaserJet",
+    "computer": "PC-01",
+    "warehouse": "Warehouse A"
+}
+
+[PRINT] Printed Invoice
+{
+    "id": "69cb575d6641e",
+    "created": "2026-03-31 05:10:53",
+    "title": "Invoice Print",
+    "entity": "Invoice #101",
+    "printer": "HP-LaserJet",
+    "computer": "PC-01",
+    "warehouse": "Warehouse A"
+}
+
+[PRINT] Printed Invoice
+{
+    "id": "69cb61beac782",
+    "created": "2026-03-31 05:55:10",
+    "title": "Invoice Print",
+    "entity": "Invoice #101",
+    "printer": "HP-LaserJet",
+    "computer": "PC-01",
+    "warehouse": "Warehouse A"
+}
+
+[PRINT] Printed Invoice
+{
+    "id": "69cb6774352e7",
+    "created": "2026-03-31 06:19:32",
+    "title": "Invoice Print",
+    "entity": "Invoice #101",
+    "printer": "HP-LaserJet",
+    "computer": "PC-01",
+    "warehouse": "Warehouse A"
+}
+
+[PRINT] Printed Invoice
+{
+    "id": "69cb684fe81ab",
+    "created": "2026-03-31 06:23:11",
+    "title": "Invoice Print",
+    "entity": "Invoice #101",
+    "printer": "HP-LaserJet",
+    "computer": "PC-01",
+    "warehouse": "Warehouse A"
+}
+
+[PRINT] Printed Invoice
+{
+    "id": "69cb68984afa5",
+    "created": "2026-03-31 06:24:24",
+    "title": "Invoice Print",
+    "entity": "Invoice #101",
+    "printer": "HP-LaserJet",
+    "computer": "PC-01",
+    "warehouse": "Warehouse A"
+}
+
+[PRINT] Printed Invoice
+{
+    "id": "69cb68b511cae",
+    "created": "2026-03-31 06:24:53",
+    "title": "Invoice Print",
+    "entity": "Invoice #101",
+    "printer": "HP-LaserJet",
+    "computer": "PC-01",
+    "warehouse": "Warehouse A"
+}
+
+[PRINT] Printed Invoice
+{
+    "id": "69cb68bebae32",
+    "created": "2026-03-31 06:25:02",
+    "title": "Invoice Print",
+    "entity": "Invoice #101",
+    "printer": "HP-LaserJet",
+    "computer": "PC-01",
+    "warehouse": "Warehouse A"
+}
+
+[PRINT] Printed Invoice
+{
+    "id": "69cb68c9d9a0c",
+    "created": "2026-03-31 06:25:13",
+    "title": "Invoice Print",
+    "entity": "Invoice #101",
+    "printer": "HP-LaserJet",
+    "computer": "PC-01",
+    "warehouse": "Warehouse A"
+}
+

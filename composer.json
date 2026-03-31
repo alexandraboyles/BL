@@ -1,0 +1,20 @@
+{
+    "name": "alexandra/bl",
+    "description": "My PHP project",
+    "autoload": {
+        "psr-4": {
+            "Core\\": ["src/Core/", "core/"],
+            "Addresses\\": "src/Addresses/",
+            "Contacts\\": "contacts/",
+            "Transport\\": "src/Transport/",
+            "Invoices\\": "src/Invoices/",
+            "Products\\": "src/Products/",
+            "WarehouseSettings\\": ["src/WarehouseSettings/", "warehouse_settings/"],
+            "Warehouse\\": "warehouse/",
+            "Logs\\": "logs/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    }
+}

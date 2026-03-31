@@ -1,0 +1,94 @@
+[DELETION] Test deletion | Data: {"id":123}
+[DELETION] Deleted Address | Data: {"id":"69cb5638acefb","model":"Address","modelId":"69cb5638aacf7","user":"admin","dateDeleted":"2026-03-31"}
+[DELETION] Deleted Address | Data: {"id":"69cb56a2b383f","model":"Address","modelId":"69cb56a2b2ed4","user":"admin","dateDeleted":"2026-03-31"}
+[DELETION] Deleted Address | Data: {"id":"69cb56ea6c980","model":"Address","modelId":"69cb56ea6c069","user":"admin","dateDeleted":"2026-03-31"}
+[DELETION] Deleted Address
+{
+    "id": "69cb570078e8a",
+    "model": "Address",
+    "modelId": "69cb5700787bb",
+    "user": "admin",
+    "dateDeleted": "2026-03-31"
+}
+
+[DELETION] Deleted Address
+{
+    "id": "69cb5711726c4",
+    "model": "Address",
+    "modelId": "69cb5711721bc",
+    "user": "admin",
+    "dateDeleted": "2026-03-31"
+}
+
+[DELETION] Deleted Address
+{
+    "id": "69cb575d65f7d",
+    "model": "Address",
+    "modelId": "69cb575d658ff",
+    "user": "admin",
+    "dateDeleted": "2026-03-31"
+}
+
+[DELETION] Deleted Address
+{
+    "id": "69cb61beac154",
+    "model": "Address",
+    "modelId": "69cb61beab839",
+    "user": "admin",
+    "dateDeleted": "2026-03-31"
+}
+
+[DELETION] Deleted Address
+{
+    "id": "69cb6774342f1",
+    "model": "Address",
+    "modelId": "ADDR-001",
+    "user": "admin",
+    "dateDeleted": "2026-03-31"
+}
+
+[DELETION] Deleted Address
+{
+    "id": "69cb684fe799b",
+    "model": "Address",
+    "modelId": "ADDR-001",
+    "user": "admin",
+    "dateDeleted": "2026-03-31"
+}
+
+[DELETION] Deleted Address
+{
+    "id": "69cb68984abc7",
+    "model": "Address",
+    "modelId": "69cb68984a64b",
+    "user": "admin",
+    "dateDeleted": "2026-03-31"
+}
+
+[DELETION] Deleted Address
+{
+    "id": "69cb68b511883",
+    "model": "Address",
+    "modelId": "69cb68b511313",
+    "user": "admin",
+    "dateDeleted": "2026-03-31"
+}
+
+[DELETION] Deleted Address
+{
+    "id": "69cb68beba37d",
+    "model": "Address",
+    "modelId": "ADDR-001",
+    "user": "admin",
+    "dateDeleted": "2026-03-31"
+}
+
+[DELETION] Deleted Address
+{
+    "id": "69cb68c9d90e2",
+    "model": "Address",
+    "modelId": "ADDR-001",
+    "user": "admin",
+    "dateDeleted": "2026-03-31"
+}
+
