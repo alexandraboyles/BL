@@ -1,0 +1,36 @@
+[DELETION] Deleted Address
+{
+    "id": "45a42b2b-0870-4fdc-84f0-69c0e78f958f",
+    "model": "Address",
+    "modelId": "1f3803f2-b384-4ca0-b0a2-3c74bebe4edd",
+    "user": "admin",
+    "dateDeleted": "2026-04-01 07:09:40"
+}
+
+[DELETION] Deleted Address
+{
+    "id": "eb83d3d6-d603-4dac-a3e5-51d638fb4a38",
+    "model": "Address",
+    "modelId": "2e85eb1d-c373-4fce-a352-710917ce7bcb",
+    "user": "admin",
+    "dateDeleted": "2026-04-01 07:09:57"
+}
+
+[DELETION] Deleted Address
+{
+    "id": "de9170ad-c710-4e81-abf1-3d5833097f69",
+    "model": "Address",
+    "modelId": "70594205-c2fb-4936-bf3d-d71d522cf9b7",
+    "user": "admin",
+    "dateDeleted": "2026-04-01 07:11:35"
+}
+
+[DELETION] Deleted Address
+{
+    "id": "62042b1b-8871-4875-81df-58ce22bc2c12",
+    "model": "Address",
+    "modelId": "6c247932-efc0-4650-9c10-656998e98906",
+    "user": "admin",
+    "dateDeleted": "2026-04-01 07:12:17"
+}
+

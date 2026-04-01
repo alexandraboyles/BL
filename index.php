@@ -46,7 +46,6 @@ $printLogger = new PrintLogger();
 try {
     // --- Sample creation of objects across modules ---
     $address = new Address(1, "123 Main St", "Unit 4", "Brisbane", "QLD", "4000");
-    
     $contact = new Contact(1, "Alice Smith", "alice@example.com", "0400123456");
 
     $invoice = new Invoice(101, 1, 5, 2001, 1500.00, 1200.00, "2026-03-01", "2026-03-31", "Open", "Pending", "Sent", "INT-REF-001", "EXT-REF-001");
@@ -129,7 +128,7 @@ try {
     // PHPUnit test cases for models and validation
 // -logs
     // Logs are written with deletion.log, print.log, validation.log, and runtime.log for structured logging for the different types of events and errors
-//-readme.md
+// -readme.md
     //provides project overview, and setup instructions
 //Domain areas represented
     // Addresses and contacts
