@@ -4,10 +4,10 @@ namespace Contacts;
 use Core\BaseModel;
 
 class Contact extends BaseModel {
-    public $customerId;
-    public string $name;
-    public string $email;
-    public string $phone;
+    private $customerId;
+    private string $name;
+    private string $email;
+    private string $phone;
 
     public function __construct($customerId, $name, $email, $phone) {
         parent::__construct();

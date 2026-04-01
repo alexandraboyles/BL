@@ -5,15 +5,15 @@ use Core\Validator;
 use Core\BaseModel;
 
 class PurchaseOrder extends BaseModel {
-    public int $purchaseOrderId;
-    public $customerId;
-    public string $orderReference;
-    public string $custReference;
-    public string $shipName;
-    public string $shipAddress;
-    public $orderDate;
-    public $lineItems;
-    public string $status;
+    private int $purchaseOrderId;
+    private $customerId;
+    private string $orderReference;
+    private string $custReference;
+    private string $shipName;
+    private string $shipAddress;
+    private $orderDate;
+    private $lineItems;
+    private string $status;
 
     public function __construct($purchaseOrderId, $customerId, $orderReference, $custReference, $shipName, $shipAddress, $orderDate, $lineItems, $status) {
         parent::__construct();

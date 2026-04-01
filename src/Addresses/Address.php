@@ -5,12 +5,12 @@ use Core\Validator;
 use Core\BaseModel;
 
 class Address extends BaseModel {
-    public int $addressId;
-    public string $street_1;
-    public string $street_2;
-    public string $suburb;
-    public string $state;
-    public string $postcode;
+    private int $addressId;
+    private string $street_1;
+    private string $street_2;
+    private string $suburb;
+    private string $state;
+    private string $postcode;
 
     public function __construct($addressId, $street_1, $street_2, $suburb, $state, $postcode) {
         parent::__construct();

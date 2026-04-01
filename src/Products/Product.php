@@ -5,17 +5,17 @@ use Core\BaseModel;
 use Core\Validator;
 
 class Product extends BaseModel {
-    public int $productId;
-    public $customerId;
-    public string $title;
-    public string $description;
-    public $sku;
-    public $orderDate;
-    public string $unitOfMeasure;
-    public float $width;
-    public float $length;
-    public float $height;
-    public float $weight;
+    private int $productId;
+    private $customerId;
+    private string $title;
+    private string $description;
+    private $sku;
+    private $orderDate;
+    private string $unitOfMeasure;
+    private float $width;
+    private float $length;
+    private float $height;
+    private float $weight;
 
     public function __construct($productId, $customerId, $title, $description, $sku, $orderDate, $unitOfMeasure, $width, $length, $height, $weight) {
         parent::__construct();

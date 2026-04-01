@@ -94,6 +94,28 @@ try {
 
 
 
+//TO DO!!!!!
+//-add setters and getters
+//-edit public variables to private
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
