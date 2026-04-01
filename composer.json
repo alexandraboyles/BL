@@ -3,14 +3,14 @@
     "description": "My PHP project",
     "autoload": {
         "psr-4": {
-            "Core\\": ["src/Core/", "core/"],
-            "Addresses\\": "src/Addresses/",
-            "Contacts\\": "contacts/",
-            "Transport\\": "transport/",
-            "Invoices\\": "src/Invoices/",
-            "Products\\": "products/",
-            "WarehouseSettings\\": ["src/WarehouseSettings/", "warehouse_settings/"],
-            "Warehouse\\": "warehouse/",
+            "Core\\": ["src/components/core/", "src/Core/"],
+            "Addresses\\": ["src/components/addresses/", "src/Addresses/"],
+            "Contacts\\": "src/components/contacts/",
+            "Transport\\": ["src/components/transport/", "src/Transport/"],
+            "Invoices\\": ["src/components/invoices/", "src/Invoices/"],
+            "Products\\": ["src/components/products/", "src/Products/"],
+            "WarehouseSettings\\": ["src/components/warehouse_settings/", "src/WarehouseSettings/"],
+            "Warehouse\\": "src/components/warehouse/",
             "Logs\\": "logs/"
         }
     },

@@ -14,6 +14,6 @@ class DeletionLog extends BaseModel {
         $this->model = $model;
         $this->modelId = $modelId;
         $this->user = $user;
-        $this->dateDeleted = $dateDeleted;
+        $this->dateDeleted = date('Y-m-d H:i:s');
     }
 }

@@ -11,7 +11,7 @@ class LoggerTest extends TestCase {
         $log = new DeletionLog("Address", "ADDR-001", "admin", date('Y-m-d'));
 
         ob_start();
-        $logger->log("Deleted Address", $log->toArray());
+        $logger->log("Test - Deleted Address", $log->toArray());
         $output = ob_get_clean();
 
         $this->assertStringContainsString("Deleted Address", $output);
@@ -23,7 +23,7 @@ class LoggerTest extends TestCase {
         $log = new PrintLog("Invoice Print", "Invoice #101", "HP-LaserJet", "PC-01", "Warehouse A");
 
         ob_start();
-        $logger->log("Printed Invoice", $log->toArray());
+        $logger->log("Test - Printed Invoice", $log->toArray());
         $output = ob_get_clean();
 
         $this->assertStringContainsString("Printed Invoice", $output);

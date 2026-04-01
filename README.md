@@ -32,7 +32,11 @@
 2. Run PHPUnit from the project root:
    ```bash
    vendor\bin\phpunit
+   or 
+   phpunit tests
    ```
+Output:
+- `12 tests, 27 assertions, OK`
 
 ### 5. Add or update code
 
@@ -45,7 +49,11 @@
 1. Run the test suite again:
    ```bash
    vendor\bin\phpunit
+   or
+   phpunit tests
    ```
+Output:
+- `12 tests, 27 assertions, OK`
 2. Fix any failing tests.
 
 ## Notes

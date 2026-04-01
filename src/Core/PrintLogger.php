@@ -10,4 +10,3 @@ class PrintLogger {
         file_put_contents(__DIR__ . '/../../logs/print.log', $entry, FILE_APPEND);
     }
 }
-
