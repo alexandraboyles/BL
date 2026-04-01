@@ -4,15 +4,15 @@ namespace WarehouseSettings;
 use Core\BaseModel;
 
 class WarehouseLocation extends BaseModel {
-    public $productTypeId;
-    public $name;
-    public $barcode;
-    public $zone;
-    public $type;
-    public $capacity;
-    public $pick_replenishEfficiency;
-    public $is_active;
-    public $chargeGroup;
+    public int $productTypeId;
+    public string $name;
+    public string $barcode;
+    public string $zone;
+    public string $type;
+    public string $capacity;
+    public string $pick_replenishEfficiency;
+    public bool $is_active;
+    public string $chargeGroup;
     public $created;
     public $modified;
 
@@ -27,7 +27,7 @@ class WarehouseLocation extends BaseModel {
         $this->pick_replenishEfficiency = $pick_replenishEfficiency;
         $this->is_active = $is_active;
         $this->chargeGroup = $chargeGroup;
-        $this->created = $created;
-        $this->modified = $modified;
+        $this->created = date('Y-m-d H:i:s');
+        $this->modified = date('Y-m-d H:i:s');
     }
 }

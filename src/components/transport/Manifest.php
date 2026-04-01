@@ -6,13 +6,13 @@ use Core\BaseModel;
 class Manifest extends BaseModel {
     public $customerId;
     public $consignmentId;
-    public $requires_pickup;
-    public $info;
-    public $is_finalized;
-    public $assignedToInvoice;
-    public $is_there_any_charging_error;
-    public $storageChargeName;
-    public $storageChargeAmount;
+    public bool $requires_pickup;
+    public string $info;
+    public bool $is_finalized;
+    public string $assignedToInvoice;
+    public bool $is_there_any_charging_error;
+    public string $storageChargeName;
+    public float $storageChargeAmount;
 
     public function __construct($customerId, $consignmentId, $requires_pickup, $info, $is_finalized, $assignedToInvoice, $is_there_any_charging_error, $storageChargeName, $storageChargeAmount) {
         parent::__construct();

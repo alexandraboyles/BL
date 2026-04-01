@@ -4,8 +4,8 @@ namespace Transport;
 use Core\BaseModel;
 
 class Vehicle extends BaseModel {
-    public $name;
-    public $status;
+    public string $name;
+    public string $status;
 
     public function __construct($name, $status) {
         parent::__construct();

@@ -4,9 +4,9 @@ namespace Products;
 use Core\BaseModel;
 
 class ProductStatus extends BaseModel {
-    public $name;
-    public $charge_storage;
-    public $status_in_use;
+    public string $name;
+    public bool $charge_storage;
+    public bool $status_in_use;
 
     public function __construct($name, $charge_storage, $status_in_use) {
         parent::__construct();

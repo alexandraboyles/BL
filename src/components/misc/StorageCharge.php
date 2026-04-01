@@ -4,14 +4,12 @@ namespace Misc;
 use Core\BaseModel;
 
 class StorageCharge extends BaseModel {
-    public $name;
-    public $amount;
-    public $status;
+    public string $name;
+    public float $amount;
 
-    public function __construct($name, $amount, $status) {
+    public function __construct($name, $amount) {
         parent::__construct();
         $this->name = $name;
         $this->amount = $amount;
-        $this->status = $status;
     }
 }

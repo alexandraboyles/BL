@@ -4,12 +4,12 @@ namespace Invoices;
 use Core\BaseModel;
 
 class AdhocChargeSetup extends BaseModel {
-    public $name;
-    public $chargeStructure;
-    public $rate;
-    public $descriptionTemplate;
-    public $is_enabled;
-    public $pageVisibleOn;
+    public string $name;
+    public string $chargeStructure;
+    public float $rate;
+    public string $descriptionTemplate;
+    public bool $is_enabled;
+    public string $pageVisibleOn;
 
     public function __construct($name, $chargeStructure, $rate, $descriptionTemplate, $is_enabled, $pageVisibleOn) {
         parent::__construct();

@@ -5,19 +5,19 @@ use Core\BaseModel;
 use Core\Validator;
 
 class Invoice extends BaseModel {
-    public $invoiceId;
+    public int $invoiceId;
     public $customerId;
-    public $rateCard;
-    public $manifestId;
-    public $income;
-    public $expense;
+    public int $rateCard;
+    public int $manifestId;
+    public float $income;
+    public float $expense;
     public $startDate;
     public $endDate;
-    public $status;
-    public $paymentStatus;
-    public $emailStatus;
-    public $internalReference;
-    public $externalReference;
+    public string $status;
+    public string $paymentStatus;
+    public string $emailStatus;
+    public string $internalReference;
+    public string $externalReference;
 
     public function __construct($invoiceId, $customerId, $rateCard, $manifestId, $income, $expense, $startDate, $endDate, $status, $paymentStatus, $emailStatus, $internalReference, $externalReference) {
         parent::__construct();

@@ -6,7 +6,7 @@ use Core\BaseModel;
 class RateCard extends BaseModel {
     public $customerId;
     public $rates;
-    public $contact_email;
+    public string $contact_email;
 
     public function __construct($customerId, $rates, $contact_email) {
         parent::__construct();

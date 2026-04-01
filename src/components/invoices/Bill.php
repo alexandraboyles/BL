@@ -4,9 +4,9 @@ namespace Invoices;
 use Core\BaseModel;
 
 class Bill extends BaseModel {
-    public $supplierId;
+    public int $supplierId;
     public $invoiceId;
-    public $manifestId;
+    public int $manifestId;
 
     public function __construct($supplierId, $invoiceId, $manifestId) {
         parent::__construct();

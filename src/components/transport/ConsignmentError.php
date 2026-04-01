@@ -6,11 +6,11 @@ use Core\BaseModel;
 class ConsignmentError extends BaseModel {
     public $consignmentId;
     public $customerId;
-    public $name;
-    public $causedBy;
-    public $chargeAction;
-    public $status;
-    public $customerDecision;
+    public string $name;
+    public string $causedBy;
+    public string $chargeAction;
+    public string $status;
+    public string $customerDecision;
 
     public function __construct($consignmentId, $customerId, $name, $causedBy, $chargeAction, $status, $customerDecision) {
         parent::__construct();

@@ -4,10 +4,10 @@ namespace TransportSettings;
 use Core\BaseModel;
 
 class ZoneSet extends BaseModel {
-    public $name;
-    public $type;
-    public $zoneSetCascade;
-    public $status;
+    public string $name;
+    public string $type;
+    public string $zoneSetCascade;
+    public string $status;
 
     public function __construct($name, $type, $zoneSetCascade, $status) {
         parent::__construct();

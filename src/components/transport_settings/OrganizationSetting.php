@@ -4,10 +4,10 @@ namespace TransportSettings;
 use Core\BaseModel;
 
 class OrganizationSetting extends BaseModel {
-    public $nickname;
-    public $website;
-    public $telephone;
-    public $defaultCurrency;
+    public string $nickname;
+    public string $website;
+    public int $telephone;
+    public string $defaultCurrency;
 
     public function __construct($nickname, $website, $telephone, $defaultCurrency) {
         parent::__construct();

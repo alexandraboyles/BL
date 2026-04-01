@@ -4,12 +4,12 @@ namespace Addresses;
 use Core\BaseModel;
 
 class AddressToDeliveryRunMapping extends BaseModel {
-    public $addressId;
+    public int $addressId;
     public $customerId;
     public $productId;
     public $deliveryRunId;
-    public $carrierId;
-    public $flowDirection;
+    public int $carrierId;
+    public string $flowDirection;
 
     public function __construct($addressId, $customerId, $productId, $deliveryRunId, $carrierId, $flowDirection) {
         parent::__construct();

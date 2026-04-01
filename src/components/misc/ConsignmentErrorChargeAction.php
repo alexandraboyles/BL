@@ -4,16 +4,12 @@ namespace Misc;
 use Core\BaseModel;
 
 class ConsignmentErrorChargeAction extends BaseModel {
-    public $consignmentId;
-    public $customerId;
-    public $action;
-    public $status;
+    public string $name;
+    public string $errorCause;
 
-    public function __construct($consignmentId, $customerId, $action, $status) {
+    public function __construct($name, $errorCause) {
         parent::__construct();
-        $this->consignmentId = $consignmentId;
-        $this->customerId = $customerId;
-        $this->action = $action;
-        $this->status = $status;
+        $this->name = $name;
+        $this->errorCause = $errorCause;
     }
 }

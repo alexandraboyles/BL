@@ -5,9 +5,9 @@ use Core\BaseModel;
 
 class Contact extends BaseModel {
     public $customerId;
-    public $name;
-    public $email;
-    public $phone;
+    public string $name;
+    public string $email;
+    public string $phone;
 
     public function __construct($customerId, $name, $email, $phone) {
         parent::__construct();

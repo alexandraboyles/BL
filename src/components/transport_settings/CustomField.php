@@ -4,11 +4,11 @@ namespace TransportSettings;
 use Core\BaseModel;
 
 class CustomField extends BaseModel {
-    public $name;
-    public $shortName;
-    public $fieldType;
-    public $mappedFieldName;
-    public $fieldMapping;
+    public string $name;
+    public string $shortName;
+    public string $fieldType;
+    public string $mappedFieldName;
+    public string $fieldMapping;
 
     public function __construct($name, $shortName, $fieldType, $mappedFieldName, $fieldMapping) {
         parent::__construct();

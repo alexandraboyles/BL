@@ -4,9 +4,9 @@ namespace Invoices;
 use Core\BaseModel;
 
 class Account extends BaseModel {
-    public $name;
-    public $description;
-    public $display_when_no_value;
+    public string $name;
+    public string $description;
+    public bool $display_when_no_value;
 
     public function __construct($name, $description, $display_when_no_value) {
         parent::__construct();

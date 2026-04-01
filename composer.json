@@ -5,12 +5,11 @@
         "psr-4": {
             "Core\\": ["src/components/core/", "src/Core/"],
             "Addresses\\": ["src/components/addresses/", "src/Addresses/"],
-            "Contacts\\": "src/components/contacts/",
+            "Contacts\\": ["src/components/contacts/", "src/Contacts/"],
             "Transport\\": ["src/components/transport/", "src/Transport/"],
             "Invoices\\": ["src/components/invoices/", "src/Invoices/"],
             "Products\\": ["src/components/products/", "src/Products/"],
-            "WarehouseSettings\\": ["src/components/warehouse_settings/", "src/WarehouseSettings/"],
-            "Warehouse\\": "src/components/warehouse/",
+            "Warehouse\\": ["src/components/warehouse/", "src/Warehouse/"],
             "Logs\\": "logs/"
         }
     },

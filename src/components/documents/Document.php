@@ -7,7 +7,7 @@ class Document extends BaseModel {
     public $saleOrderId;
     public $customerId;
     public $consignmentId;
-    public $fileType;
+    public string $fileType;
 
     public function __construct($saleOrderId, $customerId, $consignmentId, $fileType) {
         parent::__construct();

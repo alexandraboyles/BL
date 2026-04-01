@@ -5,9 +5,9 @@ use Core\BaseModel;
 
 class ProductGroup extends BaseModel {
     public $customerId;
-    public $productTypeId;
-    public $name;
-    public $description;
+    public int $productTypeId;
+    public string $name;
+    public string $description;
 
     public function __construct($customerId, $productTypeId, $name, $description) {
         parent::__construct();

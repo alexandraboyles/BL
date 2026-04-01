@@ -7,9 +7,9 @@ class Stocktake extends BaseModel {
     public $customerId;
     public $productId;
     public $locationId;
-    public $name;
+    public string $name;
     public $plannedDate;
-    public $status;
+    public string $status;
 
     public function __construct($customerId, $productId, $locationId, $name, $plannedDate, $status) {
         parent::__construct();

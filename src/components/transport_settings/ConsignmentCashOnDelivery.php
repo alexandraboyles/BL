@@ -7,10 +7,10 @@ class ConsignmentCashOnDelivery extends BaseModel {
     public $consignmentId;
     public $driverId;
     public $customerId;
-    public $paymentType;
-    public $status;
-    public $amount;
-    public $comments;
+    public string $paymentType;
+    public string $status;
+    public float $amount;
+    public string $comments;
 
     public function __construct($consignmentId, $driverId, $customerId, $paymentType, $status, $amount, $comments) {
         parent::__construct();

@@ -7,8 +7,8 @@ class Replenishment extends BaseModel {
     public $customerId;
     public $productId;
     public $locationId;
-    public $stocktakesId;
-    public $name;
+    public int $stocktakesId;
+    public string $name;
     public $plannedDate;
 
     public function __construct($customerId, $productId, $locationId, $stocktakesId, $name, $plannedDate) {

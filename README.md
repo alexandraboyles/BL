@@ -36,7 +36,7 @@
    phpunit tests
    ```
 Output:
-- `12 tests, 27 assertions, OK`
+- `OK (11 tests, 23 assertions)`
 
 ### 5. Add or update code
 
@@ -53,7 +53,7 @@ Output:
    phpunit tests
    ```
 Output:
-- `12 tests, 27 assertions, OK`
+- `OK (11 tests, 23 assertions)`
 2. Fix any failing tests.
 
 ## Notes

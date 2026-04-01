@@ -29,4 +29,11 @@ class Validator {
         }
         return $value;
     }
+
+    public static function isString($value, $fieldName) {
+        if (!is_string($value)) {
+        throw new ValidationException("$fieldName cannot be numeric", $fieldName);
+        }
+        return $value;
+    }
 }

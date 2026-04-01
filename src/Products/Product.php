@@ -5,17 +5,17 @@ use Core\BaseModel;
 use Core\Validator;
 
 class Product extends BaseModel {
-    public $productId;
+    public int $productId;
     public $customerId;
-    public $title;
-    public $description;
+    public string $title;
+    public string $description;
     public $sku;
     public $orderDate;
-    public $unitOfMeasure;
-    public $width;
-    public $length;
-    public $height;
-    public $weight;
+    public string $unitOfMeasure;
+    public float $width;
+    public float $length;
+    public float $height;
+    public float $weight;
 
     public function __construct($productId, $customerId, $title, $description, $sku, $orderDate, $unitOfMeasure, $width, $length, $height, $weight) {
         parent::__construct();
@@ -28,9 +28,9 @@ class Product extends BaseModel {
         $this->productId = $productId;
         $this->customerId = $customerId;
         $this->title = Validator::notEmpty($title, "Title");
-        $this->description = $description;
+        $this->description = Validator::isString($description, "Description");
         $this->sku = Validator::notEmpty($sku, "SKU");
-        $this->orderDate = $orderDate;
-        $this->unitOfMeasure = $unitOfMeasure;
+        $this->orderDate = date('Y-m-d H:i:s');
+        $this->unitOfMeasure = Validator::isString($unitOfMeasure, "Unit of Measure");
     }
 }

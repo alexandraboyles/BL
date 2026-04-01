@@ -4,8 +4,8 @@ namespace TransportSettings;
 use Core\BaseModel;
 
 class ConsignmentDeliveryCancelledStatus extends BaseModel {
-    public $statusName;
-    public $is_charged;
+    public string $statusName;
+    public bool $is_charged;
 
     public function __construct($statusName, $is_charged) {
         parent::__construct();

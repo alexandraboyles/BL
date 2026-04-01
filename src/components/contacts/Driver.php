@@ -4,10 +4,10 @@ namespace Contacts;
 use Core\BaseModel;
 
 class Driver extends BaseModel {
-    public $name;
-    public $email;
-    public $is_online;
-    public $location_access_available;
+    public string $name;
+    public string $email;
+    public bool $is_online;
+    public bool $location_access_available;
 
     public function __construct($name, $email, $is_online, $location_access_available) {
         parent::__construct();

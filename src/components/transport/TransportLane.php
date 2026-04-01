@@ -5,11 +5,11 @@ use Core\BaseModel;
 
 class TransportLane extends BaseModel {
     public $deliveryRunId;
-    public $name;
+    public string $name;
     public $effectiveDate;
     public $expiryDate;
-    public $fromZone;
-    public $toZone;
+    public string $fromZone;
+    public string $toZone;
 
     public function __construct($deliveryRunId, $name, $effectiveDate, $expiryDate, $fromZone, $toZone) {
         parent::__construct();

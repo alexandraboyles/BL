@@ -4,11 +4,11 @@ namespace Products;
 use Core\BaseModel;
 
 class UnitsOfMeasure extends BaseModel {
-    public $productTypeId;
-    public $name;
-    public $code;
-    public $category;
-    public $oversize_warning;
+    public int $productTypeId;
+    public string $name;
+    public string $code;
+    public string $category;
+    public bool $oversize_warning;
 
     public function __construct($productTypeId, $name, $code, $category, $oversize_warning) {
         parent::__construct();

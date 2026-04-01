@@ -4,8 +4,8 @@ namespace TransportSettings;
 use Core\BaseModel;
 
 class NotificationEmail extends BaseModel {
-    public $name;
-    public $email;
+    public string $name;
+    public string $email;
 
     public function __construct($name, $email) {
         parent::__construct();

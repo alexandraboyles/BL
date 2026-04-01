@@ -4,9 +4,9 @@ namespace Warehouse;
 use Core\BaseModel;
 
 class Shipment extends BaseModel {
-    public $status;
-    public $numOfContainers;
-    public $numOfPOs;
+    public string $status;
+    public int $numOfContainers;
+    public int $numOfPOs;
 
     public function __construct($status, $numOfContainers, $numOfPOs) {
         parent::__construct();

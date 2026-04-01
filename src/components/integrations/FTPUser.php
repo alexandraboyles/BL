@@ -4,10 +4,10 @@ namespace Integrations;
 use Core\BaseModel;
 
 class FTPUser extends BaseModel {
-    public $ftpUserId;
-    public $username;
-    public $password;
-    public $subDirectory;
+    public int $ftpUserId;
+    public string $username;
+    public string $password;
+    public string $subDirectory;
     public $lastLogin;
 
     public function __construct($ftpUserId, $username, $password, $subDirectory, $lastLogin) {
@@ -16,6 +16,6 @@ class FTPUser extends BaseModel {
         $this->username = $username;
         $this->password = $password;
         $this->subDirectory = $subDirectory;
-        $this->lastLogin = $lastLogin;
+        $this->lastLogin = date('Y-m-d H:i:s');
     }
 }

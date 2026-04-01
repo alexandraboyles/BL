@@ -5,21 +5,21 @@ use Core\BaseModel;
 use Core\Validator;
 
 class Consignment extends BaseModel {
-    public $consignmentId;
+    public int $consignmentId;
     public $saleOrderId;
     public $addressId;
     public $productId;
     public $deliveryRunId;
     public $driverId;
-    public $runsheetId;
-    public $service;
-    public $reference;
-    public $is_residential;
-    public $quantity;
-    public $cubic;
-    public $weight;
-    public $pallets;
-    public $spaces;
+    public int $runsheetId;
+    public string $service;
+    public string $reference;
+    public bool $is_residential;
+    public int $quantity;
+    public float $cubic;
+    public float $weight;
+    public float $pallets;
+    public float $spaces;
 
     public function __construct($consignmentId, $saleOrderId, $addressId, $productId, $deliveryRunId, $driverId, $runsheetId, $service, $reference, $is_residential, $quantity, $cubic, $weight, $pallets, $spaces) {
         parent::__construct();
@@ -34,8 +34,8 @@ class Consignment extends BaseModel {
         $this->deliveryRunId = $deliveryRunId;
         $this->driverId = $driverId;
         $this->runsheetId = $runsheetId;
-        $this->service = $service;
-        $this->reference = $reference;
+        $this->service = Validator::isString($service, "Service");
+        $this->reference = Validator::isString($reference, "Reference");
         $this->is_residential = $is_residential;
         $this->cubic = $cubic;
         $this->pallets = $pallets;

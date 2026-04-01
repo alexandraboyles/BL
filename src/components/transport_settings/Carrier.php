@@ -4,9 +4,9 @@ namespace TransportSettings;
 use Core\BaseModel;
 
 class Carrier extends BaseModel {
-    public $name;
-    public $on_forwarder;
-    public $status;
+    public string $name;
+    public bool $on_forwarder;
+    public string $status;
 
     public function __construct($name, $on_forwarder, $status) {
         parent::__construct();

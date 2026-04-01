@@ -15,7 +15,6 @@ class ComposerStaticInitb881e41e317800cc1e3253ef548d3c33
         'W' =>
         array (
             'Warehouse\\' => 10,
-            'WarehouseSettings\\' => 18,
         ),
         'T' =>
         array (
@@ -53,11 +52,7 @@ class ComposerStaticInitb881e41e317800cc1e3253ef548d3c33
         'Warehouse\\' =>
         array (
             0 => __DIR__ . '/../..' . '/src/components/warehouse',
-        ),
-        'WarehouseSettings\\' =>
-        array (
-            0 => __DIR__ . '/../..' . '/src/components/warehouse_settings',
-            1 => __DIR__ . '/../..' . '/src/WarehouseSettings',
+            1 => __DIR__ . '/../..' . '/src/Warehouse',
         ),
         'Transport\\' =>
         array (
@@ -94,6 +89,7 @@ class ComposerStaticInitb881e41e317800cc1e3253ef548d3c33
         'Contacts\\' =>
         array (
             0 => __DIR__ . '/../..' . '/src/components/contacts',
+            1 => __DIR__ . '/../..' . '/src/Contacts',
         ),
         'Addresses\\' =>
         array (

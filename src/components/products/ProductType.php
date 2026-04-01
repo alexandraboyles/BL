@@ -4,11 +4,11 @@ namespace Products;
 use Core\BaseModel;
 
 class ProductType extends BaseModel {
-    public $name;
+    public string $name;
     public $code;
-    public $alias;
-    public $priority;
-    public $is_default;
+    public string $alias;
+    public int $priority;
+    public bool $is_default;
 
     public function __construct($name, $code, $alias, $priority, $is_default) {
         parent::__construct();

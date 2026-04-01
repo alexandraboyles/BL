@@ -8,8 +8,8 @@ class BulkAllocation extends BaseModel {
     public $runsheetId;
     public $deliveryRunId;
     public $driverId;
-    public $referenceNumber;
-    public $serviceType;
+    public string $referenceNumber;
+    public string $serviceType;
     public $requiredDeliveryDate;
 
     public function __construct($customerId, $runsheetId, $deliveryRunId, $driverId, $referenceNumber, $serviceType, $requiredDeliveryDate) {

@@ -4,9 +4,9 @@ namespace Tools;
 use Core\BaseModel;
 
 class RegexDefinition extends BaseModel {
-    public $name;
-    public $regex;
-    public $status;
+    public string $name;
+    public string $regex;
+    public string $status;
 
     public function __construct($name, $regex, $status) {
         parent::__construct();

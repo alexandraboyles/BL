@@ -4,8 +4,8 @@ namespace Transport;
 use Core\BaseModel;
 
 class DeliveryRun extends BaseModel {
-    public $name;
-    public $carrier;
+    public string $name;
+    public string $carrier;
 
     public function __construct($name, $carrier) {
         parent::__construct();

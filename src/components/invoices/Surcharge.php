@@ -4,11 +4,11 @@ namespace Invoices;
 use Core\BaseModel;
 
 class Surcharge extends BaseModel {
-    public $adhocChargeSetupId;
-    public $name;
-    public $condition;
-    public $surcharge;
-    public $status;
+    public int $adhocChargeSetupId;
+    public string $name;
+    public string $condition;
+    public float $surcharge;
+    public string $status;
 
     public function __construct($adhocChargeSetupId, $name, $condition, $surcharge, $status) {
         parent::__construct();

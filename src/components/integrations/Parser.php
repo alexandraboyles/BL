@@ -5,12 +5,12 @@ use Core\BaseModel;
 
 class Parser extends BaseModel {
     public $customerId;
-    public $name;
-    public $className;
-    public $class;
-    public $type;
+    public string $name;
+    public string $className;
+    public string $class;
+    public string $type;
     public $acceptedFiletypes;
-    public $toAddress;
+    public string $toAddress;
 
     public function __construct($customerId, $name, $className, $class, $type, $acceptedFiletypes, $toAddress) {
         parent::__construct();

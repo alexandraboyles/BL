@@ -7,10 +7,10 @@ class RunSheet extends BaseModel {
     public $deliveryRunId;
     public $consignmentId;
     public $driverId;
-    public $name;
-    public $totalCashOnDelivery;
-    public $income;
-    public $is_complete;
+    public string $name;
+    public float $totalCashOnDelivery;
+    public float $income;
+    public bool $is_complete;
 
     public function __construct($deliveryRunId, $consignmentId, $driverId, $name, $totalCashOnDelivery, $income, $is_complete) {
         parent::__construct();

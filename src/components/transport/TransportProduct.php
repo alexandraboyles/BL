@@ -4,13 +4,13 @@ namespace Transport;
 use Core\BaseModel;
 
 class TransportProduct extends BaseModel {
-    public $name;
-    public $code;
-    public $length;
-    public $width;
-    public $height;
-    public $weight;
-    public $barcode;
+    public string $name;
+    public string $code;
+    public float $length;
+    public float $width;
+    public float $height;
+    public float $weight;
+    public string $barcode;
 
     public function __construct($name, $code, $length, $width, $height, $weight, $barcode) {
         parent::__construct();

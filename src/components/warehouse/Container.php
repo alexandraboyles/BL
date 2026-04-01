@@ -5,14 +5,14 @@ use Core\BaseModel;
 
 class Container extends BaseModel {
     public $customerId;
-    public $containerNumber;
+    public string $containerNumber;
     public $containerArrivalDate;
     public $containerDepartureDate;
-    public $transportContact;
-    public $clientName;
-    public $containerSize;
-    public $shipment;
-    public $comments;
+    public string $transportContact;
+    public string $clientName;
+    public string $containerSize;
+    public string $shipment;
+    public string $comments;
     public $dateCreated;
     public $dateModified;
 
@@ -27,7 +27,7 @@ class Container extends BaseModel {
         $this->containerSize = $containerSize;
         $this->shipment = $shipment;
         $this->comments = $comments;
-        $this->dateCreated = $dateCreated;
-        $this->dateModified = $dateModified;
+        $this->dateCreated = date('Y-m-d H:i:s');
+        $this->dateModified = date('Y-m-d H:i:s');
     }
 }
