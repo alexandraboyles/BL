@@ -46,6 +46,7 @@ $printLogger = new PrintLogger();
 try {
     // --- Sample creation of objects across modules ---
     $address = new Address(1, "123 Main St", "Unit 4", "Brisbane", "QLD", "4000");
+    
     $contact = new Contact(1, "Alice Smith", "alice@example.com", "0400123456");
 
     $invoice = new Invoice(101, 1, 5, 2001, 1500.00, 1200.00, "2026-03-01", "2026-03-31", "Open", "Pending", "Sent", "INT-REF-001", "EXT-REF-001");
