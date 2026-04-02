@@ -16,9 +16,9 @@ class PurchaseOrderTest extends TestCase {
             [$product], "Pending"
         );
 
-        $this->assertEquals("PO-REF-001", $purchaseOrder->orderReference);
-        $this->assertEquals("Pending", $purchaseOrder->status);
-        $this->assertCount(1, $purchaseOrder->lineItems);
-        $this->assertEquals("Widget A", $purchaseOrder->lineItems[0]->title);
+        $this->assertEquals("PO-REF-001", $purchaseOrder->getOrderReference());
+        $this->assertEquals("Pending", $purchaseOrder->getStatus());
+        $this->assertCount(1, $purchaseOrder->getLineItems());
+        $this->assertEquals("Widget A", $purchaseOrder->getLineItems()[0]->getTitle());
     }
 }

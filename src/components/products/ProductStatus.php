@@ -4,9 +4,9 @@ namespace Products;
 use Core\BaseModel;
 
 class ProductStatus extends BaseModel {
-    public string $name;
-    public bool $charge_storage;
-    public bool $status_in_use;
+    private string $name;
+    private bool $charge_storage;
+    private bool $status_in_use;
 
     public function __construct($name, $charge_storage, $status_in_use) {
         parent::__construct();
@@ -14,4 +14,43 @@ class ProductStatus extends BaseModel {
         $this->charge_storage = $charge_storage;
         $this->status_in_use = $status_in_use;
     }
+
+    public function getName(): string {
+        return $this->name;
+    }
+
+    public function setName(string $name): void {
+        $this->name = $name;
+    }
+
+    public function getCharge_storage(): bool {
+        return $this->charge_storage;
+    }
+
+    public function getChargeStorage(): bool {
+        return $this->charge_storage;
+    }
+
+    public function setCharge_storage(bool $charge_storage): void {
+        $this->charge_storage = $charge_storage;
+    }
+
+    public function getStatus_in_use(): bool {
+        return $this->status_in_use;
+    }
+
+    public function getStatusInUse(): bool {
+        return $this->status_in_use;
+    }
+
+    public function setStatus_in_use(bool $status_in_use): void {
+        $this->status_in_use = $status_in_use;
+    }
+
+    public function toArray() {
+        $vars = get_object_vars($this);
+        $vars['id'] = $this->getId();
+        return $vars;
+    }
 }
+

@@ -10,8 +10,8 @@ class InvoiceTest extends TestCase {
             "Open", "Pending", "Sent", "INT-REF-001", "EXT-REF-001"
         );
 
-        $this->assertEquals(101, $invoice->invoiceId);
-        $this->assertEquals("Open", $invoice->status);
-        $this->assertEquals("Pending", $invoice->paymentStatus);
+        $this->assertEquals(101, $invoice->getInvoiceId());
+        $this->assertEquals("Open", $invoice->getStatus());
+        $this->assertEquals("Pending", $invoice->getPaymentStatus());
     }
 }

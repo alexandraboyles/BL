@@ -21,4 +21,67 @@ class Address extends BaseModel {
         $this->state = Validator::isString($state, "State");
         $this->postcode = Validator::isString($postcode, "Postcode");
     }
+
+    public function getAddressId(): int {
+        return $this->addressId;
+    }
+
+    public function setAddressId(int $addressId): void {
+        $this->addressId = $addressId;
+    }
+
+    public function getStreet_1(): string {
+        return $this->street_1;
+    }
+
+    public function getStreet1(): string {
+        return $this->street_1;
+    }
+
+    public function setStreet_1(string $street_1): void {
+        $this->street_1 = $street_1;
+    }
+
+    public function getStreet_2(): string {
+        return $this->street_2;
+    }
+
+    public function getStreet2(): string {
+        return $this->street_2;
+    }
+
+    public function setStreet_2(string $street_2): void {
+        $this->street_2 = $street_2;
+    }
+
+    public function getSuburb(): string {
+        return $this->suburb;
+    }
+
+    public function setSuburb(string $suburb): void {
+        $this->suburb = $suburb;
+    }
+
+    public function getState(): string {
+        return $this->state;
+    }
+
+    public function setState(string $state): void {
+        $this->state = $state;
+    }
+
+    public function getPostcode(): string {
+        return $this->postcode;
+    }
+
+    public function setPostcode(string $postcode): void {
+        $this->postcode = $postcode;
+    }
+
+    public function toArray() {
+        $vars = get_object_vars($this);
+        $vars['id'] = $this->getId();
+        return $vars;
+    }
 }
+

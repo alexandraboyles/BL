@@ -9,9 +9,9 @@ class ConsignmentTest extends TestCase {
             "Express", "REF-789", true, 10, 2.5, 25.0, 2, 5
         );
 
-        $this->assertEquals(301, $consignment->consignmentId);
-        $this->assertEquals("Express", $consignment->service);
-        $this->assertTrue($consignment->is_residential);
-        $this->assertEquals(10, $consignment->quantity);
+        $this->assertEquals(301, $consignment->getConsignmentId());
+        $this->assertEquals("Express", $consignment->getService());
+        $this->assertTrue($consignment->getIsResidential());
+        $this->assertEquals(10, $consignment->getQuantity());
     }
 }

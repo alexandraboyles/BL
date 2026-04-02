@@ -1,7 +1,7 @@
 <?php
 namespace Core;
 
-abstract class BaseModel {
+abstract class BaseModel implements \JsonSerializable {
     protected $id;
 
     public function __construct($id = null) {
@@ -21,6 +21,10 @@ abstract class BaseModel {
 
     public function toArray() {
         return get_object_vars($this);
+    }
+
+    public function jsonSerialize(): mixed {
+        return $this->toArray();
     }
 
     public function __toString() {

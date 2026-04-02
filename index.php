@@ -21,8 +21,6 @@ register_shutdown_function(function () {
         echo "[RUNTIME ERROR] Message: {$error['message']}" . PHP_EOL;
     }
 });
-
-
 require __DIR__ . '/vendor/autoload.php';
 
 use Addresses\Address;
@@ -40,6 +38,8 @@ use Core\ValidationException;
 use Core\RuntimeException;
 
 // Instantiate loggers
+
+
 $deletionLogger = new DeletionLogger();
 $printLogger = new PrintLogger();
 
@@ -85,36 +85,6 @@ try {
     echo "[RUNTIME ERROR] Context: " . $re->getContext() . " | Message: " . $re->getMessage() . PHP_EOL;
     file_put_contents(__DIR__ . '/logs/runtime.log', date('c') . " | " . $re->getMessage() . PHP_EOL, FILE_APPEND);
 }
-
-
-
-
-
-
-
-
-
-//TO DO!!!!!
-//-add setters and getters
-//-edit public variables to private
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

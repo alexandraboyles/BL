@@ -33,7 +33,7 @@
    ```bash
    vendor\bin\phpunit
    or 
-   phpunit tests
+   ./vendor/bin/phpunit tests
    ```
 Output:
 - `OK (11 tests, 23 assertions)`
@@ -50,7 +50,7 @@ Output:
    ```bash
    vendor\bin\phpunit
    or
-   phpunit tests
+   ./vendor/bin/phpunit tests
    ```
 Output:
 - `OK (11 tests, 23 assertions)`

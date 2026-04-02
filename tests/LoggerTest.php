@@ -10,23 +10,21 @@ class LoggerTest extends TestCase {
         $logger = new DeletionLogger();
         $log = new DeletionLog("Address", "ADDR-001", "admin", date('Y-m-d'));
 
-        ob_start();
         $logger->log("Test - Deleted Address", $log->toArray());
-        $output = ob_get_clean();
 
-        $this->assertStringContainsString("Deleted Address", $output);
-        $this->assertStringContainsString("ADDR-001", $output);
+        $logContents = file_get_contents(__DIR__ . '/../logs/deletion.log');
+        $this->assertStringContainsString("Deleted Address", $logContents);
+        $this->assertStringContainsString("ADDR-001", $logContents);
     }
 
     public function testPrintLoggerWritesLog() {
         $logger = new PrintLogger();
         $log = new PrintLog("Invoice Print", "Invoice #101", "HP-LaserJet", "PC-01", "Warehouse A");
 
-        ob_start();
         $logger->log("Test - Printed Invoice", $log->toArray());
-        $output = ob_get_clean();
 
-        $this->assertStringContainsString("Printed Invoice", $output);
-        $this->assertStringContainsString("Invoice #101", $output);
+        $logContents = file_get_contents(__DIR__ . '/../logs/print.log');
+        $this->assertStringContainsString("Printed Invoice", $logContents);
+        $this->assertStringContainsString("Invoice #101", $logContents);
     }
 }
