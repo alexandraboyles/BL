@@ -30,7 +30,7 @@ class Address extends BaseModel {
         $this->addressId = $addressId;
     }
 
-    public function getStreet_1(): string {
+    public function getStreet1(): string {
         return $this->street_1;
     }
 
@@ -38,7 +38,7 @@ class Address extends BaseModel {
         $this->street_1 = $street_1;
     }
 
-    public function getStreet_2(): string {
+    public function getStreet2(): string {
         return $this->street_2;
     }
 
