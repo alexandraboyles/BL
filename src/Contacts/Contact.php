@@ -1,6 +1,6 @@
 <?php
 namespace Contacts;
-
+use Core\Validator;
 use Core\BaseModel;
 
 class Contact extends BaseModel {
@@ -12,9 +12,9 @@ class Contact extends BaseModel {
     public function __construct($customerId, $name, $email, $phone) {
         parent::__construct();
         $this->customerId = $customerId;
-        $this->name = $name;
-        $this->email = $email;
-        $this->phone = $phone;
+        $this->name = Validator::isString($name, "Name");
+        $this->email = Validator::isString($email, "Email");
+        $this->phone = Validator::isString($phone, "Phone");
     }
 
     public function getCustomerId() {

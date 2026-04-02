@@ -23,8 +23,8 @@ class Invoice extends BaseModel {
         parent::__construct();
 
         [$this->startDate, $this->endDate] = Validator::validDateRange($startDate, $endDate);
-        $this->income  = Validator::nonNegativeNumber($income, "Income");
-        $this->expense = Validator::nonNegativeNumber($expense, "Expense");
+        $this->income  = Validator::positiveNumber($income, "Income");
+        $this->expense = Validator::positiveNumber($expense, "Expense");
 
         $this->invoiceId = $invoiceId;
         $this->customerId = $customerId;
