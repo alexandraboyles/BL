@@ -23,10 +23,6 @@ class Carrier extends BaseModel {
         $this->name = $name;
     }
 
-    public function getOn_forwarder(): bool {
-        return $this->on_forwarder;
-    }
-
     public function getOnForwarder(): bool {
         return $this->on_forwarder;
     }

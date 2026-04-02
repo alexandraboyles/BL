@@ -34,19 +34,11 @@ class Address extends BaseModel {
         return $this->street_1;
     }
 
-    public function getStreet1(): string {
-        return $this->street_1;
-    }
-
     public function setStreet_1(string $street_1): void {
         $this->street_1 = $street_1;
     }
 
     public function getStreet_2(): string {
-        return $this->street_2;
-    }
-
-    public function getStreet2(): string {
         return $this->street_2;
     }
 

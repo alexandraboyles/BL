@@ -51,10 +51,6 @@ class UnitsOfMeasure extends BaseModel {
         $this->category = $category;
     }
 
-    public function getOversize_warning(): bool {
-        return $this->oversize_warning;
-    }
-
     public function getOversizeWarning(): bool {
         return $this->oversize_warning;
     }

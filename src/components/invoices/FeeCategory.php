@@ -43,20 +43,12 @@ class FeeCategory extends BaseModel {
         $this->name = $name;
     }
 
-    public function getCounts_toward_minimum_charges(): bool {
-        return $this->counts_toward_minimum_charges;
-    }
-
     public function getCountsTowardMinimumCharges(): bool {
         return $this->counts_toward_minimum_charges;
     }
 
     public function setCounts_toward_minimum_charges(bool $counts_toward_minimum_charges): void {
         $this->counts_toward_minimum_charges = $counts_toward_minimum_charges;
-    }
-
-    public function getIs_name_editable(): bool {
-        return $this->is_name_editable;
     }
 
     public function getIsNameEditable(): bool {

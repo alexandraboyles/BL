@@ -31,10 +31,6 @@ class Account extends BaseModel {
         $this->description = $description;
     }
 
-    public function getDisplay_when_no_value(): bool {
-        return $this->display_when_no_value;
-    }
-
     public function getDisplayWhenNoValue(): bool {
         return $this->display_when_no_value;
     }

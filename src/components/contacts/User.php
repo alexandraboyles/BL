@@ -71,10 +71,6 @@ class User extends BaseModel {
         $this->mfa = $mfa;
     }
 
-    public function getIs_email_verified(): bool {
-        return $this->is_email_verified;
-    }
-
     public function getIsEmailVerified(): bool {
         return $this->is_email_verified;
     }

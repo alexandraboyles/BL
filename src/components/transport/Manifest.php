@@ -43,10 +43,6 @@ class Manifest extends BaseModel {
         $this->consignmentId = $consignmentId;
     }
 
-    public function getRequires_pickup(): bool {
-        return $this->requires_pickup;
-    }
-
     public function getRequiresPickup(): bool {
         return $this->requires_pickup;
     }
@@ -63,10 +59,6 @@ class Manifest extends BaseModel {
         $this->info = $info;
     }
 
-    public function getIs_finalized(): bool {
-        return $this->is_finalized;
-    }
-
     public function getIsFinalized(): bool {
         return $this->is_finalized;
     }
@@ -81,10 +73,6 @@ class Manifest extends BaseModel {
 
     public function setAssignedToInvoice(string $assignedToInvoice): void {
         $this->assignedToInvoice = $assignedToInvoice;
-    }
-
-    public function getIs_there_any_charging_error(): bool {
-        return $this->is_there_any_charging_error;
     }
 
     public function getIsThereAnyChargingError(): bool {

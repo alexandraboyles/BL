@@ -79,20 +79,12 @@ class WarehouseLocation extends BaseModel {
         $this->capacity = $capacity;
     }
 
-    public function getPick_replenishEfficiency(): string {
-        return $this->pick_replenishEfficiency;
-    }
-    
     public function getPickReplenishEfficiency(): string {
         return $this->pick_replenishEfficiency;
     }
 
     public function setPick_replenishEfficiency(string $pick_replenishEfficiency): void {
         $this->pick_replenishEfficiency = $pick_replenishEfficiency;
-    }
-
-    public function getIs_active(): bool {
-        return $this->is_active;
     }
     
     public function getIsActive(): bool {

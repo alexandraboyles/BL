@@ -31,10 +31,6 @@ class RateCard extends BaseModel {
         $this->rates = $rates;
     }
 
-    public function getContact_email(): string {
-        return $this->contact_email;
-    }
-
     public function getContactEmail(): string {
         return $this->contact_email;
     }

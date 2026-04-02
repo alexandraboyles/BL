@@ -53,10 +53,6 @@ class AdhocChargeSetup extends BaseModel {
         $this->descriptionTemplate = $descriptionTemplate;
     }
 
-    public function getIs_enabled(): bool {
-        return $this->is_enabled;
-    }
-
     public function getIsEnabled(): bool {
         return $this->is_enabled;
     }

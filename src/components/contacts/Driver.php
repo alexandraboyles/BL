@@ -33,20 +33,12 @@ class Driver extends BaseModel {
         $this->email = $email;
     }
 
-    public function getIs_online(): bool {
-        return $this->is_online;
-    }
-
     public function getIsOnline(): bool {
         return $this->is_online;
     }
 
     public function setIs_online(bool $is_online): void {
         $this->is_online = $is_online;
-    }
-
-    public function getLocation_access_available(): bool {
-        return $this->location_access_available;
     }
 
     public function getLocationAccessAvailable(): bool {

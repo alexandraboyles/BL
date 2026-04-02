@@ -114,10 +114,6 @@ class Consignment extends BaseModel {
         $this->reference = $reference;
     }
 
-    public function getIs_residential(): bool {
-        return $this->is_residential;
-    }
-
     public function getIsResidential(): bool {
         return $this->is_residential;
     }

@@ -61,10 +61,6 @@ class StoragePeriod extends BaseModel {
         $this->dateAdded = $dateAdded;
     }
 
-    public function getAutomatically_created(): bool {
-        return $this->automatically_created;
-    }
-
     public function getAutomaticallyCreated(): bool {
         return $this->automatically_created;
     }

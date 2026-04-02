@@ -153,20 +153,12 @@ class SalesOrder extends BaseModel {
         $this->shipMethod = $shipMethod;
     }
 
-    public function getIs_urgent(): bool {
-        return $this->is_urgent;
-    }
-
     public function getIsUrgent(): bool {
         return $this->is_urgent;
     }
 
     public function setIs_urgent(bool $is_urgent): void {
         $this->is_urgent = $is_urgent;
-    }
-
-    public function getIs_invoiced(): bool {
-        return $this->is_invoiced;
     }
 
     public function getIsInvoiced(): bool {

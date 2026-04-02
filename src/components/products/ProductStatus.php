@@ -23,20 +23,12 @@ class ProductStatus extends BaseModel {
         $this->name = $name;
     }
 
-    public function getCharge_storage(): bool {
-        return $this->charge_storage;
-    }
-
     public function getChargeStorage(): bool {
         return $this->charge_storage;
     }
 
     public function setCharge_storage(bool $charge_storage): void {
         $this->charge_storage = $charge_storage;
-    }
-
-    public function getStatus_in_use(): bool {
-        return $this->status_in_use;
     }
 
     public function getStatusInUse(): bool {

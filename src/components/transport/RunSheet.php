@@ -71,10 +71,6 @@ class RunSheet extends BaseModel {
         $this->income = $income;
     }
 
-    public function getIs_complete(): bool {
-        return $this->is_complete;
-    }
-
     public function getIsComplete(): bool {
         return $this->is_complete;
     }

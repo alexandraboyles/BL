@@ -21,10 +21,6 @@ class ConsignmentDeliveryCancelledStatus extends BaseModel {
         $this->statusName = $statusName;
     }
 
-    public function getIs_charged(): bool {
-        return $this->is_charged;
-    }
-
     public function getIsCharged(): bool {
         return $this->is_charged;
     }

@@ -51,10 +51,6 @@ class ProductType extends BaseModel {
         $this->priority = $priority;
     }
 
-    public function getIs_default(): bool {
-        return $this->is_default;
-    }
-
     public function getIsDefault(): bool {
         return $this->is_default;
     }

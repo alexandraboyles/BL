@@ -23,20 +23,12 @@ class Customer extends BaseModel {
         $this->name = $name;
     }
 
-    public function getContact_phone(): string {
-        return $this->contact_phone;
-    }
-
     public function getContactPhone(): string {
         return $this->contact_phone;
     }
 
     public function setContact_phone(string $contact_phone): void {
         $this->contact_phone = $contact_phone;
-    }
-
-    public function getContact_email(): string {
-        return $this->contact_email;
     }
 
     public function getContactEmail(): string {
