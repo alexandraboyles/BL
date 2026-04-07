@@ -51,7 +51,7 @@ try {
 
     $invoice = new Invoice(101, 1, 5, 2001, 1500.00, 1200.00, "2026-03-01", "2026-03-31", "Open", "Pending", "Sent", "INT-REF-001", "EXT-REF-001");
 
-    $product = new Product(501, 1, "WidgetA", "High quality widget", "SKU-12345", "", "Box", 10.0, 5.0, 3.0, 2.5);
+    $product = new Product(501, 1, "Widget A", "High quality widget", "SKU-12345", "", "Box", 10.0, 5.0, 3.0, 2.5);
 
     $consignment = new Consignment(301, 101, 1, 501, 401, 201, 601, "Express", "REF-789", true, 10, 2.5, 25.0, 2, 5);
 
