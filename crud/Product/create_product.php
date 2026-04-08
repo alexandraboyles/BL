@@ -15,19 +15,31 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $customerId = $_POST['customer_id'] ?? null; // UUID → Customer.id
-    $contact_name       = $_POST['contact_name'] ?? null;
-    $email      = $_POST['email'] ?? null;
-    $phone      = $_POST['phone'] ?? null;
+    $product_id = $_POST['product_id'] ?? null;
+    $customer_id = $_POST['customer_id'] ?? null; // UUID → Customer.id
+    $title     = $_POST['title'] ?? null;
+    $description    = $_POST['description'] ?? null;
+    $sku  = $_POST['sku'] ?? null;
+    $unitOfMeasure       = $_POST['unitOfMeasure'] ?? null;
+    $width = $_POST['width'] ?? null;
+    $length = $_POST['length'] ?? null;
+    $height = $_POST['height'] ?? null;
+    $weight = $_POST['weight'] ?? null;
 
     // ---------------------------------------------------------------------
     // Validate input
     // ---------------------------------------------------------------------
     foreach ([
-        'customer_id' => $customerId,
-        'contact_name'        => $contact_name,
-        'email'       => $email,
-        'phone'       => $phone,
+        'product_id' => $product_id,
+        'customer_id'        => $customer_id,
+        'title'       => $title,
+        'description'       => $description,
+        'sku'       => $sku,
+        'unitOfMeasure'       => $unitOfMeasure,
+        'width'  => $width,
+        'length'  => $length,
+        'height'  => $height,
+        'width'  => $width,
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
             throw new InvalidArgumentException("$field is required");
@@ -38,9 +50,9 @@ try {
     // Ensure Customer exists (FK safety)
     // ---------------------------------------------------------------------
     $check = $pdo->prepare(
-        'SELECT 1 FROM Customer WHERE id = :id'
+        'SELECT 1 FROM customer WHERE id = :id'
     );
-    $check->execute([':id' => $customerId]);
+    $check->execute([':id' => $customer_id]);
 
     if ($check->fetchColumn() === false) {
         throw new RuntimeException('Customer does not exist');
@@ -79,37 +91,55 @@ try {
     );
 
     // ---------------------------------------------------------------------
-    // Insert Contact
+    // Insert Product
     // ---------------------------------------------------------------------
     $pdo->beginTransaction();
 
     $stmt = $pdo->prepare(
-        'INSERT INTO Contact (
+        'INSERT INTO Product (
             id,
+            product_id,
             customer_id,
-            contact_name,
-            email,
-            phone
+            title,
+            description,
+            sku,
+            unitOfMeasure,
+            width,
+            length,
+            height,
+            weight
         ) VALUES (
             :id,
+            :product_id,
             :customer_id,
-            :contact_name,
-            :email,
-            :phone
+            :title,
+            :description,
+            :sku,
+            :unitOfMeasure,
+            :width,
+            :length,
+            :height,
+            :weight
         )'
     );
 
     $stmt->execute([
         ':id'          => $uuid,
-        ':customer_id' => $customerId,
-        ':contact_name'        => $contact_name,
-        ':email'       => $email,
-        ':phone'       => $phone,
+        ':product_id'          => $product_id,
+        ':customer_id' => $customer_id,
+        ':title'        => $title,
+        ':description'       => $description,
+        ':sku'       => $sku,
+        ':unitOfMeasure'       => $unitOfMeasure,
+        ':width'       => $width,
+        ':length'       => $length,
+        ':height'       => $height,
+        ':weight'       => $weight,
     ]);
 
     $pdo->commit();
 
-    echo 'Contact created successfully. UUID: ' . $uuid;
+    echo 'Product created successfully. UUID: ' . $uuid;
 
 } catch (Throwable $e) {
 
@@ -117,8 +147,8 @@ try {
         $pdo->rollBack();
     }
 
-    echo 'Failed to create contact: ' . $e->getMessage();
+    echo 'Failed to create product: ' . $e->getMessage();
 };
 
 
-//Run: php create_contact.php customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 contact_name="Alexandra Boyles" email=alex@gmail.com phone=09664503890
+//Run: php create_product.php product_id=1002 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 title=Corrugated Shipping Box description=Heavy-duty corrugated cardboard box for shipping sku=BOX-CORR-16X12S unitOfMeasure=cm width=30.0 length=40.0 height=25.0 weight=2.5

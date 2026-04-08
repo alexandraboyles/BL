@@ -15,33 +15,42 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $addressId = $_POST['address_id'] ?? null;
-    $street1   = $_POST['street_1']   ?? null;
-    $street2   = $_POST['street_2']   ?? null;
-    $suburb    = $_POST['suburb']     ?? null;
-    $state     = $_POST['state']      ?? null;
-    $postcode  = $_POST['postcode']   ?? null;
+    $purchase_order_id = $_POST['purchase_order_id'] ?? null;
+    $customer_id = $_POST['customer_id'] ?? null; // UUID → customer.id
+    $order_reference     = $_POST['order_reference'] ?? null;
+    $cust_reference    = $_POST['cust_reference'] ?? null;
+    $ship_name  = $_POST['ship_name'] ?? null;
+    $ship_address     = $_POST['ship_address'] ?? null;
+    $status = $_POST['status'] ?? null;
 
     // ---------------------------------------------------------------------
-    // Validate input (ALL fields required by schema)
+    // Validate input
     // ---------------------------------------------------------------------
-    if ($addressId === null || $addressId === '' || !ctype_digit((string)$addressId)) {
-        throw new InvalidArgumentException('address_id is required and must be an integer');
-    }
-
     foreach ([
-        'street_1' => $street1,
-        'street_2' => $street2,
-        'suburb'   => $suburb,
-        'state'    => $state,
-        'postcode' => $postcode,
+        'purchase_order_id' => $purchase_order_id,
+        'customer_id'        => $customer_id,
+        'order_reference'  => $order_reference,
+        'cust_reference'  => $cust_reference,
+        'ship_name'  => $ship_name,
+        'ship_address'  => $ship_address,
+        'status'  => $status
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
             throw new InvalidArgumentException("$field is required");
         }
     }
 
-    $addressId = (int) $addressId;
+    // ---------------------------------------------------------------------
+    // Ensure Customer exists (FK safety)
+    // ---------------------------------------------------------------------
+    $check = $pdo->prepare(
+        'SELECT 1 FROM customer WHERE id = :id'
+    );
+    $check->execute([':id' => $customer_id]);
+
+    if ($check->fetchColumn() === false) {
+        throw new RuntimeException('Customer does not exist');
+    }
 
     // ---------------------------------------------------------------------
     // Generate a UUID version 4 (random UUID)
@@ -76,43 +85,46 @@ try {
     );
 
     // ---------------------------------------------------------------------
-    // Insert
+    // Insert Purchase Order
     // ---------------------------------------------------------------------
     $pdo->beginTransaction();
 
     $stmt = $pdo->prepare(
-        'INSERT INTO Address (
+        'INSERT INTO purchaseOrder (
             id,
-            address_id,
-            street_1,
-            street_2,
-            suburb,
-            state,
-            postcode
+            purchase_order_id,
+            customer_id,
+            order_reference,
+            cust_reference,
+            ship_name,
+            ship_address,
+            status
         ) VALUES (
             :id,
-            :address_id,
-            :street_1,
-            :street_2,
-            :suburb,
-            :state,
-            :postcode
+            :purchase_order_id,
+            :customer_id,
+            :order_reference,
+            :cust_reference,
+            :ship_name,
+            :ship_address,
+            :status
         )'
     );
 
     $stmt->execute([
-        ':id'         => $uuid,
-        ':address_id' => $addressId,
-        ':street_1'   => $street1,
-        ':street_2'   => $street2,
-        ':suburb'     => $suburb,
-        ':state'      => $state,
-        ':postcode'   => $postcode,
+        ':id'          => $uuid,
+        ':purchase_order_id'          => $purchase_order_id,
+        ':customer_id' => $customer_id,
+        ':order_reference'       => $order_reference,
+        ':cust_reference'       => $cust_reference,
+        ':ship_name'       => $ship_name,
+        ':ship_address'       => $ship_address,
+        ':status'       => $status
     ]);
 
     $pdo->commit();
 
-    echo 'Address created successfully. UUID: ' . $uuid;
+    echo 'Purchase Order created successfully. UUID: ' . $uuid;
 
 } catch (Throwable $e) {
 
@@ -120,8 +132,8 @@ try {
         $pdo->rollBack();
     }
 
-    echo 'Failed to create address: ' . $e->getMessage();
+    echo 'Failed to create purchase order: ' . $e->getMessage();
 };
 
 
-//Run: php create_address.php address_id=1001 street_1=Velez St street_2=Unit 15 suburb=Cebu state=CEB postcode=6000 
+//Run: php create_purchaseOrder.php purchase_order_id=1001 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 order_reference=WEB-ORDER-77821 cust_reference=CUST-REF-9912 ship_name=Alexandra Boyles ship_address=123 Rizal Street,Barangay Poblacion,Talisay City,Cebu,Philippines status=pending
