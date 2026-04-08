@@ -4,7 +4,7 @@ CREATE USER IF NOT EXISTS'training_user'@'localhost' IDENTIFIED BY 'training_pas
 GRANT ALL PRIVILEGES ON BL.* TO 'training_user'@'localhost';
 FLUSH PRIVILEGES;
 
-CREATE TABLE Address (
+CREATE TABLE Address(
  id CHAR(36) PRIMARY KEY,
  address_id INT NOT NULL,
  street_1 VARCHAR(100) NOT NULL,
@@ -19,7 +19,13 @@ DESCRIBE Address;
 INSERT INTO Address (id, address_id, street_1, street_2, suburb, state, postcode)
 VALUE (UUID(), 12345, "5th Avenue", "Keren", "MELBOURNE", "Victoria", "Australia");
 
-CREATE TABLE Contact (
+ALTER TABLE address
+MODIFY COLUMN address_id INT NOT NULL UNIQUE;
+
+ALTER TABLE address
+MODIFY COLUMN id CHAR(36) NOT NULL;
+
+CREATE TABLE Contact(
 	id CHAR(36) PRIMARY KEY,
     customer_id CHAR(36) NULL,
     FOREIGN KEY (customer_id) REFERENCES Customer(id),
@@ -29,6 +35,9 @@ CREATE TABLE Contact (
 );
 SELECT * FROM Contact;
 DESCRIBE Contact;
+
+ALTER TABLE contact
+MODIFY COLUMN id CHAR(36) NOT NULL;
 
 CREATE TABLE Customer(
 	id CHAR(36) PRIMARY KEY,
@@ -41,3 +50,336 @@ DESCRIBE Customer;
 
 INSERT INTO Customer (id, customer_name, contact_phone, contact_email)
 VALUES (UUID(), "Test", "09123456789", "test@gmail.com");
+
+ALTER TABLE customer
+MODIFY COLUMN id CHAR(36) NOT NULL;
+
+CREATE TABLE invoice(
+	id CHAR(36) NOT NULL, 
+    invoice_id INT DEFAULT NULL,
+    customer_id CHAR(36) DEFAULT NULL,
+    rateCard_id INT NOT NULL,
+    manifest_id INT NOT NULL,
+    income FLOAT NOT NULL,
+    expense FLOAT NOT NULL,
+    startDate DATE NOT NULL,
+    endDate DATE NOT NULL,
+	status VARCHAR(50) NOT NULL,
+    paymentStatus VARCHAR(100) NOT NULL,
+    emailStatus VARCHAR(100) NOT NULL,
+    internalReference VARCHAR(100) NOT NULL,
+    externalReference VARCHAR(100) NOT NULL,
+    CONSTRAINT fk_invoice_1
+    FOREIGN KEY (customer_id) REFERENCES customer(id),
+    CONSTRAINT fk_invoice_2
+    FOREIGN KEY (rateCard_id) REFERENCES rateCard(id),
+    CONSTRAINT fk_invoice_3
+    FOREIGN KEY (manifest_id) REFERENCES manifest(id)
+);
+SELECT * FROM invoice;
+DESCRIBE invoice_id;
+
+ALTER TABLE invoice
+MODIFY COLUMN invoice_id INT DEFAULT NULL UNIQUE;
+
+ALTER TABLE invoice
+MODIFY COLUMN id CHAR(36) NOT NULL PRIMARY KEY;
+
+ALTER TABLE invoice
+MODIFY COLUMN startDate DATE NOT NULL DEFAULT (CURRENT_DATE),
+MODIFY COLUMN endDate DATE NOT NULL DEFAULT (CURRENT_DATE);
+
+CREATE TABLE rateCard(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id CHAR(36) DEFAULT NULL,
+    rates VARCHAR(50) NOT NULL,
+    contact_email VARCHAR(100) NOT NULL,
+    CONSTRAINT fk_rateCard
+    FOREIGN KEY (customer_id) REFERENCES customer(id)
+);
+SELECT * FROM rateCard;
+DESCRIBE rateCard;
+
+INSERT INTO rateCard (customer_id, rates, contact_email)
+VALUES ('64ed8b3e-3247-11f1-92ef-00249b8cd187', 10.50, "test@gmail.com");
+
+CREATE TABLE manifest(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id CHAR(36) DEFAULT NULL,
+    dateAdded DATETIME NOT NULL,
+    customerReference DATE NOT NULL,
+    noOfPallets VARCHAR(100) NOT NULL,
+    info VARCHAR(100) NOT NULL,
+    requires_pickup BOOL NOT NULL,
+    comments VARCHAR(255) NOT NULL,
+	CONSTRAINT fk_manifest
+    FOREIGN KEY (customer_id) REFERENCES customer(id)
+);
+SELECT * FROM manifest;
+DESCRIBE manifest;
+
+INSERT INTO manifest (customer_id, dateAdded, customerReference, noOfPallets, info, requires_pickup, comments)
+VALUES ('64ed8b3e-3247-11f1-92ef-00249b8cd187', NOW(), "2026-4-8", "Not Specified", "In Warehouse (Pickup)", 1, "");
+
+CREATE TABLE product(
+	id CHAR(36) NOT NULL,
+    product_id INT DEFAULT NULL,
+    customer_id CHAR(36) DEFAULT NULL,
+    title VARCHAR(100) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    sku VARCHAR(100) NOT NULL UNIQUE,
+    orderDate DATETIME NOT NULL,
+    unitOfMeasure VARCHAR(100) NOT NULL,
+    width DECIMAL(10,2) NOT NULL,
+    length DECIMAL(10,2) NOT NULL,
+    height DECIMAL(10,2) NOT NULL,
+    weight DECIMAL(10,2) NOT NULL,
+    CONSTRAINT fk_product
+    FOREIGN KEY (customer_id) REFERENCES customer(id)
+);
+SELECT * FROM product;
+DESCRIBE product;
+
+ALTER TABLE product
+MODIFY COLUMN product_id INT DEFAULT NULL UNIQUE;
+
+ALTER TABLE product
+MODIFY COLUMN id CHAR(36) NOT NULL PRIMARY KEY;
+
+ALTER TABLE product
+MODIFY COLUMN orderDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+CREATE TABLE consignment(
+	id CHAR(36) NOT NULL,
+    consignment_id INT DEFAULT NULL UNIQUE,
+    saleOrder_id CHAR(36) DEFAULT NULL,
+    address_id CHAR(36) DEFAULT NULL,
+    product_id CHAR(36) DEFAULT NULL,
+    deliveryRun_id CHAR(36) DEFAULT NULL,
+    driver_id CHAR(36) DEFAULT NULL,
+    runsheet_id INT NULL,
+    service VARCHAR(100) NOT NULL,
+    reference VARCHAR(100) NOT NULL,
+    is_residential BOOL NOT NULL,
+    quantity INT NOT NULL,
+    cubic FLOAT NOT NULL,
+    weight FLOAT NOT NULL,
+    pallets FLOAT NOT NULL,
+    spaces FLOAT NOT NULL,
+    CONSTRAINT fk_consignment_1
+    FOREIGN KEY (saleOrder_id) REFERENCES saleOrder(id),
+    CONSTRAINT fk_consignment_2
+    FOREIGN KEY (address_id) REFERENCES address(id),
+    CONSTRAINT fk_consignment_3
+    FOREIGN KEY (product_id) REFERENCES product(id),
+    CONSTRAINT fk_consignment_4
+    FOREIGN KEY (deliveryRun_id) REFERENCES deliveryRun(id),
+    CONSTRAINT fk_consignment_5
+    FOREIGN KEY (driver_id) REFERENCES driver(id),
+    CONSTRAINT fk_consignment_6
+    FOREIGN KEY (runsheet_id) REFERENCES runsheet(id)
+);
+SELECT * FROM consignment;
+DESCRIBE consignment;
+
+ALTER TABLE consignment
+MODIFY COLUMN id CHAR(36) NOT NULL PRIMARY KEY;
+
+CREATE TABLE saleOrder(
+    id CHAR(36) NOT NULL PRIMARY KEY,
+    saleorder_id INT DEFAULT NULL UNIQUE,
+    customer_id CHAR(36) DEFAULT NULL,
+    orderReference VARCHAR(100) NOT NULL,
+    custReference VARCHAR(100) NOT NULL,
+    shipName VARCHAR(255) NOT NULL,
+    shipAddress TEXT NOT NULL,
+    orderDate DATE NOT NULL,
+    lineItems JSON NOT NULL,
+    orderStatus VARCHAR(50) NOT NULL,
+    shipInstructions TEXT NOT NULL,
+    trackingCarrier VARCHAR(100) NOT NULL,
+    trackingNumber VARCHAR(100) NOT NULL,
+    shipMethod VARCHAR(100) NOT NULL,
+    isUrgent BOOL NOT NULL,
+    isInvoiced BOOL NOT NULL,
+    packer VARCHAR(100) NOT NULL,
+    history JSON NOT NULL,
+    charges JSON NOT NULL,
+    consignments JSON NOT NULL,
+    errors JSON NOT NULL,
+    created_at DATETIME NOT NULL
+);
+SELECT * FROM saleOrder;
+DESCRIBE saleOrder;
+
+ALTER TABLE saleOrder
+DROP column customerid;
+
+ALTER TABLE saleOrder
+DROP column saleorderid;
+
+ALTER TABLE saleOrder
+ADD COLUMN  saleOrder_id INT DEFAULT NULL UNIQUE,
+ADD COLUMN  customer_id CHAR(36) DEFAULT NULL;
+
+ALTER TABLE saleOrder
+MODIFY COLUMN orderDate DATE NOT NULL DEFAULT (CURRENT_DATE),
+MODIFY COLUMN created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+INSERT INTO saleOrder (
+    id,
+    saleOrder_id,
+    customer_id,
+    orderReference,
+    custReference,
+    shipName,
+    shipAddress,
+    lineItems,
+    orderStatus,
+    shipInstructions,
+    trackingCarrier,
+    trackingNumber,
+    shipMethod,
+    isUrgent,
+    isInvoiced,
+    packer,
+    history,
+    charges,
+    consignments,
+    errors
+) VALUES (
+    UUID(),
+    100002,
+    '111e8400-e29b-41d4-a716-111111111111',
+    'SO-100001',
+    'CR-556677',
+    'Alexandra Boyles',
+    '123 Main Street, Talisay City, Cebu, Philippines',
+    JSON_ARRAY(
+        JSON_OBJECT(
+            'product_id', 567,
+            'name', 'Office Chair',
+            'qty', 2,
+            'price', 4500.00
+        )
+    ),
+    'Processing',
+    'Leave at front desk',
+    'LBC',
+    'LBC123456789',
+    'Ground',
+    1,
+    0,
+    'John Packer',
+    JSON_ARRAY(
+        JSON_OBJECT(
+            'status', 'Created',
+            'timestamp', '2026-04-08 09:00:00'
+        )
+    ),
+    JSON_OBJECT(
+        'subtotal', 9000.00,
+        'shipping', 500.00,
+        'tax', 1080.00,
+        'total', 10580.00
+    ),
+    JSON_ARRAY(),
+    JSON_ARRAY()
+);
+
+CREATE TABLE deliveryRun(
+    id CHAR(36) NOT NULL PRIMARY KEY,
+    deliveryRun_name VARCHAR(100) NOT NULL,
+    carrier VARCHAR(100) NOT NULL
+);
+SELECT * FROM deliveryRun;
+DESCRIBE deliveryRun;
+
+INSERT INTO deliveryRun (
+    id,
+    deliveryRun_name,
+    carrier
+) VALUES (
+    UUID(),
+    'Cebu South Route',
+    'LBC'
+);
+
+CREATE TABLE driver(
+    id CHAR(36) NOT NULL PRIMARY KEY,
+    driver_name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    is_online BOOL NOT NULL,
+    location_access_available BOOL NOT NULL
+);
+SELECT * FROM driver;
+DESCRIBE driver;
+
+INSERT INTO driver (
+    id,
+    driver_name,
+    email,
+    is_online,
+    location_access_available
+) VALUES (
+    UUID(),
+    'Juan Dela Cruz',
+    'juan.delacruz@example.com',
+    1,
+    1
+);
+
+CREATE TABLE runsheet(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    deliveryRun_id CHAR(36) DEFAULT NULL,
+    driver_id CHAR(36) DEFAULT NULL,
+    runsheet_name VARCHAR(100) NOT NULL,
+    totalCashOnDelivery DECIMAL(10,2) NOT NULL,
+    income DECIMAL(10,2) NOT NULL,
+    is_complete BOOL NOT NULL,
+    CONSTRAINT fk_runsheet_1
+	FOREIGN KEY (deliveryRun_id) REFERENCES deliveryRun(id),
+    CONSTRAINT fk_runsheet_2
+	FOREIGN KEY (driver_id) REFERENCES driver(id)
+);
+SELECT * FROM runsheet;
+DESCRIBE runsheet;
+
+INSERT INTO runsheet (
+    deliveryRun_id,
+    driver_id,
+    runsheet_name,
+    totalCashOnDelivery,
+    income,
+    is_complete
+) VALUES (
+    '222e8400-e29b-41d4-a716-222222222222',
+    '333e8400-e29b-41d4-a716-333333333333',
+    'Runsheet - April 8 AM',
+    10580.00,
+    1200.00,
+    0
+);
+
+CREATE TABLE purchaseOrder(
+    id CHAR(36) NOT NULL PRIMARY KEY,
+    purchase_order_id INT DEFAULT NULL UNIQUE,
+    customer_id CHAR(36) NOT NULL,
+    order_reference VARCHAR(100) NOT NULL,
+    cust_reference VARCHAR(100) NOT NULL,
+    ship_name VARCHAR(100) NOT NULL,
+    ship_address VARCHAR(255) NOT NULL,
+    order_date DATETIME NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    CONSTRAINT fk_purchase_order
+    FOREIGN KEY (customer_id) REFERENCES customer(id)
+);
+SELECT * FROM purchaseOrder;
+DESCRIBE purchaseOrder;
+
+TRUNCATE TABLE purchaseOrder;
+
+ALTER TABLE purchaseOrder
+MODIFY COLUMN order_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+
