@@ -25,6 +25,84 @@ MODIFY COLUMN address_id INT NOT NULL UNIQUE;
 ALTER TABLE address
 MODIFY COLUMN id CHAR(36) NOT NULL;
 
+CREATE TABLE addressDefaultInstruction (
+	address_id CHAR(36) NOT NULL,
+	customer_id CHAR(36) NOT NULL,
+    deliveryInstruction TEXT NOT NULL,
+    packingInstruction TEXT NOT NULL,
+    CONSTRAINT fk_addressDefaultInstruction_1
+    FOREIGN KEY (address_id) REFERENCES address(id),
+    CONSTRAINT fk_addressDefaultInstruction_2
+    FOREIGN KEY (customer_id) REFERENCES customer(id)
+);
+SELECT * FROM addressDefaultInstruction;
+DESCRIBE addressDefaultInstruction;
+
+ALTER TABLE addressDefaultInstruction
+MODIFY COLUMN address_id CHAR(36) DEFAULT NULL UNIQUE; 
+
+ALTER TABLE addressDefaultInstruction
+ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY NOT NULL; 
+
+DELETE FROM addressDefaultInstruction 
+WHERE id = 2;
+
+ALTER TABLE addressDefaultInstruction
+DROP COLUMN id;
+
+CREATE TABLE addressString(
+	id INT NOT NULL PRIMARY KEY UNIQUE,
+	address_id CHAR(36) NOT NULL,
+	customer_id CHAR(36) NOT NULL,
+    text TEXT NOT NULL
+);
+SELECT * FROM addressString;
+DESCRIBE addressString;
+
+ALTER TABLE addressString
+ADD COLUMN dateAdded DATETIME DEFAULT CURRENT_TIMESTAMP,
+ADD COLUMN lastModified DATETIME DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE addressString
+ADD CONSTRAINT fk_addressDefaultInstruction_1
+FOREIGN KEY (address_id) REFERENCES address(id),
+ADD CONSTRAINT fk_addressDefaultInstruction_2
+FOREIGN KEY (customer_id) REFERENCES customer(id);
+
+CREATE TABLE addressToDeliveryRunMapping (
+	id INT NOT NULL PRIMARY KEY UNIQUE,
+    addressType VARCHAR(100) NOT NULL,
+    address_id CHAR(36) NOT NULL,
+	customer_id CHAR(36) NOT NULL,
+    product_id CHAR(36) NOT NULL,
+	deliveryRun_id CHAR(36) NOT NULL,
+    carrier_id INT NOT NULL,
+    flowDirection VARCHAR(100) NOT NULL
+);
+SELECT * FROM addressToDeliveryRunMapping;
+DESCRIBE addressToDeliveryRunMapping;
+
+CREATE TABLE addressToInvoiceCustomerMapping (
+	id INT NOT NULL PRIMARY KEY UNIQUE,
+	customer_id CHAR(36) NOT NULL,
+    address_id CHAR(36) NOT NULL
+);
+
+
+CREATE TABLE carrier(
+	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    carrier_name VARCHAR(100) NOT NULL,
+    on_forwarder BOOL NOT NULL,
+    status VARCHAR(100) NOT NULL
+);
+SELECT * FROM carrier;
+DESCRIBE carrier;
+
+INSERT INTO carrier (carrier_name, on_forwarder, status)
+VALUES ("Brisbane Logistics", 2, 1);
+
+
+
 CREATE TABLE Contact(
 	id CHAR(36) PRIMARY KEY,
     customer_id CHAR(36) NULL,

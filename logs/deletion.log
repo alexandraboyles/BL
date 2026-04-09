@@ -1,0 +1,18 @@
+[DELETION] Deleted Address
+{
+    "id": "1b3c791e-6811-465b-8707-8c56ad21a449",
+    "model": "Address",
+    "modelId": "7d198dd9-3064-4968-88c5-82fc11aefd7e",
+    "user": "admin",
+    "dateDeleted": "2026-04-09 01:58:47"
+}
+
+[DELETION] Test - Deleted Address
+{
+    "id": "1e03e66c-97c2-4e27-8f01-2048afad9cb1",
+    "model": "Address",
+    "modelId": "ADDR-001",
+    "user": "admin",
+    "dateDeleted": "2026-04-09 01:59:00"
+}
+

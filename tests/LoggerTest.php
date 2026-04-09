@@ -4,7 +4,6 @@ use Core\DeletionLogger;
 use Core\PrintLogger;
 use Logs\DeletionLog;
 use Logs\PrintLog;
-use Addresses\Address;
 
 class LoggerTest extends TestCase {
     public function testDeletionLoggerWritesLog() {
