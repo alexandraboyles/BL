@@ -135,6 +135,9 @@ CREATE TABLE Contact(
 SELECT * FROM Contact;
 DESCRIBE Contact;
 
+ALTER TABLE Contact
+MODIFY COLUMN customer_id CHAR(36) NOT NULL;
+
 CREATE TABLE Customer(
 	id CHAR(36) PRIMARY KEY,
     customer_name VARCHAR(255) NOT NULL,
@@ -144,11 +147,34 @@ CREATE TABLE Customer(
 SELECT * FROM Customer;
 DESCRIBE Customer;
 
-INSERT INTO Customer (id, customer_name, contact_phone, contact_email)
-VALUES (UUID(), "Test", "09123456789", "test@gmail.com");
-
 ALTER TABLE customer
 MODIFY COLUMN id CHAR(36) NOT NULL;
+
+CREATE TABLE supplier (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY UNIQUE,
+    rateCard_id INT NOT NULL,
+    companyName VARCHAR(100) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    telNo VARCHAR(50) NOT NULL,
+    accountingConnector VARCHAR(100) NOT NULL,
+	CONSTRAINT fk_supplier
+    FOREIGN KEY (rateCard_id) REFERENCES rateCard(id)
+);
+SELECT * FROM supplier;
+DESCRIBE supplier;
+
+CREATE TABLE user(
+	id CHAR(36) NOT NULL PRIMARY KEY,
+    customer_id CHAR(36) NOT NULL,
+    fullName VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    roles VARCHAR(100) NOT NULL,
+    warehouses VARCHAR(100) NOT NULL,
+    mfa VARCHAR(255) NOT NULL,
+    is_email_verified BOOL NOT NULL
+);
+SELECT * FROM user;
+DESCRIBE user;
 
 CREATE TABLE Invoice(
 	id CHAR(36) NOT NULL PRIMARY KEY, 
@@ -416,12 +442,14 @@ INSERT INTO runsheet (
     is_complete
 ) VALUES (
     '222e8400-e29b-41d4-a716-222222222222',
-    '333e8400-e29b-41d4-a716-333333333333',
+    '2bc93718-971b-487d-b1dd-8fb4f0a0b8ba',
     'Runsheet - April 8 AM',
     10580.00,
     1200.00,
     0
 );
+
+drop table runsheet;
 
 CREATE TABLE PurchaseOrder(
     id CHAR(36) NOT NULL PRIMARY KEY,
@@ -438,3 +466,5 @@ CREATE TABLE PurchaseOrder(
 );
 SELECT * FROM PurchaseOrder;
 DESCRIBE PurchaseOrder;
+
+
