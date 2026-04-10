@@ -9,13 +9,13 @@ if (PHP_SAPI === 'cli') {
     }
 }
 
-require __DIR__ . '/../../db_connect.php';
+require __DIR__ . '/../../../db_connect.php';
 
 try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $contactId    = $_POST['contact_id'] ?? null;     // UUID → Contact.id
+    $id    = $_POST['id'] ?? null;     // UUID → id
     $customerId   = $_POST['customer_id'] ?? null;    // UUID → Customer.id
     $contact_name = $_POST['contact_name'] ?? null;
     $email        = $_POST['email'] ?? null;
@@ -24,8 +24,12 @@ try {
     // ---------------------------------------------------------------------
     // Validate input
     // ---------------------------------------------------------------------
+    if ($id=== null || trim($id) === '') {
+        throw new InvalidArgumentException('id (UUID) is required');
+    }
+
     foreach ([
-        'contact_id'   => $contactId,
+        'id'   => $id,
         'customer_id'  => $customerId,
         'contact_name' => $contact_name,
         'email'        => $email,
@@ -42,7 +46,7 @@ try {
     $checkContact = $pdo->prepare(
         'SELECT 1 FROM Contact WHERE id = :id'
     );
-    $checkContact->execute([':id' => $contactId]);
+    $checkContact->execute([':id' => $id]);
 
     if ($checkContact->fetchColumn() === false) {
         throw new RuntimeException('Contact does not exist');
@@ -72,24 +76,20 @@ try {
             contact_name = :contact_name,
             email        = :email,
             phone        = :phone
-         WHERE id = :contact_id'
+         WHERE id = :id'
     );
 
     $stmt->execute([
-        ':contact_id'  => $contactId,
+        ':id'  => $id,
         ':customer_id' => $customerId,
         ':contact_name'=> $contact_name,
         ':email'       => $email,
         ':phone'       => $phone,
     ]);
 
-    if ($stmt->rowCount() === 0) {
-        throw new RuntimeException('No changes were applied');
-    }
-
     $pdo->commit();
 
-    echo 'Contact updated successfully. UUID: ' . $contactId;
+    echo 'Contact updated successfully. UUID: ' . $id;
 
 } catch (Throwable $e) {
 
@@ -100,4 +100,4 @@ try {
     echo 'Failed to update contact: ' . $e->getMessage();
 }
 
-//Run: php update_contact.php contact_id=ada20ed3-6d7c-4bc5-a298-de63b3cb3624 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 contact_name="Mark Dinglasa" email=mark.dinglasa@gmail.com phone=09245678901
+//Run: php update_contact.php id=ae9aaec5-1dd3-49b8-adc0-5578a6db8708 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 contact_name="Mark Dinglasa" email=mark.dinglasa@gmail.com phone=09245678901

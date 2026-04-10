@@ -11,7 +11,7 @@ if (PHP_SAPI === 'cli') {
     }
 }
 
-require __DIR__ . '/../../db_connect.php';
+require __DIR__ . '/../../../db_connect.php';
 
 try {
     // -----------------------------------------------------------------
@@ -79,7 +79,6 @@ try {
     // -----------------------------------------------------------------
     // Output
     // -----------------------------------------------------------------
-    header('Content-Type: application/json');
 
     if (!$rows) {
         echo json_encode([
@@ -107,6 +106,6 @@ try {
 
 //Run: 
 //Read single address by id
-//php read_address.php address_id=1001
+    //php read_address.php address_id=1001
 //Read single address by UUID
-//php read_address.php id=adad3ec5-fe9f-4375-88c5-defbfe042c7f
+    //php read_address.php id=adad3ec5-fe9f-4375-88c5-defbfe042c7f

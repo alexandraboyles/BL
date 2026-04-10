@@ -109,10 +109,10 @@ try {
 
 //Run:
 //Read mappings by address
-//php read_addressToDeliveryRunMapping.php address_id=b91e8d30-b0eb-4ca9-911c-750b538d57e7
+    //php read_addressToDeliveryRunMapping.php address_id=b91e8d30-b0eb-4ca9-911c-750b538d57e7
 //List all mappings for a customer
-//php read_addressToDeliveryRunMapping.php customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187
+    //php read_addressToDeliveryRunMapping.php customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187
 //Filter by delivery run
-//php read_addressToDeliveryRunMapping.php deliveryRun_id=a5d49c7e-33d7-11f1-92ef-00249b8cd187
+    //php read_addressToDeliveryRunMapping.php deliveryRun_id=a5d49c7e-33d7-11f1-92ef-00249b8cd187
 //Combine filters
-//php read_addressToDeliveryRunMapping.php address_id=b91e8d30-b0eb-4ca9-911c-750b538d57e7 product_id=48bd8480-e896-41a1-9343-bc48f585bbf8
+    //php read_addressToDeliveryRunMapping.php address_id=b91e8d30-b0eb-4ca9-911c-750b538d57e7 product_id=48bd8480-e896-41a1-9343-bc48f585bbf8

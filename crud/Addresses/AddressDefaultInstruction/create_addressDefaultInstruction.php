@@ -21,7 +21,7 @@ try {
     $packingInstruction   = $_POST['packingInstruction'] ?? null;
 
     // ---------------------------------------------------------------------
-    // Validate input
+    // Validate input (ALL fields required by schema)
     // ---------------------------------------------------------------------
     foreach ([
         'address_id' => $address_id,

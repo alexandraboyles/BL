@@ -81,8 +81,8 @@ try {
 
 //Run:
 //Read single address default instruction by address
-//php read_addressDefaultInstruction.php address_id=adad3ec5-fe9f-4375-88c5-defbfe042c7f
+    //php read_addressDefaultInstruction.php address_id=adad3ec5-fe9f-4375-88c5-defbfe042c7f
 //List all single address default instructions for a customer
-//php read_addressDefaultInstruction.php customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187
-//Read single address default instruction by address and customer
-//php read_addressDefaultInstruction.php address_id=adad3ec5-fe9f-4375-88c5-defbfe042c7f customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187
+    //php read_addressDefaultInstruction.php customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187
+//Combine filters
+    //php read_addressDefaultInstruction.php address_id=adad3ec5-fe9f-4375-88c5-defbfe042c7f customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187

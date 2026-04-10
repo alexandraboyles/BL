@@ -158,5 +158,4 @@ try {
     echo 'Failed to update address to delivery mapping: ' . $e->getMessage();
 }
 
-//Run:
-//php update_addressToDeliveryRunMapping.php id=1001 addressType=Dropoff address_id=b91e8d30-b0eb-4ca9-911c-750b538d57e7 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 product_id=48bd8480-e896-41a1-9343-bc48f585bbf8 deliveryRun_id=a5d49c7e-33d7-11f1-92ef-00249b8cd187 carrier_id=1 flowDirection=-->
+//Run: php update_addressToDeliveryRunMapping.php id=1001 addressType=Dropoff address_id=b91e8d30-b0eb-4ca9-911c-750b538d57e7 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 product_id=48bd8480-e896-41a1-9343-bc48f585bbf8 deliveryRun_id=a5d49c7e-33d7-11f1-92ef-00249b8cd187 carrier_id=1 flowDirection=-->

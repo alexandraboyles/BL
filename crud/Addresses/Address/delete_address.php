@@ -11,29 +11,29 @@ if (PHP_SAPI === 'cli') {
     }
 }
 
-require __DIR__ . '/../../db_connect.php';
+require __DIR__ . '/../../../db_connect.php';
 
 try {
 
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $addressId = $_POST['address_id'] ?? null; // business address_id (INT or VARCHAR)
+    $id = $_POST['id'] ?? null; 
 
     // ---------------------------------------------------------------------
     // Validate input
     // ---------------------------------------------------------------------
-    if ($addressId === null || trim((string)$addressId) === '') {
-        throw new InvalidArgumentException('address_id is required');
+    if ($id === null || trim((string)$id) === '') {
+        throw new InvalidArgumentException('id is required');
     }
 
     // ---------------------------------------------------------------------
-    // Ensure address exists
+    // Ensure Address exists
     // ---------------------------------------------------------------------
     $check = $pdo->prepare(
-        'SELECT id FROM Address WHERE address_id = :address_id'
+        'SELECT id FROM Address WHERE id = :id'
     );
-    $check->execute([':address_id' => $addressId]);
+    $check->execute([':id' => $id]);
 
     $addressUuid = $check->fetchColumn();
 
@@ -45,7 +45,7 @@ try {
     // FK safety checks (address used elsewhere?)
     // ---------------------------------------------------------------------
 
-    // Example: Consignments
+    // Consignments
     $check = $pdo->prepare(
         'SELECT 1 FROM Consignment WHERE address_id = :address_uuid LIMIT 1'
     );
@@ -55,11 +55,48 @@ try {
         throw new RuntimeException('Cannot delete address: it is in use by consignments');
     }
 
-    // Add more FK checks here if needed
-    // e.g. saleOrder, customer, deliveryRun, etc.
+    // Address Default Instruction
+    $check = $pdo->prepare(
+        'SELECT 1 FROM addressDefaultInstruction WHERE address_id = :address_uuid LIMIT 1'
+    );
+    $check->execute([':address_uuid' => $addressUuid]);
+
+    if ($check->fetchColumn()) {
+        throw new RuntimeException('Cannot delete address: it is in use by address default instruction');
+    }
+
+    // Address String
+    $check = $pdo->prepare(
+        'SELECT 1 FROM addressString WHERE address_id = :address_uuid LIMIT 1'
+    );
+    $check->execute([':address_uuid' => $addressUuid]);
+
+    if ($check->fetchColumn()) {
+        throw new RuntimeException('Cannot delete address: it is in use by address string');
+    }
+
+    // Address To Delivery Run Mapping
+    $check = $pdo->prepare(
+        'SELECT 1 FROM addressToDeliveryRunMapping WHERE address_id = :address_uuid LIMIT 1'
+    );
+    $check->execute([':address_uuid' => $addressUuid]);
+
+    if ($check->fetchColumn()) {
+        throw new RuntimeException('Cannot delete address: it is in use by address to delivery run mapping');
+    }
+
+    // Delivery Address To Onforwarder Address Mapping
+    $check = $pdo->prepare(
+        'SELECT 1 FROM deliveryAddressToOnforwarderAddressMapping WHERE address_id = :address_uuid LIMIT 1'
+    );
+    $check->execute([':address_uuid' => $addressUuid]);
+
+    if ($check->fetchColumn()) {
+        throw new RuntimeException('Cannot delete address: it is in use by delivery address to onforwarder address mapping');
+    }
 
     // ---------------------------------------------------------------------
-    // Delete address
+    // Delete Address
     // ---------------------------------------------------------------------
     $pdo->beginTransaction();
 
@@ -84,5 +121,4 @@ try {
     echo 'Failed to delete address: ' . $e->getMessage();
 }
 
-//Run:
-//php delete_address.php address_id=12345
+//Run: php delete_address.php id=adad3ec5-fe9f-4375-88c5-defbfe042c7f

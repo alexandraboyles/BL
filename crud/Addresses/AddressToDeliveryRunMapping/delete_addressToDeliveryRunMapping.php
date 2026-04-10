@@ -27,7 +27,7 @@ try {
     }
 
     // ---------------------------------------------------------------------
-    // Ensure mapping exists
+    // Ensure Address To Delivery Mapping exists
     // ---------------------------------------------------------------------
     $check = $pdo->prepare(
         'SELECT 1 FROM addressToDeliveryRunMapping WHERE id = :id'
@@ -64,5 +64,4 @@ try {
     echo 'Failed to delete address to delivery mapping: ' . $e->getMessage();
 }
 
-//Run:
-//php delete_addressToDeliveryRunMapping.php id=1002
+//Run: php delete_addressToDeliveryRunMapping.php id=1001

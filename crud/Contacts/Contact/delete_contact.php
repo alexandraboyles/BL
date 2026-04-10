@@ -11,71 +11,41 @@ if (PHP_SAPI === 'cli') {
     }
 }
 
-require __DIR__ . '/../../db_connect.php';
+require __DIR__ . '/../../../db_connect.php';
 
 try {
 
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $customerId   = $_POST['customer_id'] ?? null;   // UUID
-    $contact_name = $_POST['contact_name'] ?? null;
-    $email        = $_POST['email'] ?? null;
-    $phone        = $_POST['phone'] ?? null;
+    $id = $_POST['id'] ?? null; 
 
     // ---------------------------------------------------------------------
     // Validate input
     // ---------------------------------------------------------------------
-    foreach ([
-        'customer_id'   => $customerId,
-        'contact_name'  => $contact_name,
-        'email'         => $email,
-        'phone'         => $phone,
-    ] as $field => $value) {
-        if ($value === null || trim((string)$value) === '') {
-            throw new InvalidArgumentException("$field is required");
-        }
+    if ($id === null || trim((string)$id) === '') {
+        throw new InvalidArgumentException("id is required");
     }
-
+    
     // ---------------------------------------------------------------------
-    // Ensure customer exists
-    // ---------------------------------------------------------------------
-    $check = $pdo->prepare(
-        'SELECT 1 FROM Customer WHERE id = :id'
-    );
-    $check->execute([':id' => $customerId]);
-
-    if ($check->fetchColumn() === false) {
-        throw new RuntimeException('Customer does not exist');
-    }
-
-    // ---------------------------------------------------------------------
-    // Ensure contact exists and belongs to customer
+    // Ensure Contact exists
     // ---------------------------------------------------------------------
     $stmt = $pdo->prepare(
         'SELECT id
          FROM Contact
-         WHERE customer_id = :customer_id
-           AND contact_name = :contact_name
-           AND email = :email
-           AND phone = :phone'
+         WHERE id = :id'
     );
 
-    $stmt->execute([
-        ':customer_id'  => $customerId,
-        ':contact_name' => $contact_name,
-        ':email'        => $email,
-        ':phone'        => $phone,
-    ]);
+    $stmt->execute([':id'  => $id,]);
 
     $contactUuid = $stmt->fetchColumn();
 
     if ($contactUuid === false) {
-        throw new RuntimeException('Contact does not exist for this customer');
+        throw new RuntimeException('Contact does not exist');
     }
 
     // ---------------------------------------------------------------------
-    // Delete contact
+    // Delete Contact
     // ---------------------------------------------------------------------
     $pdo->beginTransaction();
 
@@ -100,4 +70,4 @@ try {
     echo 'Failed to delete contact: ' . $e->getMessage();
 }
 
-//Run: php delete_contact.php customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 contact_name="Alexandra Boyles" email=alex@gmail.com phone=09664503890
+//Run: php delete_contact.php id=ead395a6-96d4-47f2-a87c-71695b4f09c4

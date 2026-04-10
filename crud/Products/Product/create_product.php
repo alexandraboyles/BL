@@ -9,7 +9,7 @@ if (PHP_SAPI === 'cli') {
     }
 };
 
-require __DIR__ . '/../../db_connect.php';
+require __DIR__ . '/../../../db_connect.php';
 
 try {
     // ---------------------------------------------------------------------
@@ -50,7 +50,7 @@ try {
     // Ensure Customer exists (FK safety)
     // ---------------------------------------------------------------------
     $check = $pdo->prepare(
-        'SELECT 1 FROM customer WHERE id = :id'
+        'SELECT 1 FROM Customer WHERE id = :id'
     );
     $check->execute([':id' => $customer_id]);
 
@@ -151,4 +151,4 @@ try {
 };
 
 
-//Run: php create_product.php product_id=1003 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 title=Corrugated Shipping Box description=Heavy-duty corrugated cardboard box for shipping sku=BOX-CORR-18X14S unitOfMeasure=cm width=30.0 length=40.0 height=25.0 weight=2.5
+//Run: php create_product.php product_id=1001 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 title=Corrugated Shipping Box description=Heavy-duty corrugated cardboard box for shipping sku=BOX-CORR-18X14S unitOfMeasure=cm width=30.0 length=40.0 height=25.0 weight=2.5

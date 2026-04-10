@@ -20,7 +20,7 @@ try {
     $address_id = $_POST['address_id'] ?? null; // UUID → Address.id
 
     // ---------------------------------------------------------------------
-    // Validate input
+    // Validate input (ALL fields required by schema)
     // ---------------------------------------------------------------------
     foreach ([
         'id' => $id,
@@ -58,46 +58,31 @@ try {
     }
 
     // ---------------------------------------------------------------------
-    // Insert Address To Invoice Customer Mapping Mapping
+    // Insert Address To Invoice Customer Mapping
     // ---------------------------------------------------------------------
     $pdo->beginTransaction();
 
     $stmt = $pdo->prepare(
-        'INSERT INTO addressToDeliveryRunMapping (
+        'INSERT INTO addressToInvoiceCustomerMapping (
             id,
-            addressType,
-            address_id,
             customer_id,
-            product_id,
-            deliveryRun_id,
-            carrier_id,
-            flowDirection
+            address_id
         ) VALUES (
             :id,
-            :addressType,
-            :address_id,
             :customer_id,
-            :product_id,
-            :deliveryRun_id,
-            :carrier_id,
-            :flowDirection
+            :address_id
         )'
     );
 
     $stmt->execute([
         ':id'          => $id,
-        ':addressType'     => $addressType,
-        ':address_id'      => $address_id,
         ':customer_id' => $customer_id,
-        ':product_id' => $product_id,
-        ':deliveryRun_id' => $deliveryRun_id,
-        ':carrier_id' => $carrier_id,
-        ':flowDirection' => $flowDirection
+        ':address_id'      => $address_id
     ]);
 
     $pdo->commit();
 
-    echo 'Address To Delivery Mapping created successfully.';
+    echo 'Address To Invoice Customer Mapping created successfully.';
 
 } catch (Throwable $e) {
 
@@ -105,8 +90,8 @@ try {
         $pdo->rollBack();
     }
 
-    echo 'Failed to create address to delivery mapping: ' . $e->getMessage();
+    echo 'Failed to create address to invoice customer mapping: ' . $e->getMessage();
 };
 
 
-//Run: php create_addressToDeliveryRunMapping.php id=1002 addressType=Pickup address_id=b91e8d30-b0eb-4ca9-911c-750b538d57e7 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 product_id=48bd8480-e896-41a1-9343-bc48f585bbf8 deliveryRun_id=a5d49c7e-33d7-11f1-92ef-00249b8cd187 carrier_id=1 flowDirection=-->
+//Run: php create_addressToInvoiceCustomerMapping.php id=1001 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 address_id=b91e8d30-b0eb-4ca9-911c-750b538d57e7  

@@ -25,7 +25,7 @@ try {
     $flowDirection  = $_POST['flowDirection'] ?? null;
 
     // ---------------------------------------------------------------------
-    // Validate input
+    // Validate input (ALL fields required by schema)
     // ---------------------------------------------------------------------
     foreach ([
         'id' => $id,
@@ -104,7 +104,7 @@ try {
     }
 
     // ---------------------------------------------------------------------
-    // Insert Address To Delivery Mapping
+    // Insert Address To Delivery Run Mapping
     // ---------------------------------------------------------------------
     $pdo->beginTransaction();
 
@@ -143,7 +143,7 @@ try {
 
     $pdo->commit();
 
-    echo 'Address To Delivery Mapping created successfully.';
+    echo 'Address To Delivery Run Mapping created successfully.';
 
 } catch (Throwable $e) {
 
@@ -151,8 +151,8 @@ try {
         $pdo->rollBack();
     }
 
-    echo 'Failed to create address to delivery mapping: ' . $e->getMessage();
+    echo 'Failed to create address to delivery run mapping: ' . $e->getMessage();
 };
 
 
-//Run: php create_addressToDeliveryRunMapping.php id=1002 addressType=Pickup address_id=b91e8d30-b0eb-4ca9-911c-750b538d57e7 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 product_id=48bd8480-e896-41a1-9343-bc48f585bbf8 deliveryRun_id=a5d49c7e-33d7-11f1-92ef-00249b8cd187 carrier_id=1 flowDirection=-->
+//Run: php create_addressToDeliveryRunMapping.php id=1001 addressType=Pickup address_id=b91e8d30-b0eb-4ca9-911c-750b538d57e7 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 product_id=702ed0e8-fbca-409e-9d15-7548c10f0ad3 deliveryRun_id=a5d49c7e-33d7-11f1-92ef-00249b8cd187 carrier_id=1 flowDirection=-->

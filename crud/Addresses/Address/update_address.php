@@ -9,13 +9,14 @@ if (PHP_SAPI === 'cli') {
     }
 }
 
-require __DIR__ . '/../../db_connect.php';
+require __DIR__ . '/../../../db_connect.php';
 
 try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $uuid      = $_POST['id']         ?? null; // UUID of Address row
+    $id      = $_POST['id']         ?? null; // UUID of Address row
+    $address_id = $_POST['address_id'] ?? null;
     $street1   = $_POST['street_1']   ?? null;
     $street2   = $_POST['street_2']   ?? null;
     $suburb    = $_POST['suburb']     ?? null;
@@ -25,11 +26,13 @@ try {
     // ---------------------------------------------------------------------
     // Validate input
     // ---------------------------------------------------------------------
-    if ($uuid === null || trim($uuid) === '') {
+    if ($id === null || trim($id) === '') {
         throw new InvalidArgumentException('id (UUID) is required');
     }
 
     foreach ([
+        'id' => $id,
+        'address_id' => $address_id,
         'street_1' => $street1,
         'street_2' => $street2,
         'suburb'   => $suburb,
@@ -42,13 +45,26 @@ try {
     }
 
     // ---------------------------------------------------------------------
-    // Update
+    // Ensure Address exists
+    // ---------------------------------------------------------------------
+    $checkAddress = $pdo->prepare(
+        'SELECT 1 FROM Address WHERE id = :id'
+    );
+    $checkAddress->execute([':id' => $id]);
+
+    if ($checkAddress->fetchColumn() === false) {
+        throw new RuntimeException('Address does not exist');
+    }
+
+    // ---------------------------------------------------------------------
+    // Update Address
     // ---------------------------------------------------------------------
     $pdo->beginTransaction();
 
     $stmt = $pdo->prepare(
         'UPDATE Address
          SET
+            address_id = :address_id,
             street_1 = :street_1,
             street_2 = :street_2,
             suburb   = :suburb,
@@ -58,21 +74,18 @@ try {
     );
 
     $stmt->execute([
+        'id'   => $id,
+        'address_id'   => $address_id,
         ':street_1' => $street1,
         ':street_2' => $street2,
         ':suburb'   => $suburb,
         ':state'    => $state,
         ':postcode' => $postcode,
-        ':id'       => $uuid,
     ]);
-
-    if ($stmt->rowCount() === 0) {
-        throw new RuntimeException('No address found with the given id');
-    }
 
     $pdo->commit();
 
-    echo 'Address updated successfully. UUID: ' . $uuid;
+    echo 'Address updated successfully. UUID: ' . $id;
 
 } catch (Throwable $e) {
 
@@ -83,4 +96,4 @@ try {
     echo 'Failed to update address: ' . $e->getMessage();
 }
 
-//Run: php update_address.php id=adad3ec5-fe9f-4375-88c5-defbfe042c7f street_1="Velez St" street_2="Unit 18" suburb="Cebu" state="CEB" postcode=6000
+//Run: php update_address.php id=adad3ec5-fe9f-4375-88c5-defbfe042c7f address_id=1002 street_1="Keren St" street_2="Block 1" suburb="Manila" state="MANILA" postcode=6015

@@ -9,7 +9,7 @@ if (PHP_SAPI === 'cli') {
     }
 }
 
-require __DIR__ . '/../../db_connect.php';
+require __DIR__ . '/../../../db_connect.php';
 
 try {
     // ---------------------------------------------------------------------
@@ -150,5 +150,5 @@ try {
     echo 'Failed to update consignment: ' . $e->getMessage();
 }
 
-//Run: php update_consignment.php id=ec505118-138c-4a0f-9aca-a7d525c203d3 consignment_id=1001 saleOrder_id=550e8400-e29b-41d4-a716-446655440000 address_id=b91e8d30-b0eb-4ca9-911c-750b538d57e7 product_id=48bd8480-e896-41a1-9343-bc48f585bbf8 deliveryRun_id=222e8400-e29b-41d4-a716-222222222222 driver_id=333e8400-e29b-41d4-a716-333333333333 runsheet_id=1 service="Standard Delivery" reference=PO-456789 is_residential=1 quantity=10 cubic=2.45 weight=350.75 pallets=1 spaces=2
+//Run: php update_consignment.php id=f57df92f-6513-4f54-a5d6-c4b881460ac1 consignment_id=1001 saleOrder_id=1510b98d-3470-11f1-92ef-00249b8cd187 address_id=b91e8d30-b0eb-4ca9-911c-750b538d57e7 product_id=702ed0e8-fbca-409e-9d15-7548c10f0ad3 deliveryRun_id=222e8400-e29b-41d4-a716-222222222222 driver_id=2bc93718-971b-487d-b1dd-8fb4f0a0b8ba runsheet_id=1 service="Standard Delivery" reference=PO-456789 is_residential=1 quantity=10 cubic=2.45 weight=350.75 pallets=1 spaces=2
 

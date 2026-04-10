@@ -11,7 +11,7 @@ if (PHP_SAPI === 'cli') {
     }
 }
 
-require __DIR__ . '/../../db_connect.php';
+require __DIR__ . '/../../../db_connect.php';
 
 try {
     // -----------------------------------------------------------------
@@ -100,7 +100,6 @@ try {
     // -----------------------------------------------------------------
     // Output
     // -----------------------------------------------------------------
-
     if (!$rows) {
         echo json_encode([
             'success' => true,
@@ -127,6 +126,6 @@ try {
 
 //Run:
 //Read single contact by UUID 
-//php read_contact.php id=64602649-5615-43f3-922c-8f4ff054eef6
+    //php read_contact.php id=ae9aaec5-1dd3-49b8-adc0-5578a6db8708
 //List all contacts for a customer
-//php read_contact.php customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187
+    //php read_contact.php customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187

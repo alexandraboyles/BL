@@ -9,7 +9,7 @@ if (PHP_SAPI === 'cli') {
     }
 };
 
-require __DIR__ . '/../../db_connect.php';
+require __DIR__ . '/../../../db_connect.php';
 
 try {
     // ---------------------------------------------------------------------
@@ -72,7 +72,7 @@ try {
     // Ensure Address exists (FK safety)
     // ---------------------------------------------------------------------
     $check = $pdo->prepare(
-        'SELECT 1 FROM address WHERE id = :id'
+        'SELECT 1 FROM Address WHERE id = :id'
     );
     $check->execute([':id' => $address_id]);
 
@@ -84,7 +84,7 @@ try {
     // Ensure Product exists (FK safety)
     // ---------------------------------------------------------------------
     $check = $pdo->prepare(
-        'SELECT 1 FROM product WHERE id = :id'
+        'SELECT 1 FROM Product WHERE id = :id'
     );
     $check->execute([':id' => $product_id]);
 
@@ -236,4 +236,4 @@ try {
 };
 
 
-//Run: php create_consignment.php consignment_id=1003 saleOrder_id=550e8400-e29b-41d4-a716-446655440000 address_id=b91e8d30-b0eb-4ca9-911c-750b538d57e7 product_id=48bd8480-e896-41a1-9343-bc48f585bbf8 deliveryRun_id=222e8400-e29b-41d4-a716-222222222222 driver_id=333e8400-e29b-41d4-a716-333333333333 runsheet_id=1 service=Standard Delivery reference=PO-456789 is_residential=1 quantity=10 cubic=2.45 weight=350.75 pallets=1 spaces=2
+//Run: php create_consignment.php consignment_id=1001 saleOrder_id=1510b98d-3470-11f1-92ef-00249b8cd187 address_id=b91e8d30-b0eb-4ca9-911c-750b538d57e7 product_id=702ed0e8-fbca-409e-9d15-7548c10f0ad3 deliveryRun_id=222e8400-e29b-41d4-a716-222222222222 driver_id=333e8400-e29b-41d4-a716-333333333333 runsheet_id=1 service=Standard Delivery reference=PO-456789 is_residential=1 quantity=10 cubic=2.45 weight=350.75 pallets=1 spaces=2

@@ -49,7 +49,7 @@ try {
     }
 
     // --------------------------------------------------------
-    // Ensure Customer exists
+    // Ensure Customer exists (FK safety)
     // --------------------------------------------------------
     $check = $pdo->prepare(
         'SELECT 1 FROM Customer WHERE id = :id'
@@ -61,7 +61,7 @@ try {
     }
 
     // --------------------------------------------------------
-    // Ensure Address Default Instruction exists
+    // Ensure Address Default Instruction exists 
     // --------------------------------------------------------
     $check = $pdo->prepare(
         'SELECT 1

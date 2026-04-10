@@ -9,7 +9,7 @@ if (PHP_SAPI === 'cli') {
     }
 };
 
-require __DIR__ . '/../../db_connect.php';
+require __DIR__ . '/../../../db_connect.php';
 
 try {
     // ---------------------------------------------------------------------
@@ -21,7 +21,7 @@ try {
     $phone      = $_POST['phone'] ?? null;
 
     // ---------------------------------------------------------------------
-    // Validate input
+    // Validate input (ALL fields required by schema)
     // ---------------------------------------------------------------------
     foreach ([
         'customer_id' => $customerId,

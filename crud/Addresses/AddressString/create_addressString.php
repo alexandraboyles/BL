@@ -21,7 +21,7 @@ try {
     $text  = $_POST['text'] ?? null;
 
     // ---------------------------------------------------------------------
-    // Validate input
+    // Validate input ALL fields required by schema)
     // ---------------------------------------------------------------------
     foreach ([
         'id' => $id,

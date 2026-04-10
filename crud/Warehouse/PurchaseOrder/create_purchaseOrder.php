@@ -9,7 +9,7 @@ if (PHP_SAPI === 'cli') {
     }
 };
 
-require __DIR__ . '/../../db_connect.php';
+require __DIR__ . '/../../../db_connect.php';
 
 try {
     // ---------------------------------------------------------------------
@@ -44,7 +44,7 @@ try {
     // Ensure Customer exists (FK safety)
     // ---------------------------------------------------------------------
     $check = $pdo->prepare(
-        'SELECT 1 FROM customer WHERE id = :id'
+        'SELECT 1 FROM Customer WHERE id = :id'
     );
     $check->execute([':id' => $customer_id]);
 
@@ -90,7 +90,7 @@ try {
     $pdo->beginTransaction();
 
     $stmt = $pdo->prepare(
-        'INSERT INTO purchaseOrder (
+        'INSERT INTO PurchaseOrder (
             id,
             purchase_order_id,
             customer_id,
