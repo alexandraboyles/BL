@@ -17,82 +17,50 @@ try {
     // -----------------------------------------------------------------
     // Collect input
     // -----------------------------------------------------------------
-    $id         = $_POST['id'] ?? null;          // User UUID
-    $customerId = $_POST['customer_id'] ?? null; // Customer UUID
-    $email      = $_POST['email'] ?? null;
+    $id        = $_POST['id'] ?? null;          // UUID
+    $ftpUserId = $_POST['ftpUser_id'] ?? null; // integer
 
     if (
         ($id === null || trim($id) === '') &&
-        ($customerId === null || trim($customerId) === '') &&
-        ($email === null || trim($email) === '')
+        ($ftpUserId === null || trim((string)$ftpUserId) === '')
     ) {
         throw new InvalidArgumentException(
-            'At least one filter is required: id, customer_id, or email'
+            'Either id (UUID) or ftpUser_id is required'
         );
     }
 
     // -----------------------------------------------------------------
-    // Build dynamic query
-    // Priority: id > customer_id > email
+    // Build query dynamically
     // -----------------------------------------------------------------
     if ($id !== null && trim($id) !== '') {
         $sql = 'SELECT
                     id,
-                    customer_id,
-                    fullName,
-                    email,
-                    roles,
-                    warehouses,
-                    mfa,
-                    is_email_verified
-                FROM user
+                    ftpUser_id,
+                    username,
+                    password,
+                    subDirectory
+                FROM ftpUser
                 WHERE id = :id';
 
         $params = [
             ':id' => $id,
         ];
-
-    } elseif ($customerId !== null && trim($customerId) !== '') {
-
-        // Optional FK safety check (mirrors create_user.php)
-        $check = $pdo->prepare('SELECT 1 FROM Customer WHERE id = :id');
-        $check->execute([':id' => $customerId]);
-
-        if ($check->fetchColumn() === false) {
-            throw new RuntimeException('Customer does not exist');
+    } else {
+        if (!ctype_digit((string)$ftpUserId)) {
+            throw new InvalidArgumentException('ftpUser_id must be an integer');
         }
 
         $sql = 'SELECT
                     id,
-                    customer_id,
-                    fullName,
-                    email,
-                    roles,
-                    warehouses,
-                    mfa,
-                    is_email_verified
-                FROM user
-                WHERE customer_id = :customer_id
-                ORDER BY fullName';
+                    ftpUser_id,
+                    username,
+                    password,
+                    subDirectory
+                FROM ftpUser
+                WHERE ftpUser_id = :ftpUser_id';
 
         $params = [
-            ':customer_id' => $customerId,
-        ];
-
-    } else {
-        // email lookup
-        $sql = 'SELECT
-                    fullName,
-                    email,
-                    roles,
-                    warehouses,
-                    mfa,
-                    is_email_verified
-                FROM user
-                WHERE email = :email';
-
-        $params = [
-            ':email' => $email,
+            ':ftpUser_id' => (int)$ftpUserId,
         ];
     }
 
@@ -107,11 +75,12 @@ try {
     // -----------------------------------------------------------------
     // Output
     // -----------------------------------------------------------------
+
     if (!$rows) {
         echo json_encode([
             'success' => true,
             'data'    => [],
-            'message' => 'No contact(s) found',
+            'message' => 'No ftpUser found',
         ], JSON_PRETTY_PRINT);
         exit;
     }
@@ -129,10 +98,10 @@ try {
         'success' => false,
         'error'   => $e->getMessage(),
     ], JSON_PRETTY_PRINT);
-};
+}
 
-//Run:
-//Read single user by UUID 
-    //php read_user.php id=2dc7171f-a789-4539-b260-15acdcd3dfab
-//List all users for a customer
-    //php read_user.php customer_id=ddf497c2-480c-4fc8-bbcd-dd5a5c5478c1
+//Run: 
+//Read single ftpUser by id
+    //php read_ftpUser.php ftpUser_id=1001
+//Read single ftpUser by UUID
+    //php read_ftpUser.php id=63579635-1ac7-4051-8c9f-8f5d0ad8303c

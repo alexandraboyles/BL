@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-// ------------------------------------------------------------
+// ---------------------------------------------------------------------
 // Allow CLI arguments like key=value&key2=value2
-// ------------------------------------------------------------
+// ---------------------------------------------------------------------
 if (PHP_SAPI === 'cli') {
     foreach (array_slice($argv, 1) as $arg) {
         parse_str($arg, $parsed);
@@ -14,46 +14,52 @@ if (PHP_SAPI === 'cli') {
 require __DIR__ . '/../../../db_connect.php';
 
 try {
+
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $id = $_POST['id'] ?? null; // document.id
+    $id = $_POST['id'] ?? null; 
 
     // ---------------------------------------------------------------------
     // Validate input
     // ---------------------------------------------------------------------
-    if ($id === null || trim($id) === '') {
+    if ($id === null || trim((string)$id) === '') {
         throw new InvalidArgumentException('id is required');
     }
 
     // ---------------------------------------------------------------------
-    // Ensure Address String exists
+    // Ensure Adhoc Charge Setup exists
     // ---------------------------------------------------------------------
-    $check = $pdo->prepare(
-        'SELECT 1 FROM document WHERE id = :id'
+    $stmt = $pdo->prepare(
+        'SELECT id
+         FROM adhocChargeSetup
+         WHERE id = :id'
     );
-    $check->execute([':id' => $id]);
 
-    if ($check->fetchColumn() === false) {
-        throw new RuntimeException('Document does not exist');
+    $stmt->execute([':id' => $id,]);
+
+    $adhocId = $stmt->fetchColumn();
+
+    if ($adhocId === false) {
+        throw new RuntimeException('Adhoc Charge Setup does not exist');
     }
 
     // ---------------------------------------------------------------------
-    // Delete Document
+    // Delete Adhoc Charge Setup
     // ---------------------------------------------------------------------
     $pdo->beginTransaction();
 
-    $stmt = $pdo->prepare(
-        'DELETE FROM document WHERE id = :id'
+    $delete = $pdo->prepare(
+        'DELETE FROM adhocChargeSetup WHERE id = :id'
     );
 
-    $stmt->execute([
-        ':id' => $id
+    $delete->execute([
+        ':id' => $adhocId,
     ]);
 
     $pdo->commit();
 
-    echo 'Document deleted successfully.';
+    echo 'Adhoc Charge Setup deleted successfully. ID: ' . $adhocId;
 
 } catch (Throwable $e) {
 
@@ -61,7 +67,7 @@ try {
         $pdo->rollBack();
     }
 
-    echo 'Failed to delete document: ' . $e->getMessage();
+    echo 'Failed to delete adhoc charge setup: ' . $e->getMessage();
 }
 
-//Run: php delete_document.php id=1001
+//Run: php delete_adhocChargeSetup.php id=1002

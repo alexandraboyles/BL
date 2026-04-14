@@ -15,30 +15,31 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $customerId = $_POST['customer_id'] ?? null; // UUID → Customer.id
-    $fullName    = $_POST['fullName'] ?? null;
-    $email  = $_POST['email'] ?? null;
-    $roles  = $_POST['roles'] ?? null;
-    $warehouses  = $_POST['warehouses'] ?? null;
-    $mfa  = $_POST['mfa'] ?? null;
-    $is_email_verified  = $_POST['is_email_verified'] ?? null;
+    $ftpUserId = $_POST['ftpUser_id'] ?? null;
+    $username   = $_POST['username']   ?? null;
+    $password = $_POST['password']   ?? null;
+    $subDirectory  = $_POST['subDirectory']     ?? null;
 
     // ---------------------------------------------------------------------
     // Validate input (ALL fields required by schema)
     // ---------------------------------------------------------------------
+    if ($ftpUserId === null || $ftpUserId === '' || !ctype_digit((string)$ftpUserId)) {
+        throw new InvalidArgumentException('ftpUser_id is required and must be an integer');
+    }
+
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
     foreach ([
-        'customer_id' => $customerId,
-        'fullName' => $fullName,
-        'email'       => $email,
-        'roles'   => $roles,
-        'warehouses' => $warehouses,
-        'mfa' => $mfa,
-        'is_email_verified' => $is_email_verified,
+        'username' => $username,
+        'password' => $hashedPassword,
+        'subDirectory'   => $subDirectory,
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
             throw new InvalidArgumentException("$field is required");
         }
-    }                               
+    }
+
+    $ftpUserId = (int) $ftpUserId;
 
     // ---------------------------------------------------------------------
     // Generate a UUID version 4 (random UUID)
@@ -73,46 +74,37 @@ try {
     );
 
     // ---------------------------------------------------------------------
-    // Insert User
+    // Insert FTP User
     // ---------------------------------------------------------------------
     $pdo->beginTransaction();
 
     $stmt = $pdo->prepare(
-        'INSERT INTO user (
+        'INSERT INTO ftpUser (
             id,
-            customer_id,
-            fullName,
-            email,
-            roles,
-            warehouses,
-            mfa,
-            is_email_verified
+            ftpUser_id,
+            username,
+            password,
+            subDirectory
         ) VALUES (
             :id,
-            :customer_id,
-            :fullName,
-            :email,
-            :roles,
-            :warehouses,
-            :mfa,
-            :is_email_verified
+            :ftpUser_id,
+            :username,
+            :password,
+            :subDirectory
         )'
     );
 
     $stmt->execute([
-        ':id'          => $uuid,
-        ':customer_id' => $customerId,
-        ':fullName'   => $fullName,
-        ':email'   => $email,
-        ':roles'   => $roles,
-        ':warehouses'   => $warehouses,
-        ':mfa'   => $mfa,
-        ':is_email_verified'   => $is_email_verified,
+        ':id'         => $uuid,
+        ':ftpUser_id' => $ftpUserId,
+        ':username'   => $username,
+        ':password'   => $hashedPassword,
+        ':subDirectory'  => $subDirectory,
     ]);
 
     $pdo->commit();
 
-    echo 'User created successfully. UUID: ' . $uuid;
+    echo 'FTP User created successfully. UUID: ' . $uuid;
 
 } catch (Throwable $e) {
 
@@ -120,8 +112,8 @@ try {
         $pdo->rollBack();
     }
 
-    echo 'Failed to create user: ' . $e->getMessage();
+    echo 'Failed to create ftp user: ' . $e->getMessage();
 };
 
 
-//Run: php create_user.php customer_id=ddf497c2-480c-4fc8-bbcd-dd5a5c5478c1 fullName=Mark Dinglasa email=mark.dinglasa@gmail.com roles=Test warehouses=test mfa=test001 is_email_verified=1
+//Run: php create_ftpUser.php ftpUser_id=1002 username=lexie password=lexie123 subDirectory=/home/ftp_lexie

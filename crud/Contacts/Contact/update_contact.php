@@ -15,7 +15,7 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $id    = $_POST['id'] ?? null;     // UUID → id
+    $id           = $_POST['id'] ?? null;     // UUID → id
     $customerId   = $_POST['customer_id'] ?? null;    // UUID → Customer.id
     $contact_name = $_POST['contact_name'] ?? null;
     $email        = $_POST['email'] ?? null;
@@ -29,7 +29,7 @@ try {
     }
 
     foreach ([
-        'id'   => $id,
+        'id'           => $id,
         'customer_id'  => $customerId,
         'contact_name' => $contact_name,
         'email'        => $email,
@@ -80,7 +80,7 @@ try {
     );
 
     $stmt->execute([
-        ':id'  => $id,
+        ':id'          => $id,
         ':customer_id' => $customerId,
         ':contact_name'=> $contact_name,
         ':email'       => $email,

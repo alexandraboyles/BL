@@ -15,19 +15,19 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $customerId = $_POST['customer_id'] ?? null; // UUID → Customer.id
-    $contact_name       = $_POST['contact_name'] ?? null;
-    $email      = $_POST['email'] ?? null;
-    $phone      = $_POST['phone'] ?? null;
+    $customerId    = $_POST['customer_id'] ?? null; // UUID → Customer.id
+    $contact_name  = $_POST['contact_name'] ?? null;
+    $email         = $_POST['email'] ?? null;
+    $phone         = $_POST['phone'] ?? null;
 
     // ---------------------------------------------------------------------
     // Validate input (ALL fields required by schema)
     // ---------------------------------------------------------------------
     foreach ([
-        'customer_id' => $customerId,
-        'contact_name'        => $contact_name,
-        'email'       => $email,
-        'phone'       => $phone,
+        'customer_id'   => $customerId,
+        'contact_name'  => $contact_name,
+        'email'         => $email,
+        'phone'         => $phone,
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
             throw new InvalidArgumentException("$field is required");
@@ -100,11 +100,11 @@ try {
     );
 
     $stmt->execute([
-        ':id'          => $uuid,
-        ':customer_id' => $customerId,
-        ':contact_name'        => $contact_name,
-        ':email'       => $email,
-        ':phone'       => $phone,
+        ':id'            => $uuid,
+        ':customer_id'   => $customerId,
+        ':contact_name'  => $contact_name,
+        ':email'         => $email,
+        ':phone'         => $phone,
     ]);
 
     $pdo->commit();

@@ -17,7 +17,7 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $id = $_POST['id'] ?? null; // document.id
+    $id = $_POST['id'] ?? null; // parser.id
 
     // ---------------------------------------------------------------------
     // Validate input
@@ -27,24 +27,24 @@ try {
     }
 
     // ---------------------------------------------------------------------
-    // Ensure Address String exists
+    // Ensure Parser exists
     // ---------------------------------------------------------------------
     $check = $pdo->prepare(
-        'SELECT 1 FROM document WHERE id = :id'
+        'SELECT 1 FROM parser WHERE id = :id'
     );
     $check->execute([':id' => $id]);
 
     if ($check->fetchColumn() === false) {
-        throw new RuntimeException('Document does not exist');
+        throw new RuntimeException('Parser does not exist');
     }
 
     // ---------------------------------------------------------------------
-    // Delete Document
+    // Delete Parser
     // ---------------------------------------------------------------------
     $pdo->beginTransaction();
 
     $stmt = $pdo->prepare(
-        'DELETE FROM document WHERE id = :id'
+        'DELETE FROM parser WHERE id = :id'
     );
 
     $stmt->execute([
@@ -53,7 +53,7 @@ try {
 
     $pdo->commit();
 
-    echo 'Document deleted successfully.';
+    echo 'Parser deleted successfully.';
 
 } catch (Throwable $e) {
 
@@ -61,7 +61,7 @@ try {
         $pdo->rollBack();
     }
 
-    echo 'Failed to delete document: ' . $e->getMessage();
+    echo 'Failed to delete parser: ' . $e->getMessage();
 }
 
-//Run: php delete_document.php id=1001
+//Run: php delete_parser.php id=1001

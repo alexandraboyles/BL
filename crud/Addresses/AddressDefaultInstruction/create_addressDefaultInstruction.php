@@ -15,8 +15,8 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $address_id = $_POST['address_id'] ?? null; // UUID → Address.id
-    $customer_id = $_POST['customer_id'] ?? null; // UUID → Customer.id
+    $address_id           = $_POST['address_id'] ?? null; // UUID → Address.id
+    $customer_id          = $_POST['customer_id'] ?? null; // UUID → Customer.id
     $deliveryInstruction  = $_POST['deliveryInstruction'] ?? null;
     $packingInstruction   = $_POST['packingInstruction'] ?? null;
 
@@ -24,8 +24,8 @@ try {
     // Validate input (ALL fields required by schema)
     // ---------------------------------------------------------------------
     foreach ([
-        'address_id' => $address_id,
-        'customer_id' => $customer_id,
+        'address_id'          => $address_id,
+        'customer_id'         => $customer_id,
         'deliveryInstruction' => $deliveryInstruction,
         'packingInstruction'  => $packingInstruction,
     ] as $field => $value) {
@@ -80,7 +80,7 @@ try {
 
     $stmt->execute([
         ':address_id'          => $address_id,
-        ':customer_id' => $customer_id,
+        ':customer_id'         => $customer_id,
         ':deliveryInstruction' => $deliveryInstruction,
         ':packingInstruction'  => $packingInstruction,
     ]);

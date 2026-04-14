@@ -15,27 +15,27 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $id = $_POST['id'] ?? null;
-    $addressType = $_POST['addressType'] ?? null;
-    $address_id = $_POST['address_id'] ?? null; // UUID → Address.id
-    $customer_id = $_POST['customer_id'] ?? null; // UUID → Customer.id
-    $product_id = $_POST['product_id'] ?? null; // UUID → Product.id
-    $deliveryRun_id = $_POST['deliveryRun_id'] ?? null; // UUID → deliveryRun.id
-    $carrier_id = $_POST['carrier_id'] ?? null;
-    $flowDirection  = $_POST['flowDirection'] ?? null;
+    $id              = $_POST['id'] ?? null;
+    $addressType     = $_POST['addressType'] ?? null;
+    $address_id      = $_POST['address_id'] ?? null; // UUID → Address.id
+    $customer_id     = $_POST['customer_id'] ?? null; // UUID → Customer.id
+    $product_id      = $_POST['product_id'] ?? null; // UUID → Product.id
+    $deliveryRun_id  = $_POST['deliveryRun_id'] ?? null; // UUID → deliveryRun.id
+    $carrier_id      = $_POST['carrier_id'] ?? null;
+    $flowDirection   = $_POST['flowDirection'] ?? null;
 
     // ---------------------------------------------------------------------
     // Validate input (ALL fields required by schema)
     // ---------------------------------------------------------------------
     foreach ([
-        'id' => $id,
-        'addressType' => $addressType,
-        'address_id' => $address_id,
-        'customer_id' => $customer_id,
-        'product_id' => $product_id,
+        'id'             => $id,
+        'addressType'    => $addressType,
+        'address_id'     => $address_id,
+        'customer_id'    => $customer_id,
+        'product_id'     => $product_id,
         'deliveryRun_id' => $deliveryRun_id,
-        'carrier_id' => $carrier_id,
-        'flowDirection' => $flowDirection,
+        'carrier_id'     => $carrier_id,
+        'flowDirection'  => $flowDirection,
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
             throw new InvalidArgumentException("$field is required");
@@ -131,14 +131,14 @@ try {
     );
 
     $stmt->execute([
-        ':id'          => $id,
-        ':addressType'     => $addressType,
-        ':address_id'      => $address_id,
-        ':customer_id' => $customer_id,
-        ':product_id' => $product_id,
+        ':id'             => $id,
+        ':addressType'    => $addressType,
+        ':address_id'     => $address_id,
+        ':customer_id'    => $customer_id,
+        ':product_id'     => $product_id,
         ':deliveryRun_id' => $deliveryRun_id,
-        ':carrier_id' => $carrier_id,
-        ':flowDirection' => $flowDirection
+        ':carrier_id'     => $carrier_id,
+        ':flowDirection'  => $flowDirection
     ]);
 
     $pdo->commit();

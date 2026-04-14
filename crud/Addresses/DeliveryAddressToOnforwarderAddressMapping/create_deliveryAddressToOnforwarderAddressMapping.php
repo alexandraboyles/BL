@@ -15,19 +15,19 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $id = $_POST['id'] ?? null;
+    $id          = $_POST['id'] ?? null;
     $customer_id = $_POST['customer_id'] ?? null; // UUID → Customer.id
-    $address_id = $_POST['address_id'] ?? null; // UUID → Address.id
-    $product_id = $_POST['product_id'] ?? null; // UUID → Product.id
+    $address_id  = $_POST['address_id'] ?? null; // UUID → Address.id
+    $product_id  = $_POST['product_id'] ?? null; // UUID → Product.id
 
     // ---------------------------------------------------------------------
     // Validate input (ALL fields required by schema)
     // ---------------------------------------------------------------------
     foreach ([
-        'id' => $id,
+        'id'          => $id,
         'customer_id' => $customer_id,
-        'address_id' => $address_id,
-        'product_id' => $product_id,
+        'address_id'  => $address_id,
+        'product_id'  => $product_id,
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
             throw new InvalidArgumentException("$field is required");
@@ -93,8 +93,8 @@ try {
     $stmt->execute([
         ':id'          => $id,
         ':customer_id' => $customer_id,
-        ':address_id'      => $address_id,
-        ':product_id'      => $product_id
+        ':address_id'  => $address_id,
+        ':product_id'  => $product_id
     ]);
 
     $pdo->commit();

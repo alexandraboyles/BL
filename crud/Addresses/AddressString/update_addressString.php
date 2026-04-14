@@ -24,8 +24,8 @@ try {
     // Validate input
     // ---------------------------------------------------------------------
     foreach ([
-        'id' => $id,
-        'address_id' => $address_id,
+        'id'          => $id,
+        'address_id'  => $address_id,
         'customer_id' => $customer_id,
         'text' => $text,
     ] as $field => $value) {

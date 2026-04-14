@@ -7,7 +7,7 @@ if (PHP_SAPI === 'cli') {
         parse_str($arg, $parsed);
         $_POST = array_merge($_POST, $parsed);
     }
-};
+}
 
 require __DIR__ . '/../../../db_connect.php';
 
@@ -15,36 +15,32 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $id          = $_POST['id'] ?? null;
-    $customer_id = $_POST['customer_id'] ?? null; // UUID → Customer.id
-    $address_id  = $_POST['address_id'] ?? null; // UUID → Address.id
+    $id = $_POST['id'] ?? null; // parser.id
+    $customer_id = $_POST['customer_id'] ?? null; // Customer.id
+    $parser_name  = $_POST['parser_name'] ?? null;
+    $className  = $_POST['className'] ?? null;
+    $class  = $_POST['class'] ?? null;
+    $type  = $_POST['type'] ?? null;
+    $acceptedFileTypes  = $_POST['acceptedFileTypes'] ?? null;
+    $toAddress  = $_POST['toAddress'] ?? null;
 
     // ---------------------------------------------------------------------
-    // Validate input (ALL fields required by schema)
+    // Validate input
     // ---------------------------------------------------------------------
     foreach ([
-        'id'          => $id,
+        'id' => $id,
         'customer_id' => $customer_id,
-        'address_id'  => $address_id,
+        'parser_name' => $parser_name,
+        'className' => $className,
+        'type' => $type,
+        'acceptedFileTypes' => $acceptedFileTypes,
+        'toAddress' => $toAddress
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
             throw new InvalidArgumentException("$field is required");
         }
     }
 
-    // ---------------------------------------------------------------------
-    // Ensure Address exists (FK safety)
-    // ---------------------------------------------------------------------
-    $check = $pdo->prepare(
-        'SELECT 1 FROM Address WHERE id = :id'
-    );
-    $check->execute([':id' => $address_id]);
-
-    if ($check->fetchColumn() === false) {
-        throw new RuntimeException('Address does not exist');
-    }
-
-    
     // ---------------------------------------------------------------------
     // Ensure Customer exists (FK safety)
     // ---------------------------------------------------------------------
@@ -58,31 +54,37 @@ try {
     }
 
     // ---------------------------------------------------------------------
-    // Insert Address To Invoice Customer Mapping
+    // Update Parser
     // ---------------------------------------------------------------------
     $pdo->beginTransaction();
 
     $stmt = $pdo->prepare(
-        'INSERT INTO addressToInvoiceCustomerMapping (
-            id,
-            customer_id,
-            address_id
-        ) VALUES (
-            :id,
-            :customer_id,
-            :address_id
-        )'
+        'UPDATE parser
+         SET
+            customer_id = :customer_id,
+            parser_name  = :parser_name,
+            className  = :className,
+            class  = :class,
+            type  = :type,
+            acceptedFileTypes  = :acceptedFileTypes,
+            toAddress  = :toAddress
+         WHERE id = :id'
     );
 
     $stmt->execute([
         ':id'          => $id,
         ':customer_id' => $customer_id,
-        ':address_id'  => $address_id
+        ':parser_name' => $parser_name,
+        ':className' => $className,
+        ':class' => $class,
+        ':type' => $type,
+        ':acceptedFileTypes' => $acceptedFileTypes,
+        ':toAddress' => $toAddress,
     ]);
 
     $pdo->commit();
 
-    echo 'Address To Invoice Customer Mapping created successfully.';
+    echo 'Parser updated successfully.';
 
 } catch (Throwable $e) {
 
@@ -90,8 +92,7 @@ try {
         $pdo->rollBack();
     }
 
-    echo 'Failed to create address to invoice customer mapping: ' . $e->getMessage();
-};
+    echo 'Failed to update parser: ' . $e->getMessage();
+}
 
-
-//Run: php create_addressToInvoiceCustomerMapping.php id=1001 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 address_id=b91e8d30-b0eb-4ca9-911c-750b538d57e7  
+//Run: php update_parser.php id=1001 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 parser_name="Invoice PDF Parser" className=InvoiceParserUpdated class=com.company.parsers.InvoiceParser type=PDF acceptedFileTypes=pdf toAddress=invoices@company.com

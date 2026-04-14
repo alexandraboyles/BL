@@ -176,6 +176,83 @@ CREATE TABLE user(
 SELECT * FROM user;
 DESCRIBE user;
 
+CREATE TABLE document (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY UNIQUE,
+    saleOrder_id CHAR(36) NOT NULL,
+    customer_id CHAR(36) NOT NULL,
+    consignment_id CHAR(36) NOT NULL,
+    fileType VARCHAR(50) NOT NULL,
+    CONSTRAINT fk_document_1
+    FOREIGN KEY (saleOrder_id) REFERENCES saleOrder(id),
+    CONSTRAINT fk_document_2
+    FOREIGN KEY (customer_id) REFERENCES customer(id),
+    CONSTRAINT fk_document_3 
+    FOREIGN KEY (consignment_id) REFERENCES consignment(id)
+);
+SELECT * FROM document;
+DESCRIBE document;
+
+CREATE TABLE ftpUser(
+	id CHAR(36) NOT NULL PRIMARY KEY,
+    ftpUser_id INT NOT NULL,
+    username VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    subDirectory VARCHAR(255) NOT NULL,
+    lastLogin DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+SELECT * FROM ftpUser;
+DESCRIBE ftpUser;
+
+CREATE TABLE parser(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY UNIQUE,
+    customer_id CHAR(36) NOT NULL,
+    parser_name VARCHAR(100) NOT NULL,
+    className VARCHAR(100) NOT NULL,
+    class VARCHAR(100) NOT NULL,
+    type VARCHAR(100) NOT NULL,
+    acceptedFileTypes VARCHAR(100) NOT NULL,
+    toAddress VARCHAR(255) NOT NULL
+);
+SELECT * FROM parser;
+DESCRIBE parser;
+
+CREATE TABLE account(
+	account_name VARCHAR(100) NOT NULL,
+    description TEXT NOT NULL,
+    display_when_no_value BOOL NOT NULL
+);
+SELECT * FROM account;
+DESCRIBE account;
+
+CREATE TABLE adhocChargeSetup(
+	id INT NOT NULL PRIMARY KEY UNIQUE,
+    adhocChargeSetup_name VARCHAR(100) NOT NULL,
+    chargeStructure VARCHAR(255) NOT NULL,
+    rate DECIMAL(10,2) DEFAULT 0.00,
+    descriptionTemplate VARCHAR(100) NOT NULL,
+    is_enabled BOOL NOT NULL,
+    pageVisionOn VARCHAR(100) NOT NULL
+);
+SELECT * FROM adhocChargeSetup;
+DESCRIBE adhocChargeSetup;
+
+CREATE TABLE bill(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY UNIQUE,
+    supplier_id INT NOT NULL,
+    invoice_id CHAR(36) NOT NULL,
+    manifest_id INT NOT NULL,
+    CONSTRAINT fk_bill_1 
+    FOREIGN KEY (supplier_id) REFERENCES supplier(id),
+    CONSTRAINT fk_bill_2
+    FOREIGN KEY (invoice_id) REFERENCES invoice(id),
+    CONSTRAINT fk_bill_3
+    FOREIGN KEY (manifest_id) REFERENCES manifest(id)
+);
+SELECT * FROM bill;
+DESCRIBE bill;
+
+
+
 CREATE TABLE Invoice(
 	id CHAR(36) NOT NULL PRIMARY KEY, 
     invoice_id INT DEFAULT NULL UNIQUE,

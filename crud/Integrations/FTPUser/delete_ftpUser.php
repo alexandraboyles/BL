@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-// ------------------------------------------------------------
+// ---------------------------------------------------------------------
 // Allow CLI arguments like key=value&key2=value2
-// ------------------------------------------------------------
+// ---------------------------------------------------------------------
 if (PHP_SAPI === 'cli') {
     foreach (array_slice($argv, 1) as $arg) {
         parse_str($arg, $parsed);
@@ -14,46 +14,49 @@ if (PHP_SAPI === 'cli') {
 require __DIR__ . '/../../../db_connect.php';
 
 try {
+
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $id = $_POST['id'] ?? null; // document.id
+    $id = $_POST['id'] ?? null; 
 
     // ---------------------------------------------------------------------
     // Validate input
     // ---------------------------------------------------------------------
-    if ($id === null || trim($id) === '') {
+    if ($id === null || trim((string)$id) === '') {
         throw new InvalidArgumentException('id is required');
     }
 
     // ---------------------------------------------------------------------
-    // Ensure Address String exists
+    // Ensure FTP User exists
     // ---------------------------------------------------------------------
     $check = $pdo->prepare(
-        'SELECT 1 FROM document WHERE id = :id'
+        'SELECT id FROM ftpUser WHERE id = :id'
     );
     $check->execute([':id' => $id]);
 
-    if ($check->fetchColumn() === false) {
-        throw new RuntimeException('Document does not exist');
+    $ftpUserUuid = $check->fetchColumn();
+
+    if ($ftpUserUuid === false) {
+        throw new RuntimeException('FTP User does not exist');
     }
 
     // ---------------------------------------------------------------------
-    // Delete Document
+    // Delete FTP User
     // ---------------------------------------------------------------------
     $pdo->beginTransaction();
 
     $stmt = $pdo->prepare(
-        'DELETE FROM document WHERE id = :id'
+        'DELETE FROM ftpUser WHERE id = :id'
     );
 
     $stmt->execute([
-        ':id' => $id
+        ':id' => $ftpUserUuid
     ]);
 
     $pdo->commit();
 
-    echo 'Document deleted successfully.';
+    echo 'FTP User deleted successfully. UUID: ' . $ftpUserUuid;
 
 } catch (Throwable $e) {
 
@@ -61,7 +64,7 @@ try {
         $pdo->rollBack();
     }
 
-    echo 'Failed to delete document: ' . $e->getMessage();
+    echo 'Failed to delete ftp user: ' . $e->getMessage();
 }
 
-//Run: php delete_document.php id=1001
+//Run: php delete_ftpUser.php id=6244d264-c87a-4be4-889e-392a92327e24

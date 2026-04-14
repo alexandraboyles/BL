@@ -17,43 +17,43 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $id = $_POST['id'] ?? null; // document.id
+    $account_name = $_POST['account_name'] ?? null;
 
     // ---------------------------------------------------------------------
     // Validate input
     // ---------------------------------------------------------------------
-    if ($id === null || trim($id) === '') {
-        throw new InvalidArgumentException('id is required');
+    if ($account_name === null || trim($account_name) === '') {
+        throw new InvalidArgumentException('Account name is required');
     }
 
     // ---------------------------------------------------------------------
-    // Ensure Address String exists
+    // Ensure Account name exists
     // ---------------------------------------------------------------------
     $check = $pdo->prepare(
-        'SELECT 1 FROM document WHERE id = :id'
+        'SELECT 1 FROM account WHERE account_name = :account_name'
     );
-    $check->execute([':id' => $id]);
+    $check->execute([':account_name' => $account_name]);
 
     if ($check->fetchColumn() === false) {
-        throw new RuntimeException('Document does not exist');
+        throw new RuntimeException('Account name does not exist');
     }
 
     // ---------------------------------------------------------------------
-    // Delete Document
+    // Delete Account
     // ---------------------------------------------------------------------
     $pdo->beginTransaction();
 
     $stmt = $pdo->prepare(
-        'DELETE FROM document WHERE id = :id'
+        'DELETE FROM account WHERE account_name = :account_name'
     );
 
     $stmt->execute([
-        ':id' => $id
+        ':account_name' => $account_name
     ]);
 
     $pdo->commit();
 
-    echo 'Document deleted successfully.';
+    echo 'Account deleted successfully.';
 
 } catch (Throwable $e) {
 
@@ -61,7 +61,7 @@ try {
         $pdo->rollBack();
     }
 
-    echo 'Failed to delete document: ' . $e->getMessage();
+    echo 'Failed to delete account: ' . $e->getMessage();
 }
 
-//Run: php delete_document.php id=1001
+//Run: php delete_account.php account_name="Mark Manos"

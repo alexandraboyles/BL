@@ -15,13 +15,13 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $id      = $_POST['id']         ?? null; // UUID of Address row
+    $id         = $_POST['id']         ?? null; // UUID of Address row
     $address_id = $_POST['address_id'] ?? null;
-    $street1   = $_POST['street_1']   ?? null;
-    $street2   = $_POST['street_2']   ?? null;
-    $suburb    = $_POST['suburb']     ?? null;
-    $state     = $_POST['state']      ?? null;
-    $postcode  = $_POST['postcode']   ?? null;
+    $street1    = $_POST['street_1']   ?? null;
+    $street2    = $_POST['street_2']   ?? null;
+    $suburb     = $_POST['suburb']     ?? null;
+    $state      = $_POST['state']      ?? null;
+    $postcode   = $_POST['postcode']   ?? null;
 
     // ---------------------------------------------------------------------
     // Validate input
@@ -31,13 +31,13 @@ try {
     }
 
     foreach ([
-        'id' => $id,
+        'id'         => $id,
         'address_id' => $address_id,
-        'street_1' => $street1,
-        'street_2' => $street2,
-        'suburb'   => $suburb,
-        'state'    => $state,
-        'postcode' => $postcode,
+        'street_1'   => $street1,
+        'street_2'   => $street2,
+        'suburb'     => $suburb,
+        'state'      => $state,
+        'postcode'   => $postcode,
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
             throw new InvalidArgumentException("$field is required");
@@ -65,22 +65,22 @@ try {
         'UPDATE Address
          SET
             address_id = :address_id,
-            street_1 = :street_1,
-            street_2 = :street_2,
-            suburb   = :suburb,
-            state    = :state,
-            postcode = :postcode
-         WHERE id = :id'
+            street_1   = :street_1,
+            street_2   = :street_2,
+            suburb     = :suburb,
+            state      = :state,
+            postcode   = :postcode
+         WHERE id      = :id'
     );
 
     $stmt->execute([
-        'id'   => $id,
+        'id'           => $id,
         'address_id'   => $address_id,
-        ':street_1' => $street1,
-        ':street_2' => $street2,
-        ':suburb'   => $suburb,
-        ':state'    => $state,
-        ':postcode' => $postcode,
+        ':street_1'    => $street1,
+        ':street_2'    => $street2,
+        ':suburb'      => $suburb,
+        ':state'       => $state,
+        ':postcode'    => $postcode,
     ]);
 
     $pdo->commit();

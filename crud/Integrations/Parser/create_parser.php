@@ -16,36 +16,29 @@ try {
     // Collect input
     // ---------------------------------------------------------------------
     $id = $_POST['id'] ?? null;
-    $saleOrder_id = $_POST['saleOrder_id'] ?? null; // UUID → SaleOrder.id
     $customer_id = $_POST['customer_id'] ?? null; // UUID → Customer.id
-    $consignment_id = $_POST['consignment_id'] ?? null; // UUID → Consignment.id
-    $fileType  = $_POST['fileType'] ?? null;
+    $parser_name  = $_POST['parser_name'] ?? null;
+    $className  = $_POST['className'] ?? null;
+    $class  = $_POST['class'] ?? null;
+    $type  = $_POST['type'] ?? null;
+    $acceptedFileTypes  = $_POST['acceptedFileTypes'] ?? null;
+    $toAddress  = $_POST['toAddress'] ?? null;
 
     // ---------------------------------------------------------------------
     // Validate input ALL fields required by schema)
     // ---------------------------------------------------------------------
     foreach ([
         'id' => $id,
-        'saleOrder_id' => $saleOrder_id,
         'customer_id' => $customer_id,
-        'consignment_id' => $consignment_id,
-        'fileType' => $fileType,
+        'parser_name' => $parser_name,
+        'className' => $className,
+        'type' => $type,
+        'acceptedFileTypes' => $acceptedFileTypes,
+        'toAddress' => $toAddress
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
             throw new InvalidArgumentException("$field is required");
         }
-    }
-
-    // ---------------------------------------------------------------------
-    // Ensure Sale Order exists (FK safety)
-    // ---------------------------------------------------------------------
-    $check = $pdo->prepare(
-        'SELECT 1 FROM saleOrder WHERE id = :id'
-    );
-    $check->execute([':id' => $saleOrder_id]);
-
-    if ($check->fetchColumn() === false) {
-        throw new RuntimeException('Sale Order does not exist');
     }
     
     // ---------------------------------------------------------------------
@@ -59,51 +52,48 @@ try {
     if ($check->fetchColumn() === false) {
         throw new RuntimeException('Customer does not exist');
     }
-    
-    // ---------------------------------------------------------------------
-    // Ensure Consignment exists (FK safety)
-    // ---------------------------------------------------------------------
-    $check = $pdo->prepare(
-        'SELECT 1 FROM Consignment WHERE id = :id'
-    );
-    $check->execute([':id' => $consignment_id]);
-
-    if ($check->fetchColumn() === false) {
-        throw new RuntimeException('Consignment does not exist');
-    }
 
     // ---------------------------------------------------------------------
-    // Insert Document
+    // Insert Parser
     // ---------------------------------------------------------------------
     $pdo->beginTransaction();
 
     $stmt = $pdo->prepare(
-        'INSERT INTO document (
+        'INSERT INTO parser (
             id,
-            saleOrder_id,
             customer_id,
-            consignment_id,
-            fileType
+            parser_name,
+            className,
+            class,
+            type,
+            acceptedFileTypes,
+            toAddress
         ) VALUES (
             :id,
-            :saleOrder_id,
             :customer_id,
-            :consignment_id,
-            :fileType
+            :parser_name,
+            :className,
+            :class,
+            :type,
+            :acceptedFileTypes,
+            :toAddress
         )'
     );
 
     $stmt->execute([
         ':id'          => $id,
-        ':saleOrder_id'   => $saleOrder_id,
         ':customer_id' => $customer_id,
-        ':consignment_id' => $consignment_id,
-        ':fileType' => $fileType,
+        ':parser_name' => $parser_name,
+        ':className' => $className,
+        ':class' => $class,
+        ':type' => $type,
+        ':acceptedFileTypes' => $acceptedFileTypes,
+        ':toAddress' => $toAddress,
     ]);
 
     $pdo->commit();
 
-    echo 'Document created successfully.';
+    echo 'Parser created successfully.';
 
 } catch (Throwable $e) {
 
@@ -111,7 +101,7 @@ try {
         $pdo->rollBack();
     }
 
-    echo 'Failed to create document: ' . $e->getMessage();
+    echo 'Failed to create parser: ' . $e->getMessage();
 };
 
-//Run: php create_document.php id=1001 saleOrder_id=1510b98d-3470-11f1-92ef-00249b8cd187 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 consignment_id=f57df92f-6513-4f54-a5d6-c4b881460ac1 fileType=PDF
+//Run: php create_parser.php id=1001 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 parser_name="Invoice PDF Parser" className=InvoiceParser class=com.company.parsers.InvoiceParser type=PDF acceptedFileTypes=pdf toAddress=invoices@company.com

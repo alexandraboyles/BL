@@ -30,14 +30,14 @@ try {
     // Validate input
     // ---------------------------------------------------------------------
     foreach ([
-        'id' => $id,
-        'addressType' => $addressType,
-        'address_id' => $address_id,
-        'customer_id' => $customer_id,
-        'product_id' => $product_id,
+        'id'             => $id,
+        'addressType'    => $addressType,
+        'address_id'     => $address_id,
+        'customer_id'    => $customer_id,
+        'product_id'     => $product_id,
         'deliveryRun_id' => $deliveryRun_id,
-        'carrier_id' => $carrier_id,
-        'flowDirection' => $flowDirection,
+        'carrier_id'     => $carrier_id,
+        'flowDirection'  => $flowDirection,
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
             throw new InvalidArgumentException("$field is required");

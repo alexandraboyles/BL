@@ -70,7 +70,7 @@ try {
     $pdo->beginTransaction();
 
     $stmt = $pdo->prepare(
-        'INSERT INTO Customer (
+        'INSERT INTO customer (
             id,
             customer_name,
             contact_phone,

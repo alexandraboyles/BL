@@ -72,7 +72,7 @@ try {
     $pdo->beginTransaction();
 
     $stmt = $pdo->prepare(
-        'INSERT INTO Driver (
+        'INSERT INTO driver (
             id,
             driver_name,
             email,

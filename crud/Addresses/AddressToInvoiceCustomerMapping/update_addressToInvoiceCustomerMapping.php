@@ -23,9 +23,9 @@ try {
     // Validate input
     // ---------------------------------------------------------------------
     foreach ([
-        'id' => $id,
+        'id'          => $id,
         'customer_id' => $customer_id,
-        'address_id' => $address_id,
+        'address_id'  => $address_id,
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
             throw new InvalidArgumentException("$field is required");
