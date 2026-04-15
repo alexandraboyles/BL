@@ -15,18 +15,18 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $driver_name   = $_POST['driver_name'] ?? null;
-    $email      = $_POST['email'] ?? null;
-    $is_online  = $_POST['is_online'] ?? null;
+    $driver_name                = $_POST['driver_name'] ?? null;
+    $email                      = $_POST['email'] ?? null;
+    $is_online                  = $_POST['is_online'] ?? null;
     $location_access_available  = $_POST['location_access_available'] ?? null;
 
     // ---------------------------------------------------------------------
     // Validate input (ALL fields required by schema)
     // ---------------------------------------------------------------------
     foreach ([
-        'driver_name' => $driver_name,
-        'email'       => $email,
-        'is_online'   => $is_online,
+        'driver_name'               => $driver_name,
+        'email'                     => $email,
+        'is_online'                 => $is_online,
         'location_access_available' => $location_access_available,
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
@@ -88,10 +88,10 @@ try {
     );
 
     $stmt->execute([
-        ':id'          => $uuid,
-        ':driver_name'   => $driver_name,
-        ':email'   => $email,
-        ':is_online'   => $is_online,
+        ':id'                          => $uuid,
+        ':driver_name'                 => $driver_name,
+        ':email'                       => $email,
+        ':is_online'                   => $is_online,
         ':location_access_available'   => $location_access_available,
     ]);
 
@@ -109,4 +109,4 @@ try {
 };
 
 
-//Run: php create_driver.php driver_name=Mark Dinglasa email=mark.dinglasa@gmail.com is_online=1 location_access_available=0
+//Run: php create_driver.php driver_name="Mark Dinglasa" email=mark.dinglasa@gmail.com is_online=1 location_access_available=0

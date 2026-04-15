@@ -11,7 +11,7 @@ if (PHP_SAPI === 'cli') {
     }
 }
 
-require __DIR__ . '/../../db_connect.php';
+require __DIR__ . '/../../../db_connect.php';
 
 try {
     // --------------------------------------------------------
@@ -104,8 +104,8 @@ try {
 
 //Run:
 //Read single product by id
-//php read_product.php product_id=1002
+    //php read_product.php product_id=1002
 //List all products for a customer
-//php read_product.php customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187
+    //php read_product.php customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187
 //Read single product by UUID
-//php read_product.php id=48bd8480-e896-41a1-9343-bc48f585bbf8
+    //php read_product.php id=702ed0e8-fbca-409e-9d15-7548c10f0ad3

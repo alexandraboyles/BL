@@ -99,4 +99,4 @@ try {
 };
 
 
-//Run: php create_addressString.php id=1001 address_id=b91e8d30-b0eb-4ca9-911c-750b538d57e7 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 text=Test test
+//Run: php create_addressString.php id=1001 address_id=b91e8d30-b0eb-4ca9-911c-750b538d57e7 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 text="Test test"

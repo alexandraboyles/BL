@@ -15,26 +15,26 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $id = $_POST['id'] ?? null;
-    $customer_id = $_POST['customer_id'] ?? null; // UUID → Customer.id
-    $parser_name  = $_POST['parser_name'] ?? null;
-    $className  = $_POST['className'] ?? null;
-    $class  = $_POST['class'] ?? null;
-    $type  = $_POST['type'] ?? null;
+    $id                 = $_POST['id'] ?? null;
+    $customer_id        = $_POST['customer_id'] ?? null; // UUID → Customer.id
+    $parser_name        = $_POST['parser_name'] ?? null;
+    $className          = $_POST['className'] ?? null;
+    $class              = $_POST['class'] ?? null;
+    $type               = $_POST['type'] ?? null;
     $acceptedFileTypes  = $_POST['acceptedFileTypes'] ?? null;
-    $toAddress  = $_POST['toAddress'] ?? null;
+    $toAddress          = $_POST['toAddress'] ?? null;
 
     // ---------------------------------------------------------------------
     // Validate input ALL fields required by schema)
     // ---------------------------------------------------------------------
     foreach ([
-        'id' => $id,
-        'customer_id' => $customer_id,
-        'parser_name' => $parser_name,
-        'className' => $className,
-        'type' => $type,
+        'id'                => $id,
+        'customer_id'       => $customer_id,
+        'parser_name'       => $parser_name,
+        'className'         => $className,
+        'type'              => $type,
         'acceptedFileTypes' => $acceptedFileTypes,
-        'toAddress' => $toAddress
+        'toAddress'         => $toAddress
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
             throw new InvalidArgumentException("$field is required");
@@ -81,14 +81,14 @@ try {
     );
 
     $stmt->execute([
-        ':id'          => $id,
-        ':customer_id' => $customer_id,
-        ':parser_name' => $parser_name,
-        ':className' => $className,
-        ':class' => $class,
-        ':type' => $type,
+        ':id'                => $id,
+        ':customer_id'       => $customer_id,
+        ':parser_name'       => $parser_name,
+        ':className'         => $className,
+        ':class'             => $class,
+        ':type'              => $type,
         ':acceptedFileTypes' => $acceptedFileTypes,
-        ':toAddress' => $toAddress,
+        ':toAddress'         => $toAddress,
     ]);
 
     $pdo->commit();

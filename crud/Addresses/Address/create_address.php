@@ -124,4 +124,4 @@ try {
 };
 
 
-//Run: php create_address.php address_id=1001 street_1=Velez St street_2=Unit 15 suburb=Cebu state=CEB postcode=6000 
+//Run: php create_address.php address_id=1001 street_1="Velez St" street_2="Unit 15" suburb=Cebu state=CEB postcode=6000 

@@ -15,15 +15,15 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $invoice_id = $_POST['invoice_id'] ?? null;
-    $customer_id = $_POST['customer_id'] ?? null; // UUID → Customer.id
-    $rateCard_id = $_POST['rateCard_id'] ?? null;
-    $manifest_id = $_POST['manifest_id'] ?? null;
-    $income     = $_POST['income'] ?? null;
-    $expense    = $_POST['expense'] ?? null;
-    $status       = $_POST['status'] ?? null;
-    $paymentStatus = $_POST['paymentStatus'] ?? null;
-    $emailStatus = $_POST['emailStatus'] ?? null;
+    $invoice_id        = $_POST['invoice_id'] ?? null;
+    $customer_id       = $_POST['customer_id'] ?? null; // UUID → Customer.id
+    $rateCard_id       = $_POST['rateCard_id'] ?? null;
+    $manifest_id       = $_POST['manifest_id'] ?? null;
+    $income            = $_POST['income'] ?? null;
+    $expense           = $_POST['expense'] ?? null;
+    $status            = $_POST['status'] ?? null;
+    $paymentStatus     = $_POST['paymentStatus'] ?? null;
+    $emailStatus       = $_POST['emailStatus'] ?? null;
     $internalReference = $_POST['internalReference'] ?? null;
     $externalReference = $_POST['externalReference'] ?? null;
 
@@ -31,15 +31,15 @@ try {
     // Validate input
     // ---------------------------------------------------------------------
     foreach ([
-        'invoice_id' => $invoice_id,
+        'invoice_id'         => $invoice_id,
         'customer_id'        => $customer_id,
-        'rateCard_id'       => $rateCard_id,
-        'manifest_id'       => $manifest_id,
-        'income'       => $income,
-        'expense'       => $expense,
-        'status'       => $status,
-        'paymentStatus'  => $paymentStatus,
-        'emailStatus'  => $emailStatus,
+        'rateCard_id'        => $rateCard_id,
+        'manifest_id'        => $manifest_id,
+        'income'             => $income,
+        'expense'            => $expense,
+        'status'             => $status,
+        'paymentStatus'      => $paymentStatus,
+        'emailStatus'        => $emailStatus,
         'internalReference'  => $internalReference,
         'externalReference'  => $externalReference,
     ] as $field => $value) {
@@ -152,18 +152,18 @@ try {
     );
 
     $stmt->execute([
-        ':id'          => $uuid,
-        ':invoice_id'          => $invoice_id,
-        ':customer_id' => $customer_id,
-        ':rateCard_id' => $rateCard_id,
-        ':manifest_id' => $manifest_id,
-        ':income'        => $income,
-        ':expense'       => $expense,
-        ':status'       => $status,
-        ':paymentStatus'       => $paymentStatus,
+        ':id'                => $uuid,
+        ':invoice_id'        => $invoice_id,
+        ':customer_id'       => $customer_id,
+        ':rateCard_id'       => $rateCard_id,
+        ':manifest_id'       => $manifest_id,
+        ':income'            => $income,
+        ':expense'           => $expense,
+        ':status'            => $status,
+        ':paymentStatus'     => $paymentStatus,
         ':emailStatus'       => $emailStatus,
-        ':internalReference'       => $internalReference,
-        ':externalReference'       => $externalReference,
+        ':internalReference' => $internalReference,
+        ':externalReference' => $externalReference,
     ]);
 
     $pdo->commit();
@@ -180,4 +180,4 @@ try {
 };
 
 
-//Run: php create_invoice.php invoice_id=1003 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 rateCard_id=5 manifest_id=2 income=534.90 expense=0.00 status=Leeching paymentStatus=Awaiting Payment emailStatus=Not sent internalReference=W.E 11/04/26 externalReference=INV-10668
+//Run: php create_invoice.php invoice_id=1004 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 rateCard_id=5 manifest_id=2 income=534.90 expense=0.00 status=Leeching paymentStatus="Awaiting Payment" emailStatus="Not sent" internalReference="W.E 11/04/26" externalReference=INV-10668

@@ -15,21 +15,21 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $id = $_POST['id'] ?? null;
-    $saleOrder_id = $_POST['saleOrder_id'] ?? null; // UUID → SaleOrder.id
-    $customer_id = $_POST['customer_id'] ?? null; // UUID → Customer.id
+    $id             = $_POST['id'] ?? null;
+    $saleOrder_id   = $_POST['saleOrder_id'] ?? null; // UUID → SaleOrder.id
+    $customer_id    = $_POST['customer_id'] ?? null; // UUID → Customer.id
     $consignment_id = $_POST['consignment_id'] ?? null; // UUID → Consignment.id
-    $fileType  = $_POST['fileType'] ?? null;
+    $fileType       = $_POST['fileType'] ?? null;
 
     // ---------------------------------------------------------------------
     // Validate input ALL fields required by schema)
     // ---------------------------------------------------------------------
     foreach ([
-        'id' => $id,
-        'saleOrder_id' => $saleOrder_id,
-        'customer_id' => $customer_id,
+        'id'             => $id,
+        'saleOrder_id'   => $saleOrder_id,
+        'customer_id'    => $customer_id,
         'consignment_id' => $consignment_id,
-        'fileType' => $fileType,
+        'fileType'       => $fileType,
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
             throw new InvalidArgumentException("$field is required");
@@ -94,11 +94,11 @@ try {
     );
 
     $stmt->execute([
-        ':id'          => $id,
+        ':id'             => $id,
         ':saleOrder_id'   => $saleOrder_id,
-        ':customer_id' => $customer_id,
+        ':customer_id'    => $customer_id,
         ':consignment_id' => $consignment_id,
-        ':fileType' => $fileType,
+        ':fileType'       => $fileType,
     ]);
 
     $pdo->commit();

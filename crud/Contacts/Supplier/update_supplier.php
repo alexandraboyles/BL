@@ -74,10 +74,10 @@ try {
     $stmt = $pdo->prepare(
         'UPDATE supplier
          SET
-             rateCard_id = :rateCard_id,
-             companyName = :companyName,
-             email = :email,
-             telNo = :telNo,
+             rateCard_id         = :rateCard_id,
+             companyName         = :companyName,
+             email               = :email,
+             telNo               = :telNo,
              accountingConnector = :accountingConnector
          WHERE id = :supplier_id'
     );

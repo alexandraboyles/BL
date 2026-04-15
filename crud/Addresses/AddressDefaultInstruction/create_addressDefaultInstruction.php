@@ -99,4 +99,4 @@ try {
 };
 
 
-//Run: php create_addressDefaultInstruction.php address_id=adad3ec5-fe9f-4375-88c5-defbfe042c7f customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 deliveryInstruction=Test test 2 packingInstruction=Pick up from: MANILA Logistics Warehouse.
+//Run: php create_addressDefaultInstruction.php address_id=adad3ec5-fe9f-4375-88c5-defbfe042c7f customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 deliveryInstruction="Test test 2" packingInstruction="Pick up from: MANILA Logistics Warehouse"

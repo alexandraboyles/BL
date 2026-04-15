@@ -17,7 +17,7 @@ try {
     // -----------------------------------------------------------------
     // Collect input
     // -----------------------------------------------------------------
-    $id      = $_POST['id'] ?? null;    // adhocChargeSetup.id
+    $id                     = $_POST['id'] ?? null;    // adhocChargeSetup.id
     $adhocChargeSetup_name  = $_POST['adhocChargeSetup_name'] ?? null;
 
     if (

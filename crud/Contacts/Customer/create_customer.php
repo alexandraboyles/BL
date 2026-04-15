@@ -15,7 +15,7 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $customer_name   = $_POST['customer_name'] ?? null;
+    $customer_name      = $_POST['customer_name'] ?? null;
     $contact_phone      = $_POST['contact_phone'] ?? null;
     $contact_email      = $_POST['contact_email'] ?? null;
 
@@ -23,7 +23,7 @@ try {
     // Validate input (ALL fields required by schema)
     // ---------------------------------------------------------------------
     foreach ([
-        'customer_name'        => $customer_name,
+        'customer_name'       => $customer_name,
         'contact_phone'       => $contact_phone,
         'contact_email'       => $contact_email,
     ] as $field => $value) {
@@ -84,7 +84,7 @@ try {
     );
 
     $stmt->execute([
-        ':id'          => $uuid,
+        ':id'              => $uuid,
         ':customer_name'   => $customer_name,
         ':contact_phone'   => $contact_phone,
         ':contact_email'   => $contact_email,
@@ -104,4 +104,4 @@ try {
 };
 
 
-//Run: php create_customer.php customer_name=Alexandra Boyles contact_phone=09664503890 contact_email=alex@gmail.com 
+//Run: php create_customer.php customer_name="Alexandra Boyles" contact_phone=09664503890 contact_email=alex@gmail.com 

@@ -18,7 +18,7 @@ try {
     // Collect input (at least ONE filter is required)
     // --------------------------------------------------------
     $supplier_id = $_POST['supplier_id'] ?? null; // UUID → Supplier.id
-    $invoice_id = $_POST['invoice_id'] ?? null; // UUID → Invoice.id
+    $invoice_id  = $_POST['invoice_id'] ?? null; // UUID → Invoice.id
     $manifest_id = $_POST['manifest_id'] ?? null;
 
     if ($supplier_id === null && $invoice_id === null && $manifest_id === null) {

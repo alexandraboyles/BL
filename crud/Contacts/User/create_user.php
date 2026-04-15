@@ -15,24 +15,24 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $customerId = $_POST['customer_id'] ?? null; // UUID → Customer.id
-    $fullName    = $_POST['fullName'] ?? null;
-    $email  = $_POST['email'] ?? null;
-    $roles  = $_POST['roles'] ?? null;
-    $warehouses  = $_POST['warehouses'] ?? null;
-    $mfa  = $_POST['mfa'] ?? null;
+    $customerId         = $_POST['customer_id'] ?? null; // UUID → Customer.id
+    $fullName           = $_POST['fullName'] ?? null;
+    $email              = $_POST['email'] ?? null;
+    $roles              = $_POST['roles'] ?? null;
+    $warehouses         = $_POST['warehouses'] ?? null;
+    $mfa                = $_POST['mfa'] ?? null;
     $is_email_verified  = $_POST['is_email_verified'] ?? null;
 
     // ---------------------------------------------------------------------
     // Validate input (ALL fields required by schema)
     // ---------------------------------------------------------------------
     foreach ([
-        'customer_id' => $customerId,
-        'fullName' => $fullName,
-        'email'       => $email,
-        'roles'   => $roles,
-        'warehouses' => $warehouses,
-        'mfa' => $mfa,
+        'customer_id'       => $customerId,
+        'fullName'          => $fullName,
+        'email'             => $email,
+        'roles'             => $roles,
+        'warehouses'        => $warehouses,
+        'mfa'               => $mfa,
         'is_email_verified' => $is_email_verified,
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
@@ -100,14 +100,14 @@ try {
     );
 
     $stmt->execute([
-        ':id'          => $uuid,
-        ':customer_id' => $customerId,
-        ':fullName'   => $fullName,
-        ':email'   => $email,
-        ':roles'   => $roles,
-        ':warehouses'   => $warehouses,
-        ':mfa'   => $mfa,
-        ':is_email_verified'   => $is_email_verified,
+        ':id'                => $uuid,
+        ':customer_id'       => $customerId,
+        ':fullName'          => $fullName,
+        ':email'             => $email,
+        ':roles'             => $roles,
+        ':warehouses'        => $warehouses,
+        ':mfa'               => $mfa,
+        ':is_email_verified' => $is_email_verified,
     ]);
 
     $pdo->commit();
@@ -124,4 +124,4 @@ try {
 };
 
 
-//Run: php create_user.php customer_id=ddf497c2-480c-4fc8-bbcd-dd5a5c5478c1 fullName=Mark Dinglasa email=mark.dinglasa@gmail.com roles=Test warehouses=test mfa=test001 is_email_verified=1
+//Run: php create_user.php customer_id=ddf497c2-480c-4fc8-bbcd-dd5a5c5478c1 fullName="Mark Dinglasa" email=mark.dinglasa@gmail.com roles=Test warehouses=test mfa=test001 is_email_verified=1

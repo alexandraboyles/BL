@@ -11,7 +11,7 @@ if (PHP_SAPI === 'cli') {
     }
 }
 
-require __DIR__ . '/../../db_connect.php';
+require __DIR__ . '/../../../db_connect.php';
 
 header('Content-Type: application/json');
 
@@ -129,6 +129,6 @@ try {
 
 //Run:
 //Read single invoice by id
-//php read_invoice.php invoice_id=1001
+    //php read_invoice.php invoice_id=1004
 //List all invoices for a customer 
-//php read_invoice.php customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 paymentStatus="Awaiting Payment"
+    //php read_invoice.php customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 paymentStatus=Awaiting

@@ -15,25 +15,25 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $id = $_POST['id'] ?? null;
+    $id                    = $_POST['id'] ?? null;
     $adhocChargeSetup_name = $_POST['adhocChargeSetup_name'] ?? null;
-    $chargeStructure = $_POST['chargeStructure'] ?? null;
-    $rate = $_POST['rate'] ?? null;
-    $descriptionTemplate  = $_POST['descriptionTemplate'] ?? null;
-    $is_enabled  = $_POST['is_enabled'] ?? null;
-    $pageVisionOn  = $_POST['pageVisionOn'] ?? null;
+    $chargeStructure       = $_POST['chargeStructure'] ?? null;
+    $rate                  = $_POST['rate'] ?? null;
+    $descriptionTemplate   = $_POST['descriptionTemplate'] ?? null;
+    $is_enabled            = $_POST['is_enabled'] ?? null;
+    $pageVisionOn          = $_POST['pageVisionOn'] ?? null;
 
     // ---------------------------------------------------------------------
     // Validate input (ALL fields required by schema)
     // ---------------------------------------------------------------------
     foreach ([
-        'id' => $id,
+        'id'                    => $id,
         'adhocChargeSetup_name' => $adhocChargeSetup_name,
-        'chargeStructure'  => $chargeStructure,
-        'rate'       => $rate,
-        'descriptionTemplate' => $descriptionTemplate                                       ,
-        'is_enabled' => $is_enabled,
-        'pageVisionOn' => $pageVisionOn,
+        'chargeStructure'       => $chargeStructure,
+        'rate'                  => $rate,
+        'descriptionTemplate'   => $descriptionTemplate                                       ,
+        'is_enabled'            => $is_enabled,
+        'pageVisionOn'          => $pageVisionOn,
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
             throw new InvalidArgumentException("$field is required");
@@ -66,13 +66,13 @@ try {
     );
 
     $stmt->execute([
-        ':id' => $id,
+        ':id'                    => $id,
         ':adhocChargeSetup_name' => $adhocChargeSetup_name,
-        ':chargeStructure'  => $chargeStructure,
-        ':rate' => $rate,
-        ':descriptionTemplate' => $descriptionTemplate,
-        ':is_enabled' => $is_enabled,
-        ':pageVisionOn' => $pageVisionOn,
+        ':chargeStructure'       => $chargeStructure,
+        ':rate'                  => $rate,
+        ':descriptionTemplate'   => $descriptionTemplate,
+        ':is_enabled'            => $is_enabled,
+        ':pageVisionOn'          => $pageVisionOn,
     ]);
 
     $pdo->commit();

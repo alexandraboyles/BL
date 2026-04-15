@@ -15,13 +15,13 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $id    = $_POST['id'] ?? null;     // UUID → id
-    $customerId   = $_POST['customer_id'] ?? null;    // UUID → Customer.id
-    $fullName    = $_POST['fullName'] ?? null;
-    $email  = $_POST['email'] ?? null;
-    $roles  = $_POST['roles'] ?? null;
-    $warehouses  = $_POST['warehouses'] ?? null;
-    $mfa  = $_POST['mfa'] ?? null;
+    $id                 = $_POST['id'] ?? null;     // UUID → id
+    $customerId         = $_POST['customer_id'] ?? null;    // UUID → Customer.id
+    $fullName           = $_POST['fullName'] ?? null;
+    $email              = $_POST['email'] ?? null;
+    $roles              = $_POST['roles'] ?? null;
+    $warehouses         = $_POST['warehouses'] ?? null;
+    $mfa                = $_POST['mfa'] ?? null;
     $is_email_verified  = $_POST['is_email_verified'] ?? null;
 
     // ---------------------------------------------------------------------
@@ -33,12 +33,12 @@ try {
 
     foreach ([
         'id'   => $id,
-        'customer_id'  => $customerId,
-        'fullName' => $fullName,
-        'email'       => $email,
-        'roles'   => $roles,
-        'warehouses' => $warehouses,
-        'mfa' => $mfa,
+        'customer_id'       => $customerId,
+        'fullName'          => $fullName,
+        'email'             => $email,
+        'roles'             => $roles,
+        'warehouses'        => $warehouses,
+        'mfa'               => $mfa,
         'is_email_verified' => $is_email_verified,
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
@@ -78,24 +78,24 @@ try {
     $stmt = $pdo->prepare(
         'UPDATE user
          SET
-            customer_id  = :customer_id,
-            fullName = :fullName,
-            email        = :email,
-            roles        = :roles,
-            warehouses = :warehouses,
-            mfa    = :mfa,
+            customer_id       = :customer_id,
+            fullName          = :fullName,
+            email             = :email,
+            roles             = :roles,
+            warehouses        = :warehouses,
+            mfa               = :mfa,
             is_email_verified = :is_email_verified
          WHERE id = :id'
     );
 
     $stmt->execute([
         ':id'  => $id,
-        ':customer_id' => $customerId,
-        ':fullName' => $fullName,
-        ':email'    => $email,
-        ':roles'    => $roles,
-        ':warehouses' => $warehouses,
-        ':mfa'    => $mfa,
+        ':customer_id'       => $customerId,
+        ':fullName'          => $fullName,
+        ':email'             => $email,
+        ':roles'             => $roles,
+        ':warehouses'        => $warehouses,
+        ':mfa'               => $mfa,
         ':is_email_verified' => $is_email_verified,
     ]);
 

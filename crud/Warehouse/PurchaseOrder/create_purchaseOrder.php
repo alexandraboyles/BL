@@ -16,24 +16,24 @@ try {
     // Collect input
     // ---------------------------------------------------------------------
     $purchase_order_id = $_POST['purchase_order_id'] ?? null;
-    $customer_id = $_POST['customer_id'] ?? null; // UUID → customer.id
-    $order_reference     = $_POST['order_reference'] ?? null;
+    $customer_id       = $_POST['customer_id'] ?? null; // UUID → customer.id
+    $order_reference   = $_POST['order_reference'] ?? null;
     $cust_reference    = $_POST['cust_reference'] ?? null;
-    $ship_name  = $_POST['ship_name'] ?? null;
-    $ship_address     = $_POST['ship_address'] ?? null;
-    $status = $_POST['status'] ?? null;
+    $ship_name         = $_POST['ship_name'] ?? null;
+    $ship_address      = $_POST['ship_address'] ?? null;
+    $status            = $_POST['status'] ?? null;
 
     // ---------------------------------------------------------------------
     // Validate input
     // ---------------------------------------------------------------------
     foreach ([
         'purchase_order_id' => $purchase_order_id,
-        'customer_id'        => $customer_id,
-        'order_reference'  => $order_reference,
-        'cust_reference'  => $cust_reference,
-        'ship_name'  => $ship_name,
-        'ship_address'  => $ship_address,
-        'status'  => $status
+        'customer_id'       => $customer_id,
+        'order_reference'   => $order_reference,
+        'cust_reference'    => $cust_reference,
+        'ship_name'         => $ship_name,
+        'ship_address'      => $ship_address,
+        'status'            => $status
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
             throw new InvalidArgumentException("$field is required");
@@ -112,14 +112,14 @@ try {
     );
 
     $stmt->execute([
-        ':id'          => $uuid,
-        ':purchase_order_id'          => $purchase_order_id,
-        ':customer_id' => $customer_id,
-        ':order_reference'       => $order_reference,
-        ':cust_reference'       => $cust_reference,
-        ':ship_name'       => $ship_name,
+        ':id'                 => $uuid,
+        ':purchase_order_id'  => $purchase_order_id,
+        ':customer_id'        => $customer_id,
+        ':order_reference'    => $order_reference,
+        ':cust_reference'     => $cust_reference,
+        ':ship_name'          => $ship_name,
         ':ship_address'       => $ship_address,
-        ':status'       => $status
+        ':status'             => $status
     ]);
 
     $pdo->commit();
@@ -136,4 +136,4 @@ try {
 };
 
 
-//Run: php create_purchaseOrder.php purchase_order_id=1001 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 order_reference=WEB-ORDER-77821 cust_reference=CUST-REF-9912 ship_name=Alexandra Boyles ship_address=123 Rizal Street,Barangay Poblacion,Talisay City,Cebu,Philippines status=pending
+//Run: php create_purchaseOrder.php purchase_order_id=1002 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 order_reference=WEB-ORDER-77821 cust_reference=CUST-REF-9912 ship_name="Alexandra Boyles" ship_address="123 Rizal Street,Barangay Poblacion,Talisay City,Cebu,Philippines" status=pending

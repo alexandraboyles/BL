@@ -17,8 +17,8 @@ try {
     // --------------------------------------------------------
     // Collect input (at least ONE filter is required)
     // --------------------------------------------------------
-    $saleOrder_id = $_POST['saleOrder_id'] ?? null; // SaleOrder.id
-    $customer_id = $_POST['customer_id'] ?? null; // Customer.id
+    $saleOrder_id   = $_POST['saleOrder_id'] ?? null; // SaleOrder.id
+    $customer_id    = $_POST['customer_id'] ?? null; // Customer.id
     $consignment_id = $_POST['consignment_id'] ?? null; // Consignment.id
 
     if ($saleOrder_id === null && $customer_id === null && $consignment_id === null) {

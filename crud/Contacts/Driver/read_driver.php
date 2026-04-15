@@ -17,10 +17,10 @@ try {
     // -----------------------------------------------------------------
     // Collect input
     // -----------------------------------------------------------------
-    $id          = $_POST['id'] ?? null;       // Driver UUID
-    $driverName  = $_POST['driver_name'] ?? null;
-    $email       = $_POST['email'] ?? null;
-    $is_online  = $_POST['is_online'] ?? null;
+    $id                         = $_POST['id'] ?? null;       // Driver UUID
+    $driverName                 = $_POST['driver_name'] ?? null;
+    $email                      = $_POST['email'] ?? null;
+    $is_online                  = $_POST['is_online'] ?? null;
     $location_access_available  = $_POST['location_access_available'] ?? null;
 
     if (

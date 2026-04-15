@@ -15,31 +15,31 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $product_id = $_POST['product_id'] ?? null;
-    $customer_id = $_POST['customer_id'] ?? null; // UUID → Customer.id
-    $title     = $_POST['title'] ?? null;
-    $description    = $_POST['description'] ?? null;
-    $sku  = $_POST['sku'] ?? null;
-    $unitOfMeasure       = $_POST['unitOfMeasure'] ?? null;
-    $width = $_POST['width'] ?? null;
-    $length = $_POST['length'] ?? null;
-    $height = $_POST['height'] ?? null;
-    $weight = $_POST['weight'] ?? null;
+    $product_id    = $_POST['product_id'] ?? null;
+    $customer_id   = $_POST['customer_id'] ?? null; // UUID → Customer.id
+    $title         = $_POST['title'] ?? null;
+    $description   = $_POST['description'] ?? null;
+    $sku           = $_POST['sku'] ?? null;
+    $unitOfMeasure = $_POST['unitOfMeasure'] ?? null;
+    $width         = $_POST['width'] ?? null;
+    $length        = $_POST['length'] ?? null;
+    $height        = $_POST['height'] ?? null;
+    $weight        = $_POST['weight'] ?? null;
 
     // ---------------------------------------------------------------------
     // Validate input
     // ---------------------------------------------------------------------
     foreach ([
-        'product_id' => $product_id,
-        'customer_id'        => $customer_id,
-        'title'       => $title,
-        'description'       => $description,
-        'sku'       => $sku,
-        'unitOfMeasure'       => $unitOfMeasure,
-        'width'  => $width,
-        'length'  => $length,
-        'height'  => $height,
-        'width'  => $width,
+        'product_id'     => $product_id,
+        'customer_id'    => $customer_id,
+        'title'          => $title,
+        'description'    => $description,
+        'sku'            => $sku,
+        'unitOfMeasure'  => $unitOfMeasure,
+        'width'          => $width,
+        'length'         => $length,
+        'height'         => $height,
+        'width'          => $width,
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
             throw new InvalidArgumentException("$field is required");
@@ -124,17 +124,17 @@ try {
     );
 
     $stmt->execute([
-        ':id'          => $uuid,
-        ':product_id'          => $product_id,
-        ':customer_id' => $customer_id,
-        ':title'        => $title,
-        ':description'       => $description,
-        ':sku'       => $sku,
-        ':unitOfMeasure'       => $unitOfMeasure,
-        ':width'       => $width,
-        ':length'       => $length,
-        ':height'       => $height,
-        ':weight'       => $weight,
+        ':id'             => $uuid,
+        ':product_id'     => $product_id,
+        ':customer_id'    => $customer_id,
+        ':title'          => $title,
+        ':description'    => $description,
+        ':sku'            => $sku,
+        ':unitOfMeasure'  => $unitOfMeasure,
+        ':width'          => $width,
+        ':length'         => $length,
+        ':height'         => $height,
+        ':weight'         => $weight,
     ]);
 
     $pdo->commit();
@@ -151,4 +151,4 @@ try {
 };
 
 
-//Run: php create_product.php product_id=1001 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 title=Corrugated Shipping Box description=Heavy-duty corrugated cardboard box for shipping sku=BOX-CORR-18X14S unitOfMeasure=cm width=30.0 length=40.0 height=25.0 weight=2.5
+//Run: php create_product.php product_id=1002 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 title="Corrugated Shipping Box" description="Heavy-duty corrugated cardboard box for shipping" sku=BOX-CORR-16X12M unitOfMeasure=cm width=30.0 length=40.0 height=25.0 weight=2.5

@@ -15,20 +15,20 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $rateCard_id= $_POST['rateCard_id'] ?? null; // RateCard.id
-    $companyName       = $_POST['companyName'] ?? null;
-    $email      = $_POST['email'] ?? null;
-    $telNo      = $_POST['telNo'] ?? null;
+    $rateCard_id          = $_POST['rateCard_id'] ?? null; // RateCard.id
+    $companyName          = $_POST['companyName'] ?? null;
+    $email                = $_POST['email'] ?? null;
+    $telNo                = $_POST['telNo'] ?? null;
     $accountingConnector  = $_POST['accountingConnector'] ?? null;
 
     // ---------------------------------------------------------------------
     // Validate input (ALL fields required by schema)
     // ---------------------------------------------------------------------
     foreach ([
-        'rateCard_id' => $rateCard_id,
-        'companyName'        => $companyName,
-        'email'       => $email,
-        'telNo'       => $telNo,
+        'rateCard_id'         => $rateCard_id,
+        'companyName'         => $companyName,
+        'email'               => $email,
+        'telNo'               => $telNo,
         'accountingConnector' => $accountingConnector,
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
@@ -70,10 +70,10 @@ try {
     );
 
     $stmt->execute([
-        ':rateCard_id' => $rateCard_id,
-        ':companyName'   => $companyName,
-        ':email'       => $email,
-        ':telNo'       => $telNo,
+        ':rateCard_id'         => $rateCard_id,
+        ':companyName'         => $companyName,
+        ':email'               => $email,
+        ':telNo'               => $telNo,
         ':accountingConnector' => $accountingConnector,
     ]);
 

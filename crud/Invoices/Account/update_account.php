@@ -15,16 +15,16 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $account_name = $_POST['account_name'] ?? null;
-    $description = $_POST['description'] ?? null;
+    $account_name          = $_POST['account_name'] ?? null;
+    $description           = $_POST['description'] ?? null;
     $display_when_no_value = $_POST['display_when_no_value'] ?? null;
 
     // ---------------------------------------------------------------------
     // Validate input
     // ---------------------------------------------------------------------
     foreach ([
-        'account_name'  => $account_name,
-        'description'  => $description,
+        'account_name'           => $account_name,
+        'description'            => $description,
         'display_when_no_value'  => $display_when_no_value,
     ] as $field => $value) {
         if ($value === null || trim((string)$value) === '') {
@@ -39,15 +39,15 @@ try {
 
     $stmt = $pdo->prepare(
         'UPDATE account SET
-            account_name  = :account_name,
-            description = :description,
+            account_name          = :account_name,
+            description           = :description,
             display_when_no_value = :display_when_no_value'
     );
 
     $stmt->execute([
-        ':account_name'  => $account_name,
-        ':description'  => $description,
-        ':display_when_no_value'   => $display_when_no_value,
+        ':account_name'           => $account_name,
+        ':description'            => $description,
+        ':display_when_no_value'  => $display_when_no_value,
     ]);
 
     if ($stmt->rowCount() === 0) {

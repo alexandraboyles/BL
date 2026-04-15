@@ -11,9 +11,7 @@ if (PHP_SAPI === 'cli') {
     }
 }
 
-require __DIR__ . '/../../db_connect.php';
-
-header('Content-Type: application/json');
+require __DIR__ . '/../../../db_connect.php';
 
 try {
 
@@ -124,8 +122,8 @@ try {
 
 //Run:
 //Read single purchase order by id
-//php read_purchaseOrder.php purchase_order_id=1001
+    //php read_purchaseOrder.php purchase_order_id=1001
 //List all purchase orders for a customer
-//php read_purchaseOrder.php customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 status=pending
+    //php read_purchaseOrder.php customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 status=pending
 //Read single purchase order by order reference
-//php read_purchaseOrder.php order_reference=WEB-ORDER-77821
+    //php read_purchaseOrder.php order_reference=WEB-ORDER-77821

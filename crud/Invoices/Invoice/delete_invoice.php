@@ -11,7 +11,7 @@ if (PHP_SAPI === 'cli') {
     }
 }
 
-require __DIR__ . '/../../db_connect.php';
+require __DIR__ . '/../../../db_connect.php';
 
 try {
 
@@ -19,7 +19,6 @@ try {
     // Collect input
     // ---------------------------------------------------------------------
     $invoice_id  = $_POST['invoice_id'] ?? null;   // business invoice id
-    $customer_id = $_POST['customer_id'] ?? null; // UUID
 
     // ---------------------------------------------------------------------
     // Validate input
@@ -28,35 +27,17 @@ try {
         throw new InvalidArgumentException('invoice_id is required');
     }
 
-    if ($customer_id === null || trim((string)$customer_id) === '') {
-        throw new InvalidArgumentException('customer_id is required');
-    }
-
     // ---------------------------------------------------------------------
-    // Ensure customer exists (FK safety)
-    // ---------------------------------------------------------------------
-    $check = $pdo->prepare(
-        'SELECT 1 FROM customer WHERE id = :id'
-    );
-    $check->execute([':id' => $customer_id]);
-
-    if ($check->fetchColumn() === false) {
-        throw new RuntimeException('Customer does not exist');
-    }
-
-    // ---------------------------------------------------------------------
-    // Ensure invoice exists and belongs to customer
+    // Ensure Invoice exists
     // ---------------------------------------------------------------------
     $stmt = $pdo->prepare(
         'SELECT id, paymentStatus
          FROM Invoice
-         WHERE invoice_id = :invoice_id
-           AND customer_id = :customer_id'
+         WHERE invoice_id = :invoice_id'
     );
 
     $stmt->execute([
-        ':invoice_id'  => $invoice_id,
-        ':customer_id' => $customer_id
+        ':invoice_id'  => $invoice_id
     ]);
 
     $invoice = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -75,7 +56,7 @@ try {
     $invoiceUuid = $invoice['id'];
 
     // ---------------------------------------------------------------------
-    // Delete invoice
+    // Delete Invoice
     // ---------------------------------------------------------------------
     $pdo->beginTransaction();
 
@@ -100,4 +81,4 @@ try {
     echo 'Failed to delete invoice: ' . $e->getMessage();
 }
 
-//Run: php delete_invoice.php invoice_id=1001 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187
+//Run: php delete_invoice.php invoice_id=1004

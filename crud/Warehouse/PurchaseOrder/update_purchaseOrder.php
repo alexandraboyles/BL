@@ -9,7 +9,7 @@ if (PHP_SAPI === 'cli') {
     }
 }
 
-require __DIR__ . '/../../db_connect.php';
+require __DIR__ . '/../../../db_connect.php';
 
 try {
     // ---------------------------------------------------------------------
@@ -107,4 +107,4 @@ try {
     echo 'Failed to update purchase order: ' . $e->getMessage();
 }
 
-//Run: php update_purchaseOrder.php id=6e59821b-ebc0-45d6-9880-d7d9dd9da5d8 purchase_order_id=1002 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 order_reference=WEB-ORDER-77821 cust_reference=CUST-REF-9912 ship_name="Alexandra Boyles" ship_address="123 Rizal Street, Barangay Poblacion, Talisay City, Cebu, Philippines" status=pending
+//Run: php update_purchaseOrder.php id=dcc6e1cf-27ea-4a6c-bd40-5face0fff0f5 purchase_order_id=1002 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 order_reference=WEB-ORDER-77821 cust_reference=CUST-REF-9912 ship_name="Alexandra Boyles" ship_address="123 Rizal Street, Barangay Poblacion, Talisay City, Cebu, Philippines" status=pending

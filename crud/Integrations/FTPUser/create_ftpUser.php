@@ -15,9 +15,9 @@ try {
     // ---------------------------------------------------------------------
     // Collect input
     // ---------------------------------------------------------------------
-    $ftpUserId = $_POST['ftpUser_id'] ?? null;
-    $username   = $_POST['username']   ?? null;
-    $password = $_POST['password']   ?? null;
+    $ftpUserId     = $_POST['ftpUser_id'] ?? null;
+    $username      = $_POST['username']   ?? null;
+    $password      = $_POST['password']   ?? null;
     $subDirectory  = $_POST['subDirectory']     ?? null;
 
     // ---------------------------------------------------------------------
@@ -30,9 +30,9 @@ try {
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     foreach ([
-        'username' => $username,
-        'password' => $hashedPassword,
-        'subDirectory'   => $subDirectory,
+        'username'      => $username,
+        'password'      => $hashedPassword,
+        'subDirectory'  => $subDirectory,
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
             throw new InvalidArgumentException("$field is required");
@@ -95,10 +95,10 @@ try {
     );
 
     $stmt->execute([
-        ':id'         => $uuid,
-        ':ftpUser_id' => $ftpUserId,
-        ':username'   => $username,
-        ':password'   => $hashedPassword,
+        ':id'            => $uuid,
+        ':ftpUser_id'    => $ftpUserId,
+        ':username'      => $username,
+        ':password'      => $hashedPassword,
         ':subDirectory'  => $subDirectory,
     ]);
 

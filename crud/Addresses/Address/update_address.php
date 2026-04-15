@@ -96,4 +96,4 @@ try {
     echo 'Failed to update address: ' . $e->getMessage();
 }
 
-//Run: php update_address.php id=adad3ec5-fe9f-4375-88c5-defbfe042c7f address_id=1002 street_1="Keren St" street_2="Block 1" suburb="Manila" state="MANILA" postcode=6015
+//Run: php update_address.php id=adad3ec5-fe9f-4375-88c5-defbfe042c7f address_id=1002 street_1="Keren St" street_2="Block 1" suburb=Manila state=MANILA postcode=6015

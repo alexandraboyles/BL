@@ -9,7 +9,7 @@ if (PHP_SAPI === 'cli') {
     }
 }
 
-require __DIR__ . '/../../db_connect.php';
+require __DIR__ . '/../../../db_connect.php';
 
 try {
     // ---------------------------------------------------------------------
@@ -119,4 +119,4 @@ try {
     echo 'Failed to update product: ' . $e->getMessage();
 }
 
-//Run: php update_product.php id=48bd8480-e896-41a1-9343-bc48f585bbf8 product_id=1002 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 title="Corrugated Shipping Box" description="Heavy-duty corrugated cardboard box for shipping" sku=BOX-CORR-16X12S unitOfMeasure=cm width=30.0 length=40.0 height=25.0 weight=2.5
+//Run: php update_product.php id=bf1965da-2afe-4644-80d6-ebd1d8122f07 product_id=1002 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 title="Corrugated Shipping Box" description="Heavy-duty corrugated cardboard box for shipping" sku=BOX-CORR-16X12S unitOfMeasure=cm width=30.0 length=40.0 height=25.0 weight=2.5

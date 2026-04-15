@@ -16,40 +16,40 @@ try {
     // Collect input
     // ---------------------------------------------------------------------
     $consignment_id = $_POST['consignment_id'] ?? null;
-    $saleOrder_id = $_POST['saleOrder_id'] ?? null; // UUID → saleOrder.id
-    $address_id = $_POST['address_id'] ?? null; // UUID → address.id
-    $product_id = $_POST['product_id'] ?? null; // UUID → product.id
+    $saleOrder_id   = $_POST['saleOrder_id'] ?? null; // UUID → saleOrder.id
+    $address_id     = $_POST['address_id'] ?? null; // UUID → address.id
+    $product_id     = $_POST['product_id'] ?? null; // UUID → product.id
     $deliveryRun_id = $_POST['deliveryRun_id'] ?? null; // UUID → deliveryRun.id
-    $driver_id = $_POST['driver_id'] ?? null; // UUID → driver.id
-    $runsheet_id = $_POST['runsheet_id'] ?? null;
-    $service     = $_POST['service'] ?? null;
-    $reference    = $_POST['reference'] ?? null;
-    $is_residential  = $_POST['is_residential'] ?? null;
-    $quantity     = $_POST['quantity'] ?? null;
-    $cubic       = $_POST['cubic'] ?? null;
-    $weight = $_POST['weight'] ?? null;
-    $pallets = $_POST['pallets'] ?? null;
-    $spaces = $_POST['spaces'] ?? null;
+    $driver_id      = $_POST['driver_id'] ?? null; // UUID → driver.id
+    $runsheet_id    = $_POST['runsheet_id'] ?? null;
+    $service        = $_POST['service'] ?? null;
+    $reference      = $_POST['reference'] ?? null;
+    $is_residential = $_POST['is_residential'] ?? null;
+    $quantity       = $_POST['quantity'] ?? null;
+    $cubic          = $_POST['cubic'] ?? null;
+    $weight         = $_POST['weight'] ?? null;
+    $pallets        = $_POST['pallets'] ?? null;
+    $spaces         = $_POST['spaces'] ?? null;
 
     // ---------------------------------------------------------------------
     // Validate input
     // ---------------------------------------------------------------------
     foreach ([
         'consignment_id' => $consignment_id,
-        'saleOrder_id'        => $saleOrder_id,
-        'address_id'       => $address_id,
-        'product_id'       => $product_id,
-        'deliveryRun_id'       => $deliveryRun_id,
-        'driver_id'       => $driver_id,
-        'runsheet_id'       => $runsheet_id,
-        'service'  => $service,
-        'reference'  => $reference,
-        'is_residential'  => $is_residential,
-        'quantity'  => $quantity,
-        'cubic'  => $cubic,
-        'weight'  => $weight,
-        'pallets'  => $pallets,
-        'spaces'  => $spaces,
+        'saleOrder_id'   => $saleOrder_id,
+        'address_id'     => $address_id,
+        'product_id'     => $product_id,
+        'deliveryRun_id' => $deliveryRun_id,
+        'driver_id'      => $driver_id,
+        'runsheet_id'    => $runsheet_id,
+        'service'        => $service,
+        'reference'      => $reference,
+        'is_residential' => $is_residential,
+        'quantity'       => $quantity,
+        'cubic'          => $cubic,
+        'weight'         => $weight,
+        'pallets'        => $pallets,
+        'spaces'         => $spaces,
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
             throw new InvalidArgumentException("$field is required");
@@ -204,22 +204,22 @@ try {
     );
 
     $stmt->execute([
-        ':id'          => $uuid,
-        ':consignment_id'          => $consignment_id,
-        ':saleOrder_id' => $saleOrder_id,
-        ':address_id'        => $address_id,
-        ':product_id'       => $product_id,
-        ':deliveryRun_id'       => $deliveryRun_id,
-        ':driver_id'       => $driver_id,
-        ':runsheet_id'       => $runsheet_id,
-        ':service'       => $service,
-        ':reference'       => $reference,
-        ':is_residential'       => $is_residential,
+        ':id'             => $uuid,
+        ':consignment_id' => $consignment_id,
+        ':saleOrder_id'   => $saleOrder_id,
+        ':address_id'     => $address_id,
+        ':product_id'     => $product_id,
+        ':deliveryRun_id' => $deliveryRun_id,
+        ':driver_id'      => $driver_id,
+        ':runsheet_id'    => $runsheet_id,
+        ':service'        => $service,
+        ':reference'      => $reference,
+        ':is_residential' => $is_residential,
         ':quantity'       => $quantity,
-        ':cubic'       => $cubic,
-        ':weight'       => $weight,
-        ':pallets'       => $pallets,
-        ':spaces'       => $spaces
+        ':cubic'          => $cubic,
+        ':weight'         => $weight,
+        ':pallets'        => $pallets,
+        ':spaces'         => $spaces
     ]);
 
     $pdo->commit();
@@ -236,4 +236,4 @@ try {
 };
 
 
-//Run: php create_consignment.php consignment_id=1001 saleOrder_id=1510b98d-3470-11f1-92ef-00249b8cd187 address_id=b91e8d30-b0eb-4ca9-911c-750b538d57e7 product_id=702ed0e8-fbca-409e-9d15-7548c10f0ad3 deliveryRun_id=222e8400-e29b-41d4-a716-222222222222 driver_id=333e8400-e29b-41d4-a716-333333333333 runsheet_id=1 service=Standard Delivery reference=PO-456789 is_residential=1 quantity=10 cubic=2.45 weight=350.75 pallets=1 spaces=2
+//Run: php create_consignment.php consignment_id=1002 saleOrder_id=1510b98d-3470-11f1-92ef-00249b8cd187 address_id=b91e8d30-b0eb-4ca9-911c-750b538d57e7 product_id=702ed0e8-fbca-409e-9d15-7548c10f0ad3 deliveryRun_id=222e8400-e29b-41d4-a716-222222222222 driver_id=333e8400-e29b-41d4-a716-333333333333 runsheet_id=1 service="Standard Delivery" reference=PO-456789 is_residential=1 quantity=10 cubic=2.45 weight=350.75 pallets=1 spaces=2

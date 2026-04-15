@@ -9,7 +9,7 @@ if (PHP_SAPI === 'cli') {
     }
 }
 
-require __DIR__ . '/../../db_connect.php';
+require __DIR__ . '/../../../db_connect.php';
 
 try {
     // ---------------------------------------------------------------------
@@ -143,4 +143,4 @@ try {
     echo 'Failed to update invoice: ' . $e->getMessage();
 }
 
-//Run: php update_invoice.php id=53c93963-98df-4549-8a76-607a22a1cf75 invoice_id=1003 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 rateCard_id=5 manifest_id=2 income=534.90 expense=0.00 status=Leeching paymentStatus="Awaiting Payment" emailStatus="Not sent" internalReference="W.E 11/04/26 (BrisLog:10556)" externalReference="INV-10668"
+//Run: php update_invoice.php id=201074f7-b538-477a-8b46-23e033178317 invoice_id=1004 customer_id=64ed8b3e-3247-11f1-92ef-00249b8cd187 rateCard_id=5 manifest_id=2 income=534.90 expense=0.00 status=Leeching paymentStatus="Awaiting Payment" emailStatus="Not sent" internalReference="W.E 11/04/26 (BrisLog:10556)" externalReference=INV-10668

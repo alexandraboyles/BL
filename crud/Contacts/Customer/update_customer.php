@@ -84,4 +84,4 @@ try {
     echo 'Failed to update customer: ' . $e->getMessage();
 }
 
-//Run: php update_customer.php id=ddf497c2-480c-4fc8-bbcd-dd5a5c5478c1 customer_name=Alexandra Boyles contact_phone=09664503890 contact_email=alex_updated@gmail.com
+//Run: php update_customer.php id=ddf497c2-480c-4fc8-bbcd-dd5a5c5478c1 customer_name="Alexandra Boyles" contact_phone=09664503890 contact_email=alex_updated@gmail.com

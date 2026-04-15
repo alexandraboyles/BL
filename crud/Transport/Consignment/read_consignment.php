@@ -11,9 +11,7 @@ if (PHP_SAPI === 'cli') {
     }
 }
 
-require __DIR__ . '/../../db_connect.php';
-
-header('Content-Type: application/json');
+require __DIR__ . '/../../../db_connect.php';
 
 try {
 
@@ -117,25 +115,25 @@ try {
             c.pallets,
             c.spaces,
 
-            so.id          AS saleOrder_id,
+            so.id                AS saleOrder_id,
             so.orderReference    AS saleOrder_number,
 
-            a.id           AS address_id,
+            a.id                 AS address_id,
             a.street_1,
             a.suburb,
             a.state,
             a.postcode,
 
-            p.id           AS product_id,
+            p.id                 AS product_id,
             p.sku,
 
-            dr.id          AS deliveryRun_id,
+            dr.id                AS deliveryRun_id,
             dr.deliveryRun_name,
 
-            d.id           AS driver_id,
+            d.id                 AS driver_id,
             d.driver_name,
 
-            r.id           AS runsheet_id
+            r.id                 AS runsheet_id
 
         FROM Consignment c
         JOIN saleOrder   so ON so.id = c.saleOrder_id
@@ -173,8 +171,8 @@ try {
 
 //Run:
 //Read single consignment by id
-//php read_consignment.php consignment_id=1001
+    //php read_consignment.php consignment_id=1001
 //List all consignments for a driver
-//php read_consignment.php driver_id=333e8400-e29b-41d4-a716-333333333333
+    //php read_consignment.php driver_id=2bc93718-971b-487d-b1dd-8fb4f0a0b8ba
 //List all consignments for a delivery run
-//php read_consignment.php deliveryRun_id=222e8400-e29b-41d4-a716-222222222222 service="Standard Delivery"
+    //php read_consignment.php deliveryRun_id=222e8400-e29b-41d4-a716-222222222222 service="Standard Delivery"

@@ -17,16 +17,16 @@ try {
     // ---------------------------------------------------------------------
     $id          = $_POST['id'] ?? null;          // bill.id
     $supplier_id = $_POST['supplier_id'] ?? null; // UUID → Supplier.id
-    $invoice_id = $_POST['invoice_id'] ?? null; // UUID → Invoice.id
+    $invoice_id  = $_POST['invoice_id'] ?? null; // UUID → Invoice.id
     $manifest_id = $_POST['manifest_id'] ?? null;
 
     // ---------------------------------------------------------------------
     // Validate input
     // ---------------------------------------------------------------------
     foreach ([
-        'id' => $id,
+        'id'          => $id,
         'supplier_id' => $supplier_id,
-        'invoice_id' => $invoice_id,
+        'invoice_id'  => $invoice_id,
         'manifest_id' => $manifest_id,
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
@@ -92,15 +92,15 @@ try {
         'UPDATE bill
          SET
             supplier_id  = :supplier_id,
-            invoice_id = :invoice_id,
-            manifest_id = :manifest_id
+            invoice_id   = :invoice_id,
+            manifest_id  = :manifest_id
          WHERE id = :id'
     );
 
     $stmt->execute([
         ':id'          => $id,
-        ':supplier_id'  => $supplier_id,
-        ':invoice_id' => $invoice_id,
+        ':supplier_id' => $supplier_id,
+        ':invoice_id'  => $invoice_id,
         ':manifest_id' => $manifest_id,
     ]);
 

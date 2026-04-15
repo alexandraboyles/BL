@@ -11,7 +11,7 @@ if (PHP_SAPI === 'cli') {
     }
 }
 
-require __DIR__ . '/../../db_connect.php';
+require __DIR__ . '/../../../db_connect.php';
 
 try {
 
@@ -105,4 +105,4 @@ try {
 }
 
 //Run:
-//php delete_consignment.php consignment_id=1003 saleOrder_id=550e8400-e29b-41d4-a716-446655440000
+//php delete_consignment.php consignment_id=1002 saleOrder_id=1510b98d-3470-11f1-92ef-00249b8cd187

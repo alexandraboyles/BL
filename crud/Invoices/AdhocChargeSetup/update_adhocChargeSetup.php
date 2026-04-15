@@ -34,10 +34,10 @@ try {
         'id'                    => $id,
         'adhocChargeSetup_name' => $adhocChargeSetup_name,
         'chargeStructure'       => $chargeStructure,
-        'rate'                 => $rate,
-        'descriptionTemplate'  => $descriptionTemplate                                       ,
-        'is_enabled'           => $is_enabled,
-        'pageVisionOn'         => $pageVisionOn,
+        'rate'                  => $rate,
+        'descriptionTemplate'   => $descriptionTemplate                                       ,
+        'is_enabled'            => $is_enabled,
+        'pageVisionOn'          => $pageVisionOn,
     ] as $field => $value) {
         if ($value === null || trim((string)$value) === '') {
             throw new InvalidArgumentException("$field is required");
@@ -64,24 +64,24 @@ try {
     $stmt = $pdo->prepare(
         'UPDATE adhocChargeSetup
          SET
-             id = :id,
+             id                   = :id,
             adhocChargeSetup_name = :adhocChargeSetup_name,
-            chargeStructure      = :chargeStructure,
-            rate                 = :rate,
-            descriptionTemplate  = :descriptionTemplate                                       ,
-            is_enabled           = :is_enabled,
-            pageVisionOn         = :pageVisionOn
+            chargeStructure       = :chargeStructure,
+            rate                  = :rate,
+            descriptionTemplate   = :descriptionTemplate                                       ,
+            is_enabled            = :is_enabled,
+            pageVisionOn          = :pageVisionOn
          WHERE id = :id'
     );
 
     $stmt->execute([
-        ':id' => $id,
+        ':id'                    => $id,
         ':adhocChargeSetup_name' => $adhocChargeSetup_name,
-        ':chargeStructure'  => $chargeStructure,
-        ':rate' => $rate,
-        ':descriptionTemplate' => $descriptionTemplate,
-        ':is_enabled' => $is_enabled,
-        ':pageVisionOn' => $pageVisionOn,
+        ':chargeStructure'       => $chargeStructure,
+        ':rate'                  => $rate,
+        ':descriptionTemplate'   => $descriptionTemplate,
+        ':is_enabled'            => $is_enabled,
+        ':pageVisionOn'          => $pageVisionOn,
     ]);
 
     $pdo->commit();

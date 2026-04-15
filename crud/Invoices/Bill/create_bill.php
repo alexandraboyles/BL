@@ -16,7 +16,7 @@ try {
     // Collect input
     // ---------------------------------------------------------------------
     $supplier_id = $_POST['supplier_id'] ?? null; // UUID → Supplier.id
-    $invoice_id = $_POST['invoice_id'] ?? null; // UUID → Invoice.id
+    $invoice_id  = $_POST['invoice_id'] ?? null; // UUID → Invoice.id
     $manifest_id = $_POST['manifest_id'] ?? null;
 
     // ---------------------------------------------------------------------
@@ -24,7 +24,7 @@ try {
     // ---------------------------------------------------------------------
     foreach ([
         'supplier_id' => $supplier_id,
-        'invoice_id' => $invoice_id,
+        'invoice_id'  => $invoice_id,
         'manifest_id' => $manifest_id,
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
@@ -88,8 +88,8 @@ try {
 
     $stmt->execute([
         ':supplier_id'  => $supplier_id,
-        ':invoice_id' => $invoice_id,
-        ':manifest_id' => $manifest_id,
+        ':invoice_id'   => $invoice_id,
+        ':manifest_id'  => $manifest_id,
     ]);
 
     $pdo->commit();

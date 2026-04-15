@@ -17,10 +17,10 @@ try {
     // -----------------------------------------------------------------
     // Collect input
     // -----------------------------------------------------------------
-    $id          = $_POST['id'] ?? null; // UUID of driver to update
-    $driver_name   = $_POST['driver_name'] ?? null; 
-    $email      = $_POST['email'] ?? null;
-    $is_online  = $_POST['is_online'] ?? null;
+    $id                         = $_POST['id'] ?? null; // UUID of driver to update
+    $driver_name                = $_POST['driver_name'] ?? null; 
+    $email                      = $_POST['email'] ?? null;
+    $is_online                  = $_POST['is_online'] ?? null;
     $location_access_available  = $_POST['location_access_available'] ?? null;
 
     // -----------------------------------------------------------------
@@ -31,10 +31,10 @@ try {
     }
 
     foreach ([
-        'id'              => $id,
-        'driver_name' => $driver_name,
-        'email'       => $email,
-        'is_online'   => $is_online,
+        'id'                        => $id,
+        'driver_name'               => $driver_name,
+        'email'                     => $email,
+        'is_online'                 => $is_online,
         'location_access_available' => $location_access_available,
     ] as $field => $value) {
         if ($value === null || trim($value) === '') {
@@ -62,19 +62,19 @@ try {
     $stmt = $pdo->prepare(
         'UPDATE Driver
          SET
-            driver_name = :driver_name,
-            email = :email,
-            is_online = :is_online,
-            location_access_available =:location_access_available
+            driver_name               = :driver_name,
+            email                     = :email,
+            is_online                 = :is_online,
+            location_access_available = :location_access_available
          WHERE id = :id'
     );
 
     $stmt->execute([
-        ':id'          => $id,
-        ':driver_name'   => $driver_name,
-        ':email'   => $email,
-        ':is_online'   => $is_online,
-        ':location_access_available'   => $location_access_available,
+        ':id'                         => $id,
+        ':driver_name'                => $driver_name,
+        ':email'                      => $email,
+        ':is_online'                  => $is_online,
+        ':location_access_available'  => $location_access_available,
     ]);
 
     $pdo->commit();
@@ -90,4 +90,4 @@ try {
     echo 'Failed to update driver: ' . $e->getMessage();
 }
 
-//Run: php update_driver.php id=333e8400-e29b-41d4-a716-333333333333 driver_name=Juan Dela Cruz email=juan.updated@gmail.com is_online=0 location_access_available=1
+//Run: php update_driver.php id=333e8400-e29b-41d4-a716-333333333333 driver_name="Juan Dela Cruz" email=juan.updated@gmail.com is_online=0 location_access_available=1
