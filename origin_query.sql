@@ -5,7 +5,7 @@ GRANT ALL PRIVILEGES ON BL.* TO 'training_user'@'localhost';
 FLUSH PRIVILEGES;
 
 CREATE TABLE Address(
- id CHAR(36) PRIMARY KEY,
+ id CHAR(36) PRIMARY KEY NOT NULL,
  address_id INT NOT NULL,
  street_1 VARCHAR(100) NOT NULL,
  street_2 VARCHAR(100) NOT NULL,
@@ -111,18 +111,6 @@ CREATE TABLE deliveryAddressToOnforwarderAddressMapping (
 SELECT * FROM deliveryAddressToOnforwarderAddressMapping;
 DESCRIBE deliveryAddressToOnforwarderAddressMapping;
 
-CREATE TABLE carrier(
-	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    carrier_name VARCHAR(100) NOT NULL,
-    on_forwarder BOOL NOT NULL,
-    status VARCHAR(100) NOT NULL
-);
-SELECT * FROM carrier;
-DESCRIBE carrier;
-
-INSERT INTO carrier (carrier_name, on_forwarder, status)
-VALUES ("Brisbane Logistics", 2, 1);
-
 CREATE TABLE Contact(
 	id CHAR(36) PRIMARY KEY NOT NULL,
     customer_id CHAR(36) NULL,
@@ -139,7 +127,7 @@ ALTER TABLE Contact
 MODIFY COLUMN customer_id CHAR(36) NOT NULL;
 
 CREATE TABLE Customer(
-	id CHAR(36) PRIMARY KEY,
+	id CHAR(36) PRIMARY KEY NOT NULL,
     customer_name VARCHAR(255) NOT NULL,
 	contact_phone VARCHAR(50) NOT NULL,
 	contact_email VARCHAR(100) NOT NULL
@@ -149,6 +137,30 @@ DESCRIBE Customer;
 
 ALTER TABLE customer
 MODIFY COLUMN id CHAR(36) NOT NULL;
+
+CREATE TABLE driver(
+    id CHAR(36) NOT NULL PRIMARY KEY,
+    driver_name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    is_online BOOL NOT NULL,
+    location_access_available BOOL NOT NULL
+);
+SELECT * FROM driver;
+DESCRIBE driver;
+
+INSERT INTO driver (
+    id,
+    driver_name,
+    email,
+    is_online,
+    location_access_available
+) VALUES (
+    UUID(),
+    'Juan Dela Cruz',
+    'juan.delacruz@example.com',
+    1,
+    1
+);
 
 CREATE TABLE supplier (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY UNIQUE,
@@ -224,6 +236,9 @@ CREATE TABLE account(
 SELECT * FROM account;
 DESCRIBE account;
 
+ALTER TABLE account 
+MODIFY COLUMN account_name VARCHAR(100) NOT NULL UNIQUE;
+
 CREATE TABLE adhocChargeSetup(
 	id INT NOT NULL PRIMARY KEY UNIQUE,
     adhocChargeSetup_name VARCHAR(100) NOT NULL,
@@ -235,6 +250,9 @@ CREATE TABLE adhocChargeSetup(
 );
 SELECT * FROM adhocChargeSetup;
 DESCRIBE adhocChargeSetup;
+
+ALTER TABLE adhocChargeSetup
+MODIFY COLUMN rate DECIMAL(10,2) DEFAULT 0.00 NOT NULL;
 
 CREATE TABLE bill(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY UNIQUE,
@@ -251,7 +269,18 @@ CREATE TABLE bill(
 SELECT * FROM bill;
 DESCRIBE bill;
 
+CREATE TABLE feeCategory(
+	appliesTo VARCHAR(100) NOT NULL,
+    account VARCHAR(100) NOT NULL,
+    feeCategory_name VARCHAR(100) NOT NULL UNIQUE,
+    counts_toward_minimum_charges BOOL NOT NULL,
+    is_name_editable BOOL NOT NULL
+);
+SELECT * FROM feeCategory;
+DESCRIBE feeCategory;
 
+ALTER TABLE feeCategory
+ADD COLUMN id INT NOT NULL AUTO_INCREMENT PRIMARY KEY UNIQUE;
 
 CREATE TABLE Invoice(
 	id CHAR(36) NOT NULL PRIMARY KEY, 
@@ -279,7 +308,7 @@ SELECT * FROM Invoice;
 DESCRIBE Invoice;
 
 CREATE TABLE rateCard(
-	id INT AUTO_INCREMENT PRIMARY KEY,
+	id INT AUTO_INCREMENT PRIMARY KEY NOT NULL UNIQUE,
     customer_id CHAR(36) DEFAULT NULL,
     rates VARCHAR(50) NOT NULL,
     contact_email VARCHAR(100) NOT NULL,
@@ -289,26 +318,30 @@ CREATE TABLE rateCard(
 SELECT * FROM rateCard;
 DESCRIBE rateCard;
 
-INSERT INTO rateCard (customer_id, rates, contact_email)
-VALUES ('64ed8b3e-3247-11f1-92ef-00249b8cd187', 10.50, "test@gmail.com");
-
-CREATE TABLE manifest(
-	id INT AUTO_INCREMENT PRIMARY KEY,
-    customer_id CHAR(36) DEFAULT NULL,
-    dateAdded DATETIME NOT NULL,
-    customerReference DATE NOT NULL,
-    noOfPallets VARCHAR(100) NOT NULL,
-    info VARCHAR(100) NOT NULL,
-    requires_pickup BOOL NOT NULL,
-    comments VARCHAR(255) NOT NULL,
-	CONSTRAINT fk_manifest
-    FOREIGN KEY (customer_id) REFERENCES customer(id)
+CREATE TABLE surcharge(
+	feeCategory_id INT NOT NULL,
+    surcharge_name VARCHAR(100) NOT NULL UNIQUE,
+    conditions VARCHAR(255) NOT NULL,
+    surcharge DECIMAL(10,2) DEFAULT 0.00 NOT NULL,
+    status VARCHAR(100) NOT NULL,
+    CONSTRAINT fk_surcharge
+    FOREIGN KEY (feeCategory_id) REFERENCES feeCategory(id)
 );
-SELECT * FROM manifest;
-DESCRIBE manifest;
+SELECT * FROM surcharge;
+DESCRIBE surcharge;
 
-INSERT INTO manifest (customer_id, dateAdded, customerReference, noOfPallets, info, requires_pickup, comments)
-VALUES ('64ed8b3e-3247-11f1-92ef-00249b8cd187', NOW(), "2026-4-8", "Not Specified", "In Warehouse (Pickup)", 1, "");
+DROP TABLE surcharge;
+
+CREATE TABLE location(
+	id CHAR(36) NOT NULL PRIMARY KEY,
+    location_name VARCHAR(255) NOT NULL,
+    isle VARCHAR(100) NOT NULL,
+    bay VARCHAR(100) NOT NULL,
+    shelf VARCHAR(100) NOT NULL,
+    location_type VARCHAR(100) NOT NULL
+);
+SELECT * FROM location;
+DESCRIBE location;
 
 CREATE TABLE Product(
 	id CHAR(36) NOT NULL PRIMARY KEY,
@@ -328,6 +361,34 @@ CREATE TABLE Product(
 );
 SELECT * FROM Product;
 DESCRIBE Product;
+
+CREATE TABLE productGroup();
+SELECT * FROM productGroup;
+DESCRIBE productGroup;
+
+CREATE TABLE productPackaging();
+SELECT * FROM productPackaging;
+DESCRIBE productPackaging;
+
+CREATE TABLE productStatus();
+SELECT * FROM productStatus;
+DESCRIBE productStatus;
+
+CREATE TABLE productType();
+SELECT * FROM productType;
+DESCRIBE productType;
+
+CREATE TABLE unitsOfMeasure();
+SELECT * FROM unitsOfMeasure;
+DESCRIBE unitsOfMeasure;
+
+CREATE TABLE regexDefinition();
+SELECT * FROM regexDefinition;
+DESCRIBE regexDefinition;
+
+CREATE TABLE bulkAllocation();
+SELECT * FROM bulkAllocation;
+DESCRIBE bulkAllocation;
 
 CREATE TABLE Consignment(
 	id CHAR(36) NOT NULL PRIMARY KEY,
@@ -361,6 +422,160 @@ CREATE TABLE Consignment(
 );
 SELECT * FROM Consignment;
 DESCRIBE Consignment;
+
+CREATE TABLE consignmentError();
+SELECT * FROM consignmentError;
+DESCRIBE consignmentError;
+
+CREATE TABLE deliveryRun(
+    id CHAR(36) NOT NULL PRIMARY KEY,
+    deliveryRun_name VARCHAR(100) NOT NULL,
+    carrier VARCHAR(100) NOT NULL
+);
+SELECT * FROM deliveryRun;
+DESCRIBE deliveryRun;
+
+INSERT INTO deliveryRun (
+    id,
+    deliveryRun_name,
+    carrier
+) VALUES (
+    UUID(),
+    'Cebu South Route',
+    'LBC'
+);
+
+CREATE TABLE manifest(
+	id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    customer_id CHAR(36) DEFAULT NULL,
+    dateAdded DATETIME NOT NULL,
+    customerReference DATE NOT NULL,
+    noOfPallets VARCHAR(100) NOT NULL,
+    info VARCHAR(100) NOT NULL,
+    requires_pickup BOOL NOT NULL,
+    comments VARCHAR(255) NOT NULL,
+	CONSTRAINT fk_manifest
+    FOREIGN KEY (customer_id) REFERENCES customer(id)
+);
+SELECT * FROM manifest;
+DESCRIBE manifest;
+
+INSERT INTO manifest (customer_id, dateAdded, customerReference, noOfPallets, info, requires_pickup, comments)
+VALUES ('64ed8b3e-3247-11f1-92ef-00249b8cd187', NOW(), "2026-4-8", "Not Specified", "In Warehouse (Pickup)", 1, "");
+
+CREATE TABLE runsheet(
+    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    deliveryRun_id CHAR(36) DEFAULT NULL,
+    driver_id CHAR(36) DEFAULT NULL,
+    runsheet_name VARCHAR(100) NOT NULL,
+    totalCashOnDelivery DECIMAL(10,2) NOT NULL,
+    income DECIMAL(10,2) NOT NULL,
+    is_complete BOOL NOT NULL,
+    CONSTRAINT fk_runsheet_1
+	FOREIGN KEY (deliveryRun_id) REFERENCES deliveryRun(id),
+    CONSTRAINT fk_runsheet_2
+	FOREIGN KEY (driver_id) REFERENCES driver(id)
+);
+SELECT * FROM runsheet;
+DESCRIBE runsheet;
+
+INSERT INTO runsheet (
+    deliveryRun_id,
+    driver_id,
+    runsheet_name,
+    totalCashOnDelivery,
+    income,
+    is_complete
+) VALUES (
+    '222e8400-e29b-41d4-a716-222222222222',
+    '2bc93718-971b-487d-b1dd-8fb4f0a0b8ba',
+    'Runsheet - April 8 AM',
+    10580.00,
+    1200.00,
+    0
+);
+
+drop table runsheet;
+
+CREATE TABLE transportLane();
+SELECT * FROM transportLane;
+DESCRIBE transportLane;
+
+CREATE TABLE transportProduct();
+SELECT * FROM transportProduct;
+DESCRIBE transportProduct;
+
+CREATE TABLE vehicle();
+SELECT * FROM vehicle;
+DESCRIBE vehicle;
+
+CREATE TABLE bankingSheet();
+SELECT * FROM bankingSheet;
+DESCRIBE bankingSheet;
+
+CREATE TABLE carrier(
+	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    carrier_name VARCHAR(100) NOT NULL,
+    on_forwarder BOOL NOT NULL,
+    status VARCHAR(100) NOT NULL
+);
+SELECT * FROM carrier;
+DESCRIBE carrier;
+
+INSERT INTO carrier (carrier_name, on_forwarder, status)
+VALUES ("Brisbane Logistics", 2, 1);
+
+CREATE TABLE consignmentCashOnDelivery();
+SELECT * FROM consignmentCashOnDelivery;
+DESCRIBE consignmentCashOnDelivery;
+
+CREATE TABLE consignmentDeliveryCancelledStatus();
+SELECT * FROM consignmentDeliveryCancelledStatus;
+DESCRIBE consignmentDeliveryCancelledStatus;
+
+CREATE TABLE consignmentErrorChargeAction();
+SELECT * FROM consignmentErrorChargeAction;
+DESCRIBE consignmentErrorChargeAction;
+
+CREATE TABLE customField();
+SELECT * FROM customField;
+DESCRIBE customField;
+
+CREATE TABLE notificationEmail();
+SELECT * FROM notificationEmail;
+DESCRIBE notificationEmail;
+
+CREATE TABLE organizationSetting();
+SELECT * FROM organizationSetting;
+DESCRIBE organizationSetting;
+
+CREATE TABLE zoneSet();
+SELECT * FROM zoneSet;
+DESCRIBE zoneSet;
+
+CREATE TABLE container();
+SELECT * FROM container;
+DESCRIBE container;
+
+CREATE TABLE PurchaseOrder(
+    id CHAR(36) NOT NULL PRIMARY KEY,
+    purchase_order_id INT DEFAULT NULL UNIQUE,
+    customer_id CHAR(36) NOT NULL,
+    order_reference VARCHAR(100) NOT NULL,
+    cust_reference VARCHAR(100) NOT NULL,
+    ship_name VARCHAR(100) NOT NULL,
+    ship_address VARCHAR(255) NOT NULL,
+    order_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(50) NOT NULL,
+    CONSTRAINT fk_purchase_order
+    FOREIGN KEY (customer_id) REFERENCES customer(id)
+);
+SELECT * FROM PurchaseOrder;
+DESCRIBE PurchaseOrder;
+
+CREATE TABLE replenishment();
+SELECT * FROM replenishment;
+DESCRIBE replenishment;
 
 CREATE TABLE saleOrder(
     id CHAR(36) NOT NULL PRIMARY KEY,
@@ -452,96 +667,31 @@ INSERT INTO saleOrder (
     JSON_ARRAY()
 );
 
-CREATE TABLE deliveryRun(
-    id CHAR(36) NOT NULL PRIMARY KEY,
-    deliveryRun_name VARCHAR(100) NOT NULL,
-    carrier VARCHAR(100) NOT NULL
-);
-SELECT * FROM deliveryRun;
-DESCRIBE deliveryRun;
+CREATE TABLE shipment();
+SELECT * FROM shipment;
+DESCRIBE shipment;
 
-INSERT INTO deliveryRun (
-    id,
-    deliveryRun_name,
-    carrier
-) VALUES (
-    UUID(),
-    'Cebu South Route',
-    'LBC'
-);
+CREATE TABLE stocktake();
+SELECT * FROM stocktake;
+DESCRIBE stocktake;
 
-CREATE TABLE driver(
-    id CHAR(36) NOT NULL PRIMARY KEY,
-    driver_name VARCHAR(100) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    is_online BOOL NOT NULL,
-    location_access_available BOOL NOT NULL
-);
-SELECT * FROM driver;
-DESCRIBE driver;
+CREATE TABLE storagePeriod();
+SELECT * FROM storagePeriod;
+DESCRIBE storagePeriod;
 
-INSERT INTO driver (
-    id,
-    driver_name,
-    email,
-    is_online,
-    location_access_available
-) VALUES (
-    UUID(),
-    'Juan Dela Cruz',
-    'juan.delacruz@example.com',
-    1,
-    1
-);
+CREATE TABLE saleOrderPriorityStatus();
+SELECT * FROM saleOrderPriorityStatus;
+DESCRIBE saleOrderPriorityStatus;
 
-CREATE TABLE runsheet(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    deliveryRun_id CHAR(36) DEFAULT NULL,
-    driver_id CHAR(36) DEFAULT NULL,
-    runsheet_name VARCHAR(100) NOT NULL,
-    totalCashOnDelivery DECIMAL(10,2) NOT NULL,
-    income DECIMAL(10,2) NOT NULL,
-    is_complete BOOL NOT NULL,
-    CONSTRAINT fk_runsheet_1
-	FOREIGN KEY (deliveryRun_id) REFERENCES deliveryRun(id),
-    CONSTRAINT fk_runsheet_2
-	FOREIGN KEY (driver_id) REFERENCES driver(id)
-);
-SELECT * FROM runsheet;
-DESCRIBE runsheet;
+CREATE TABLE warehouse();
+SELECT * FROM warehouse;
+DESCRIBE warehouse;
 
-INSERT INTO runsheet (
-    deliveryRun_id,
-    driver_id,
-    runsheet_name,
-    totalCashOnDelivery,
-    income,
-    is_complete
-) VALUES (
-    '222e8400-e29b-41d4-a716-222222222222',
-    '2bc93718-971b-487d-b1dd-8fb4f0a0b8ba',
-    'Runsheet - April 8 AM',
-    10580.00,
-    1200.00,
-    0
-);
+CREATE TABLE warehouseLocation();
+SELECT * FROM warehouseLocation;
+DESCRIBE warehouseLocation;
 
-drop table runsheet;
-
-CREATE TABLE PurchaseOrder(
-    id CHAR(36) NOT NULL PRIMARY KEY,
-    purchase_order_id INT DEFAULT NULL UNIQUE,
-    customer_id CHAR(36) NOT NULL,
-    order_reference VARCHAR(100) NOT NULL,
-    cust_reference VARCHAR(100) NOT NULL,
-    ship_name VARCHAR(100) NOT NULL,
-    ship_address VARCHAR(255) NOT NULL,
-    order_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    status VARCHAR(50) NOT NULL,
-    CONSTRAINT fk_purchase_order
-    FOREIGN KEY (customer_id) REFERENCES customer(id)
-);
-SELECT * FROM PurchaseOrder;
-DESCRIBE PurchaseOrder;
-
+CREATE TABLE wavepick();
+SELECT * FROM wavepick;
+DESCRIBE wavepick;
 
