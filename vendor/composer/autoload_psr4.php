@@ -6,14 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Warehouse\\' => array($baseDir . '/src/components/warehouse', $baseDir . '/src/Warehouse'),
-    'Transport\\' => array($baseDir . '/src/components/transport', $baseDir . '/src/Transport'),
-    'Products\\' => array($baseDir . '/src/components/products', $baseDir . '/src/Products'),
     'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
-    'Logs\\' => array($baseDir . '/logs'),
-    'Invoices\\' => array($baseDir . '/src/components/invoices', $baseDir . '/src/Invoices'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
-    'Core\\' => array($baseDir . '/src/components/core', $baseDir . '/src/Core'),
-    'Contacts\\' => array($baseDir . '/src/components/contacts', $baseDir . '/src/Contacts'),
-    'Addresses\\' => array($baseDir . '/src/components/addresses', $baseDir . '/src/Addresses'),
+    'App\\' => array($baseDir . '/src'),
 );

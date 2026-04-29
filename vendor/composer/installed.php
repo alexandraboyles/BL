@@ -3,7 +3,7 @@
         'name' => 'alexandra/bl',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '3d59dc59f74adf9e101eab4033c8ebf35d1589a9',
+        'reference' => '3fec89339af784824efcf37c47d331a8598bcfb3',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'alexandra/bl' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '3d59dc59f74adf9e101eab4033c8ebf35d1589a9',
+            'reference' => '3fec89339af784824efcf37c47d331a8598bcfb3',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

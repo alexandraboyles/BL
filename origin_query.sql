@@ -362,7 +362,17 @@ CREATE TABLE Product(
 SELECT * FROM Product;
 DESCRIBE Product;
 
-CREATE TABLE productGroup();
+CREATE TABLE productGroup(
+	id INT AUTO_INCREMENT PRIMARY KEY NOT NULL UNIQUE,
+    customer_id CHAR(36) NOT NULL,
+    productType_id INT NOT NULL,
+    productGroup_name VARCHAR(100) NOT NULL UNIQUE,
+    productGroup_description TEXT NOT NULL,
+    CONSTRAINT fk_productGroup_1
+    FOREIGN KEY (customer_id) REFERENCES customer(id),
+    CONSTRAINT fk_productGroup_2
+    FOREIGN KEY (productType_id) REFERENCES productType(id)
+);
 SELECT * FROM productGroup;
 DESCRIBE productGroup;
 
@@ -374,7 +384,14 @@ CREATE TABLE productStatus();
 SELECT * FROM productStatus;
 DESCRIBE productStatus;
 
-CREATE TABLE productType();
+CREATE TABLE productType(
+	id INT AUTO_INCREMENT PRIMARY KEY NOT NULL UNIQUE,
+    productType_name VARCHAR(100) NOT NULL UNIQUE,
+    product_code CHAR(1) NOT NULL,
+    alias VARCHAR(100) NOT NULL,
+    priority INT NOT NULL,
+    is_default BOOL NOT NULL
+);
 SELECT * FROM productType;
 DESCRIBE productType;
 

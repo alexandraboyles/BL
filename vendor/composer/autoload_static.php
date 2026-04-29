@@ -12,89 +12,32 @@ class ComposerStaticInitb881e41e317800cc1e3253ef548d3c33
     );
 
     public static $prefixLengthsPsr4 = array (
-        'W' =>
-        array (
-            'Warehouse\\' => 10,
-        ),
-        'T' =>
-        array (
-            'Transport\\' => 10,
-        ),
         'P' =>
         array (
-            'Products\\' => 9,
             'PhpParser\\' => 10,
-        ),
-        'L' =>
-        array (
-            'Logs\\' => 5,
-        ),
-        'I' =>
-        array (
-            'Invoices\\' => 9,
         ),
         'D' =>
         array (
             'DeepCopy\\' => 9,
         ),
-        'C' =>
-        array (
-            'Core\\' => 5,
-            'Contacts\\' => 9,
-        ),
         'A' =>
         array (
-            'Addresses\\' => 10,
+            'App\\' => 4,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Warehouse\\' =>
-        array (
-            0 => __DIR__ . '/../..' . '/src/components/warehouse',
-            1 => __DIR__ . '/../..' . '/src/Warehouse',
-        ),
-        'Transport\\' =>
-        array (
-            0 => __DIR__ . '/../..' . '/src/components/transport',
-            1 => __DIR__ . '/../..' . '/src/Transport',
-        ),
-        'Products\\' =>
-        array (
-            0 => __DIR__ . '/../..' . '/src/components/products',
-            1 => __DIR__ . '/../..' . '/src/Products',
-        ),
         'PhpParser\\' =>
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
-        ),
-        'Logs\\' =>
-        array (
-            0 => __DIR__ . '/../..' . '/logs',
-        ),
-        'Invoices\\' =>
-        array (
-            0 => __DIR__ . '/../..' . '/src/components/invoices',
-            1 => __DIR__ . '/../..' . '/src/Invoices',
         ),
         'DeepCopy\\' =>
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
-        'Core\\' =>
+        'App\\' =>
         array (
-            0 => __DIR__ . '/../..' . '/src/components/core',
-            1 => __DIR__ . '/../..' . '/src/Core',
-        ),
-        'Contacts\\' =>
-        array (
-            0 => __DIR__ . '/../..' . '/src/components/contacts',
-            1 => __DIR__ . '/../..' . '/src/Contacts',
-        ),
-        'Addresses\\' =>
-        array (
-            0 => __DIR__ . '/../..' . '/src/components/addresses',
-            1 => __DIR__ . '/../..' . '/src/Addresses',
+            0 => __DIR__ . '/../..' . '/src',
         ),
     );
 
