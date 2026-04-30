@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Addresses</title>
+        <title>Address Default Instructions</title>
         <style>
             table, th, td {
                 border:1px solid black;
@@ -23,32 +23,36 @@
             <?php unset($_SESSION['flash_error']); ?>
         <?php endif; ?>
 
-        <h1>Addresses List</h1>
+        <h1>Address Default Instruction List</h1>
 
-        <a href="/addresses/create">Create an address here</a><br><br>
+        <a href="/addressdefaultinstructions/create">Create an address default instruction here</a><br><br>
 
         <table style="width: 100%;">
             <tr>
                 <th>ID</th>
-                <th>Address Name</th>
+                <th>Delivery Instruction</th>
+                <th>Packing Instruction</th>
                 <th>Actions</th>
             </tr>
     <?php if (empty($items)): ?>
-            <tr><td colspan="3">No addresses found</td></tr>
+            <tr><td colspan="4">No address default instructions found</td></tr>
         <?php else: ?>
-            <?php foreach ($items as $address): ?>
+            <?php foreach ($items as $addressdefaultinstruction): ?>
                 <tr>
                     <td style="text-align: right;">
-                        <?= htmlspecialchars($address['address_id']) ?>
+                        <?= htmlspecialchars($addressdefaultinstruction['id']) ?>
                     </td>
                     <td style="text-align: left;">
-                        <?= htmlspecialchars($address['address_name']) ?>
+                        <?= htmlspecialchars($addressdefaultinstruction['deliveryInstruction']) ?>
+                    </td>
+                    <td style="text-align: left;">
+                        <?= htmlspecialchars($addressdefaultinstruction['packingInstruction']) ?>
                     </td>
                     <td style="text-align: center;">
-                        <a href="/addresses/<?= $address['address_id'] ?>" style="margin-right: 5px;">View</a>
-                        <a href="/addresses/<?= $address['address_id'] ?>/edit" style="margin-right: 5px;">Edit</a>
-                        <a href="/addresses/<?= $address['address_id'] ?>/delete" style="margin-right: 5px; color: red;" 
-                           onclick="return confirm('Delete id = <?= htmlspecialchars($address['address_id']) ?>?')">Delete</a>
+                        <a href="/addressdefaultinstructions/<?= $addressdefaultinstruction['id'] ?>" style="margin-right: 5px;">View</a>
+                        <a href="/addressdefaultinstructions/<?= $addressdefaultinstruction['id'] ?>/edit" style="margin-right: 5px;">Edit</a>
+                        <a href="/addressdefaultinstructions/<?= $addressdefaultinstruction['id'] ?>/delete" style="margin-right: 5px; color: red;" 
+                           onclick="return confirm('Delete id = <?= htmlspecialchars($addressdefaultinstruction['id']) ?>?')">Delete</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

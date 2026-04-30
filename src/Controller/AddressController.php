@@ -165,8 +165,8 @@ class AddressController extends BaseController
             $this->service->delete((int)$deleteId);
             $this->flashSuccess("Item deleted successfully");
             $this->redirect('/addresses');
-        } catch (Exception $e) {
-            $this->flashError("Failed to delete item: " . $e->getMessage());
+        } catch (\Exception $e) {
+            $this->flashError($e->getMessage());
             $this->redirect('/addresses');
         }
     }

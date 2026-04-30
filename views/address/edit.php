@@ -3,12 +3,10 @@
     <head>
         <title>Edit Address</title>
         <style>
-            label {
-                display: inline-block;
-                width: 70px;
-                text-align: left;
-                padding: 3px;
-            }
+        label { display: inline-block; width: 150px; text-align: left; padding: 10px; }
+        .error { color: red; }
+        ul { margin: 10px 0; padding-left: 20px; }
+        input { width: 250px; padding: 3px; }
         </style>
     </head>
     <body>
@@ -63,3 +61,4 @@
             <a href="/addresses">Cancel</a>
         </form>
     </body>
+</html>

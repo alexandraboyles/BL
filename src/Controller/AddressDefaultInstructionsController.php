@@ -16,10 +16,6 @@ class AddressDefaultInstructionsController extends BaseController
         $this->validator = new AddressDefaultInstructionsValidator();
     }
 
-    /**
-     * Display a listing of the resource
-     * GET /addressdefaultinstructions
-     */
     public function index()
     {
         try {
@@ -31,163 +27,150 @@ class AddressDefaultInstructionsController extends BaseController
         }
     }
 
-    /**
-     * Show the form for creating a new resource
-     * GET /addressdefaultinstructions/create
-     */
     public function create()
     {
         $errors = $this->getFlash('create_errors') ?? [];
-        $this->render('addressdefaultinstructions/create', ['errors' => $errors]);
+        $oldInput = $this->getFlash('create_old_input') ?? [];
+        $formData = $this->service->getFormData();
+        $this->render('addressdefaultinstructions/create', [
+            'errors' => $errors,
+            'old' => $oldInput,
+            'addresses' => $formData['addresses'],
+            'customers' => $formData['customers']
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage
-     * POST /addressdefaultinstructions
-     */
-    public function store($data)
+    public function store()
     {
         try {
-            // Validate input
+            $data = $_POST;
             $errors = $this->validator->validate($data);
+            
             if (!empty($errors)) {
                 $_SESSION['create_errors'] = $errors;
+                $_SESSION['create_old_input'] = $data;
                 $this->redirect('/addressdefaultinstructions/create');
             }
 
-            // Create the resource
-            $this->service->create($data);
+            $result = $this->service->create($data);
+            if (is_array($result)) {
+                $_SESSION['create_errors'] = $result;
+                $_SESSION['create_old_input'] = $data;
+                $this->redirect('/addressdefaultinstructions/create');
+            }
             
-            $this->flashSuccess("Instruction created successfully");
+            $this->flashSuccess("Item created successfully");
             $this->redirect('/addressdefaultinstructions');
         } catch (Exception $e) {
-            $this->flashError("Failed to create instruction: " . $e->getMessage());
+            $_SESSION['create_errors'] = ["Failed to create item: " . $e->getMessage()];
+            $_SESSION['create_old_input'] = $_POST;
             $this->redirect('/addressdefaultinstructions/create');
         }
     }
 
-    /**
-     * Display the specified resource
-     * GET /addressdefaultinstructions/{id}
-     */
     public function show($id)
     {
         if (!$this->isValidId($id)) {
-            $this->notFound("Invalid instruction ID");
+            $this->notFound("Invalid item ID");
         }
 
         try {
             $item = $this->service->getById((int)$id);
             if (!$item) {
-                $this->notFound("Instruction not found");
+                $this->notFound("Item not found");
             }
-
-            $this->render('addressdefaultinstructions/view', ['item' => $item]);
+            $this->render('addressdefaultinstructions/view', ['item' => $item]); // Fixed
         } catch (Exception $e) {
-            $this->flashError("Failed to load instruction: " . $e->getMessage());
+            $this->flashError("Failed to load item: " . $e->getMessage());
             $this->redirect('/addressdefaultinstructions');
         }
     }
 
-    /**
-     * Show the form for editing the specified resource
-     * GET /addressdefaultinstructions/{id}/edit
-     */
     public function edit($id)
     {
-        if (!$this->isValidId($id)) {
-            $this->notFound("Invalid instruction ID");
-        }
-
+        if (!$this->isValidId($id)) $this->notFound("Invalid item ID");
         try {
             $item = $this->service->getById((int)$id);
-            if (!$item) {
-                $this->notFound("Instruction not found");
-            }
-
-            $errors = $_SESSION['edit_errors'][$id] ?? [];
-            unset($_SESSION['edit_errors'][$id]);
-
-            $this->render('addressdefaultinstructions/edit', ['item' => $item, 'errors' => $errors]);
+            if (!$item) $this->notFound("Item not found");
+            $errors = $this->getFlash("edit_errors_{$id}") ?? [];
+            $oldInput = $this->getFlash("edit_old_input_{$id}") ?? [];
+            $formData = $this->service->getFormData();
+            $this->render('addressdefaultinstructions/edit', [
+                'item' => $item,
+                'errors' => $errors,
+                'old' => $oldInput,
+                'addresses' => $formData['addresses'],
+                'customers' => $formData['customers']
+            ]);
         } catch (Exception $e) {
-            $this->flashError("Failed to load instruction: " . $e->getMessage());
+            $this->flashError("Failed to load item: " . $e->getMessage());
             $this->redirect('/addressdefaultinstructions');
         }
     }
-
-    /**
-     * Update the specified resource in storage
-     * POST /addressdefaultinstructions/{id}
-     */
+    
     public function update($id)
     {
         if (!$this->isValidId($id)) {
-            $this->flashError("Invalid instruction ID");
+            $this->flashError("Invalid item ID");
             $this->redirect('/addressdefaultinstructions');
         }
 
-        try {
-            // Get POST data (or from $_POST if not passed as parameter)
-            $data = $_POST;
+        if (isset($_POST['_method']) && strtoupper($_POST['_method']) === 'DELETE') {
+            return $this->delete($id);
+        }
 
-            // Validate input
-            $errors = $this->validator->validate($data);
-            if (!empty($errors)) {
-                $_SESSION['edit_errors'][$id] = $errors;
+        try {
+            $data = $_POST;
+            $result = $this->service->update((int)$id, $data);
+            
+            if (is_array($result)) {
+                $_SESSION["edit_errors_{$id}"] = $result;
+                $_SESSION["edit_old_input_{$id}"] = $data;
                 $this->redirect("/addressdefaultinstructions/{$id}/edit");
             }
 
-            // Update the resource
-            $this->service->update((int)$id, $data);
-
-            $this->flashSuccess("Instruction updated successfully");
+            $this->flashSuccess("Item updated successfully");
             $this->redirect('/addressdefaultinstructions');
         } catch (Exception $e) {
-            $this->flashError("Failed to update instruction: " . $e->getMessage());
+            $_SESSION["edit_errors_{$id}"] = ["Failed to update item: " . $e->getMessage()];
+            $_SESSION["edit_old_input_{$id}"] = $_POST;
             $this->redirect("/addressdefaultinstructions/{$id}/edit");
         }
     }
 
-    /**
-     * Show delete confirmation for the specified resource
-     * GET /addressdefaultinstructions/{id}/delete
-     */
     public function confirmDelete($id)
     {
         if (!$this->isValidId($id)) {
-            $this->notFound("Invalid instruction ID");
+            $this->notFound("Invalid item ID");
         }
 
         try {
             $item = $this->service->getById((int)$id);
             if (!$item) {
-                $this->notFound("Instruction not found");
+                $this->notFound("Item not found");
             }
-
-            $this->render('addressdefaultinstructions/delete', ['item' => $item]);
+            $this->render('addressdefaultinstructions/delete', ['item' => $item]); // Fixed
         } catch (Exception $e) {
-            $this->flashError("Failed to load instruction: " . $e->getMessage());
+            $this->flashError("Failed to load item: " . $e->getMessage());
             $this->redirect('/addressdefaultinstructions');
         }
     }
 
-    /**
-     * Delete the specified resource
-     * DELETE /addressdefaultinstructions/{id} or form POST from confirmDelete
-     */
-    public function delete($id)
+    public function delete($id = null)
     {
-        if (!$this->isValidId($id)) {
-            $this->flashError("Invalid instruction ID");
+        $deleteId = $id ?? ($_POST['id'] ?? null); // Fixed: consistent with form
+        
+        if (!$this->isValidId($deleteId)) {
+            $this->flashError("Invalid item ID");
             $this->redirect('/addressdefaultinstructions');
         }
 
         try {
-            $this->service->delete((int)$id);
-            $this->flashSuccess("Instruction deleted successfully");
+            $this->service->delete((int)$deleteId);
+            $this->flashSuccess("Item deleted successfully");
             $this->redirect('/addressdefaultinstructions');
         } catch (Exception $e) {
-            $this->flashError("Failed to delete instruction: " . $e->getMessage());
+            $this->flashError($e->getMessage());
             $this->redirect('/addressdefaultinstructions');
         }
     }

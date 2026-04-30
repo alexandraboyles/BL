@@ -1,46 +1,52 @@
 <?php
 namespace App\Service;
-
-use Exception;
-
+use App\Repository\AddressDefaultInstructionsRepository;
+use App\Validation\AddressDefaultInstructionsValidator;
+use InvalidArgumentException;
 class AddressDefaultInstructionsService
 {
+    private $repo;
+    private $validator;
+    public function __construct()
+    {
+        $this->repo = new AddressDefaultInstructionsRepository();
+        $this->validator = new AddressDefaultInstructionsValidator();
+    }
     public function getAll(): array
     {
-        // TODO: Implement using repository
-        return [];
+        return $this->repo->findAll();
     }
-
     public function getById(int $id): ?array
     {
         if ($id <= 0) {
-            throw new Exception("Invalid ID");
+            throw new InvalidArgumentException("Invalid ID");
         }
-        // TODO: Implement using repository
-        return null;
+        return $this->repo->find($id);
     }
-
-    public function create(array $data): bool
+    // Provide dropdown lists
+    public function getFormData(): array
     {
-        // TODO: Implement using repository
+        return [
+            'addresses' => $this->repo->getAllAddresses(),
+            'customers' => $this->repo->getAllCustomers(),
+        ];
+    }
+    public function create(array $data): bool|array
+    {
+        $errors = $this->validator->validate($data);
+        if (!empty($errors)) return $errors;
+        $this->repo->save($data);
         return true;
     }
-
-    public function update(int $id, array $data): bool
+    public function update(int $id, array $data): bool|array
     {
-        if ($id <= 0) {
-            throw new Exception("Invalid ID");
-        }
-        // TODO: Implement using repository
-        return true;
+        $errors = $this->validator->validate($data);
+        if (!empty($errors)) return $errors;
+        return $this->repo->update($id, $data);
     }
-
     public function delete(int $id): bool
     {
-        if ($id <= 0) {
-            throw new Exception("Invalid ID");
-        }
-        // TODO: Implement using repository
-        return true;
+        if ($id <= 0) throw new InvalidArgumentException("Invalid ID");
+        return $this->repo->delete($id);
     }
 }

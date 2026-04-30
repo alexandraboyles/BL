@@ -2,6 +2,9 @@
 <html>
     <head>
         <title>Address Detail</title> <!-- Title -->
+        <style>
+             p { padding: 5px; }
+        </style>
     </head>
     <body>
         <?php

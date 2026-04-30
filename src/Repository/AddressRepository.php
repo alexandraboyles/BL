@@ -2,7 +2,6 @@
 namespace App\Repository;
 
 use PDO;
-use PDOException;
 
 class AddressRepository
 {
@@ -96,7 +95,15 @@ class AddressRepository
 
     public function delete(int $id): bool
     {
-        $stmt = $this->pdo->prepare("DELETE FROM Address WHERE address_id = ?");
-        return $stmt->execute([$id]);
+        try {
+            $stmt = $this->pdo->prepare("DELETE FROM Address WHERE address_id = ?");
+            return $stmt->execute([$id]);
+        } catch (\PDOException $e) {
+            if ($e->getCode() === '23000') {
+                // Integrity constraint violation (e.g., foreign key)
+                throw new \Exception("Cannot delete address: it is referenced by other data.");
+            }
+            throw $e;
+        }
     }
 }

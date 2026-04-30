@@ -71,7 +71,8 @@ class RouteRegistry
         // GET /resource/{id}/delete - show delete confirmation
         $this->get("/{$resourcePath}/{id}/delete", $controller, 'confirmDelete', "{$resource}.confirmDelete");
 
-        $this->delete("/{$resourcePath}/{id}", $controller, 'destroy', "{$resource}.destroy");
+        // Fixed: Use 'delete' method instead of 'destroy' to match controller
+        $this->delete("/{$resourcePath}/{id}", $controller, 'delete', "{$resource}.delete"); // Changed from 'destroy'
         
         return $this;
     }

@@ -3,9 +3,10 @@
 <head>
     <title>Create Address</title>
     <style>
-        label { display: inline-block; width: 70px; text-align: left; padding: 3px; }
+        label { display: inline-block; width: 150px; text-align: left; padding: 10px; }
         .error { color: red; }
         ul { margin: 10px 0; padding-left: 20px; }
+        input { width: 250px; padding: 3px; }
     </style>
 </head>
 <body>
@@ -25,7 +26,7 @@
     <form method="post" action="/addresses">
         <div>
             <label for="address_id">ID:</label>
-            <input id="address_id" type="number" name="address_id" 
+            <input id="address_id" type="number" name="address_id"
                    value="<?= htmlspecialchars($old['address_id'] ?? '', ENT_QUOTES) ?>" required>
         </div>
         <div>
