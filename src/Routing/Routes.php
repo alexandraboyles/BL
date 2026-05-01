@@ -12,5 +12,10 @@ class Routes
         $router->resource('addresses', 'App\Controller\AddressController');
         // Address Default Instructions - fix capitalization
         $router->resource('addressdefaultinstructions', 'App\Controller\AddressDefaultInstructionsController');
+        $router->resource('deliveryaddresstoonforwarderaddressmapping', 'App\Controller\DeliveryAddressToOnforwarderAddressMappingController');
+        $router->resource('addressstrings', 'App\Controller\AddressStringsController');
+        $router->resource('addresstodeliveryrunmapping', 'App\Controller\AddressToDeliveryRunMappingController');
+        $router->resource('addresstoinvoicecustomermapping', 'App\Controller\AddressToInvoiceCustomerMappingController');
+        
     }
 }

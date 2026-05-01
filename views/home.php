@@ -86,19 +86,19 @@
         <a href="/addresses" class="name">Addresses</a><p>Manage the address records here</p>    </div>
 
                 <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/AddressStrings" class="name">Address Strings</a><p>Manage the address strings which are linked to addresses</p>    </div>
+        <a href="/addressstrings" class="name">Address Strings</a><p>Manage the address strings which are linked to addresses</p>    </div>
 
                 <div class="site-map-entry">
         <a href="/addressdefaultinstructions" class="name">Default instructions</a><p>Specify the default instructions for each address</p>    </div>
 
                 <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/AddressDeliveryRunMappings" class="name">Address to Delivery Run Mapping</a><p>Manage address to delivery run mapping</p>    </div>
+        <a href="/addresstodeliveryrunmapping" class="name">Address to Delivery Run Mapping</a><p>Manage address to delivery run mapping</p>    </div>
 
                 <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/AddressToAddressMappings" class="name">Delivery Address to Onforwarder Address Mapping</a><p>Manage delivery address to onforwarder address mapping</p>    </div>
+        <a href="/deliveryaddresstoonforwarderaddressmapping" class="name">Delivery Address to Onforwarder Address Mapping</a><p>Manage delivery address to onforwarder address mapping</p>    </div>
 
                 <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/AddressToInvoiceCustomerMappings" class="name">Address to Invoice Customer Mapping</a><p>Manage address to Invoice Customer mapping</p>    </div>
+        <a href="/addresstoinvoicecustomermapping" class="name">Address to Invoice Customer Mapping</a><p>Manage address to Invoice Customer mapping</p>    </div>
 
     </section>
 

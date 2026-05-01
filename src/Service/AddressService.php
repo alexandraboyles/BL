@@ -37,11 +37,11 @@ class AddressService
         }
 
         if ($this->repo->existsByAddressId((int)$data['address_id'])) {
-            return ["Address ID is already in use"];
+            return ["Address ID is already in use."];
         }
 
         if ($this->repo->existsByAddressName(trim($data['address_name']))) {
-            return ["Address name is already in use"];
+            return ["Address name is already in use."];
         }
 
         $this->repo->save($data);
@@ -56,11 +56,11 @@ class AddressService
         }
 
         if ((int)$originalAddressId !== (int)$data['address_id'] && $this->repo->existsByAddressId((int)$data['address_id'])) {
-            return ["Address ID is already in use"];
+            return ["Address ID is already in use."];
         }
 
         if ($this->repo->existsByAddressName(trim($data['address_name']), (int)$originalAddressId)) {
-            return ["Address name is already in use"];
+            return ["Address name is already in use."];
         }
 
         return $this->repo->update($originalAddressId, $data);

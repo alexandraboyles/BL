@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Address Default Instructions</title>
+        <title>Delivery Address to Onforwarder Address Mapping</title>
         <style>
             table, th, td {
                 border:1px solid black;
@@ -23,44 +23,40 @@
             <?php unset($_SESSION['flash_error']); ?>
         <?php endif; ?>
 
-        <h1>Address Default Instruction List</h1>
+        <h1>Delivery Address to Onforwarder Address Mapping List</h1>
 
-        <a href="/addressdefaultinstructions/create">Create an address default instruction here</a><br><br>
+        <a href="/deliveryaddresstoonforwarderaddressmapping/create">Create a delivery address to onforwarder address mapping here</a><br><br>
 
         <table style="width: 100%;">
             <tr>
                 <th>ID</th>
                 <th>Address Name</th>
                 <th>Customer Name</th>
-                <th>Delivery Instruction</th>
-                <th>Packing Instruction</th>
+                <th>Product Title</th>
                 <th>Actions</th>
             </tr>
     <?php if (empty($items)): ?>
-            <tr><td colspan="5">No address default instructions found</td></tr>
+            <tr><td colspan="4">No address strings found</td></tr>
         <?php else: ?>
-            <?php foreach ($items as $addressdefaultinstruction): ?>
+            <?php foreach ($items as $deliveryaddresstoonforwarderaddressmapping): ?>
                 <tr>
                     <td style="text-align: right;">
-                        <?= htmlspecialchars($addressdefaultinstruction['id']) ?>
+                        <?= htmlspecialchars($deliveryaddresstoonforwarderaddressmapping['id']) ?>
                     </td>
                     <td style="text-align: left;">
-                        <?= htmlspecialchars($addressdefaultinstruction['address_name']) ?>
+                        <?= htmlspecialchars($deliveryaddresstoonforwarderaddressmapping['address_name']) ?>
                     </td>
                     <td style="text-align: left;">
-                        <?= htmlspecialchars($addressdefaultinstruction['customer_name']) ?>
+                        <?= htmlspecialchars($deliveryaddresstoonforwarderaddressmapping['customer_name']) ?>
                     </td>
                     <td style="text-align: left;">
-                        <?= htmlspecialchars($addressdefaultinstruction['deliveryInstruction']) ?>
-                    </td>
-                    <td style="text-align: left;">
-                        <?= htmlspecialchars($addressdefaultinstruction['packingInstruction']) ?>
+                        <?= htmlspecialchars($deliveryaddresstoonforwarderaddressmapping['product_name']) ?>
                     </td>
                     <td style="text-align: center;">
-                        <a href="/addressdefaultinstructions/<?= $addressdefaultinstruction['id'] ?>" style="margin-right: 5px;">View</a>
-                        <a href="/addressdefaultinstructions/<?= $addressdefaultinstruction['id'] ?>/edit" style="margin-right: 5px;">Edit</a>
-                        <a href="/addressdefaultinstructions/<?= $addressdefaultinstruction['id'] ?>/delete" style="margin-right: 5px; color: red;" 
-                           onclick="return confirm('Delete id = <?= htmlspecialchars($addressdefaultinstruction['id']) ?>?')">Delete</a>
+                        <a href="/deliveryaddresstoonforwarderaddressmapping/<?= $deliveryaddresstoonforwarderaddressmapping['id'] ?>" style="margin-right: 5px;">View</a>
+                        <a href="/deliveryaddresstoonforwarderaddressmapping/<?= $deliveryaddresstoonforwarderaddressmapping['id'] ?>/edit" style="margin-right: 5px;">Edit</a>
+                        <a href="/deliveryaddresstoonforwarderaddressmapping/<?= $deliveryaddresstoonforwarderaddressmapping['id'] ?>/delete" style="margin-right: 5px; color: red;" 
+                           onclick="return confirm('Delete id = <?= htmlspecialchars($deliveryaddresstoonforwarderaddressmapping['id']) ?>?')">Delete</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

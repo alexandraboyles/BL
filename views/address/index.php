@@ -31,6 +31,11 @@
             <tr>
                 <th>ID</th>
                 <th>Address Name</th>
+                <th>Street 1</th>
+                <th>Street 2</th>
+                <th>Suburb</th>
+                <th>State</th>
+                <th>Postcode</th>
                 <th>Actions</th>
             </tr>
     <?php if (empty($items)): ?>
@@ -43,6 +48,21 @@
                     </td>
                     <td style="text-align: left;">
                         <?= htmlspecialchars($address['address_name']) ?>
+                    </td>
+                    <td style="text-align: left;">
+                        <?= htmlspecialchars($address['street_1']) ?>
+                    </td>
+                    <td style="text-align: left;">
+                        <?= htmlspecialchars($address['street_2']) ?>
+                    </td>
+                    <td style="text-align: left;">
+                        <?= htmlspecialchars($address['suburb']) ?>
+                    </td>
+                    <td style="text-align: left;">
+                        <?= htmlspecialchars($address['state']) ?>
+                    </td>
+                    <td style="text-align: right;">
+                        <?= htmlspecialchars($address['postcode']) ?>
                     </td>
                     <td style="text-align: center;">
                         <a href="/addresses/<?= $address['address_id'] ?>" style="margin-right: 5px;">View</a>
