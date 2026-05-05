@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Address Strings</title>
+        <title>Contacts</title>
         <style>
             table, th, td {
                 border:1px solid black;
@@ -23,48 +23,40 @@
             <?php unset($_SESSION['flash_error']); ?>
         <?php endif; ?>
 
-        <h1>Address Strings List</h1>
+        <h1>Contacts List</h1>
 
-        <a href="/addressstrings/create">Create an address string here</a><br><br>
+        <a href="/contacts/create">Create a contact here</a><br><br>
 
         <table style="width: 100%;">
             <tr>
-                <th>ID</th>
-                <th>Address Name</th>
                 <th>Customer Name</th>
-                <th>Text</th>
-                <th>Date Added</th>
-                <th>Date Modified</th>
+                <th>Contact Name</th>
+                <th>Email</th>
+                <th>Phone</th>
                 <th>Actions</th>
             </tr>
     <?php if (empty($items)): ?>
-            <tr><td colspan="6">No address strings found</td></tr>
+            <tr><td colspan="5">No contacts found</td></tr>
         <?php else: ?>
-            <?php foreach ($items as $addressstring): ?>
+            <?php foreach ($items as $contacts): ?>
                 <tr>
-                    <td style="text-align: right;">
-                        <?= htmlspecialchars($addressstring['id']) ?>
+                    <td style="text-align: left;">
+                        <?= htmlspecialchars($contacts['customer_name']) ?>
                     </td>
                     <td style="text-align: left;">
-                        <?= htmlspecialchars($addressstring['address_name']) ?>
+                        <?= htmlspecialchars($contacts['contact_name']) ?>
                     </td>
                     <td style="text-align: left;">
-                        <?= htmlspecialchars($addressstring['customer_name']) ?>
-                    </td>
-                    <td style="text-align: left;">
-                        <?= htmlspecialchars($addressstring['text']) ?>
+                        <?= htmlspecialchars($contacts['email']) ?>
                     </td>
                     <td style="text-align: right;">
-                        <?= htmlspecialchars($addressstring['dateAdded']) ?>
-                    </td>
-                    <td style="text-align: right;">
-                        <?= htmlspecialchars($addressstring['lastModified']) ?>
+                        <?= htmlspecialchars($contacts['phone']) ?>
                     </td>
                     <td style="text-align: center;">
-                        <a href="/addressstrings/<?= $addressstring['id'] ?>" style="margin-right: 5px;">View</a>
-                        <a href="/addressstrings/<?= $addressstring['id'] ?>/edit" style="margin-right: 5px;">Edit</a>
-                        <a href="/addressstrings/<?= $addressstring['id'] ?>/delete" style="margin-right: 5px; color: red;" 
-                           onclick="return confirm('Delete id = <?= htmlspecialchars($addressstring['id']) ?>?')">Delete</a>
+                        <a href="/contacts/<?= $contacts['id'] ?>" style="margin-right: 5px;">View</a>
+                        <a href="/contacts/<?= $contacts['id'] ?>/edit" style="margin-right: 5px;">Edit</a>
+                        <a href="/contacts/<?= $contacts['id'] ?>/delete" style="margin-right: 5px; color: red;" 
+                           onclick="return confirm('Delete contact `<?= htmlspecialchars($contacts['contact_name']) ?>`?')">Delete</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

@@ -35,7 +35,7 @@
                 <th>Actions</th>
             </tr>
     <?php if (empty($items)): ?>
-            <tr><td colspan="3">No address strings found</td></tr>
+            <tr><td colspan="3">No address to invoice customer mappings found</td></tr>
         <?php else: ?>
             <?php foreach ($items as $addresstoinvoicecustomermapping): ?>
                 <tr>

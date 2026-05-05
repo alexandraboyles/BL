@@ -32,11 +32,11 @@
                 <th>ID</th>
                 <th>Address Name</th>
                 <th>Customer Name</th>
-                <th>Product Title</th>
+                <th>Product Name</th>
                 <th>Actions</th>
             </tr>
     <?php if (empty($items)): ?>
-            <tr><td colspan="4">No address strings found</td></tr>
+            <tr><td colspan="4">No delivery address to onforwarder address mappings found</td></tr>
         <?php else: ?>
             <?php foreach ($items as $deliveryaddresstoonforwarderaddressmapping): ?>
                 <tr>

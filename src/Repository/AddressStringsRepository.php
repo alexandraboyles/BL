@@ -42,6 +42,7 @@ class AddressStringsRepository
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result ?: null;
     }
+    
     public function save(array $data): int
     {
         $stmt = $this->pdo->prepare(

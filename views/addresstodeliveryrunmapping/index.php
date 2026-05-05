@@ -33,14 +33,14 @@
                 <th>Address Type</th>
                 <th>Address Name</th>
                 <th>Customer Name</th>
-                <th>Product Title</th>
+                <th>Product Name</th>
                 <th>Delivery Run Name</th>
                 <th>Carrier Name</th>
                 <th>Flow Direction</th>
                 <th>Actions</th>
             </tr>
     <?php if (empty($items)): ?>
-            <tr><td colspan="8">No address to delivery run mapping found</td></tr>
+            <tr><td colspan="8">No address to delivery run mappings found</td></tr>
         <?php else: ?>
             <?php foreach ($items as $addresstodeliveryrunmapping): ?>
                 <tr>

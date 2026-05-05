@@ -49,8 +49,8 @@ class AddressRepository
             (int)$data['address_id'],
             trim($data['address_name']),
             trim($data['street_1']),
-            trim($data['street_2'] ?? ''),
-            trim($data['suburb']),
+            trim($data['street_2']),
+            trim(strtoupper($data['suburb'])),
             trim($data['state']),
             trim($data['postcode'])
         ]);
@@ -66,8 +66,8 @@ class AddressRepository
             (int)$data['address_id'],
             trim($data['address_name']),
             trim($data['street_1']),
-            trim($data['street_2'] ?? ''),
-            trim($data['suburb']),
+            trim($data['street_2']),
+            trim(strtoupper($data['suburb'])),
             trim($data['state']),
             trim($data['postcode']),
             $originalAddressId

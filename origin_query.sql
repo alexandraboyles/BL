@@ -113,7 +113,7 @@ DESCRIBE deliveryAddressToOnforwarderAddressMapping;
 
 CREATE TABLE Contact(
 	id CHAR(36) PRIMARY KEY NOT NULL,
-    customer_id CHAR(36) NULL,
+    customer_id CHAR(36) NOT NULL,
     contact_name VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
 	phone VARCHAR(50) NOT NULL,
@@ -122,9 +122,6 @@ CREATE TABLE Contact(
 );
 SELECT * FROM Contact;
 DESCRIBE Contact;
-
-ALTER TABLE Contact
-MODIFY COLUMN customer_id CHAR(36) NOT NULL;
 
 CREATE TABLE Customer(
 	id CHAR(36) PRIMARY KEY NOT NULL,
@@ -183,7 +180,9 @@ CREATE TABLE user(
     roles VARCHAR(100) NOT NULL,
     warehouses VARCHAR(100) NOT NULL,
     mfa VARCHAR(255) NOT NULL,
-    is_email_verified BOOL NOT NULL
+    is_email_verified BOOL NOT NULL,
+    CONSTRAINT fk_user_1
+    FOREIGN KEY (customer_id) REFERENCES customer(id)
 );
 SELECT * FROM user;
 DESCRIBE user;

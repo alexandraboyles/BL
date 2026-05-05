@@ -108,13 +108,16 @@
     </a>
 
                 <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/Users" class="name">Users</a><p>Manage users who have access to this CartonCloud account</p>    </div>
+        <a href="/contacts" class="name">Contacts</a><p>Manage contact records here</p>    </div>
 
                 <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/Customers" class="name">Customers</a><p>Manage customers</p>    </div>
+        <a href="/users" class="name">Users</a><p>Manage users who have access to this CartonCloud account</p>    </div>
 
                 <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/drivers" class="name">Drivers</a><p>Manage drivers and view their delivery history</p>    </div>
+        <a href="/customers" class="name">Customers</a><p>Manage customers</p>    </div>
+
+                <div class="site-map-entry">
+        <a href="/drivers" class="name">Drivers</a><p>Manage drivers and view their delivery history</p>    </div>
 
                 <div class="site-map-entry">
         <a href="/Brisbane_Logistics/Suppliers" class="name">Suppliers</a><p>Manage customers</p>    </div>

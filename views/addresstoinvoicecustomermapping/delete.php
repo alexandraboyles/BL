@@ -8,7 +8,7 @@
     /** @var array $item */
     ?>
     <h1>Delete Address To Invoice Customer Mapping</h1>
-    <p>Are you sure you want to delete the address to invoice customer mapping for address "<strong><?= htmlspecialchars($item['address_name'] ?? '', ENT_QUOTES) ?></strong>", customer "<strong><?= htmlspecialchars($item['customer_name'] ?? '', ENT_QUOTES) ?></strong>"?</p>
+    <p>Are you sure you want to delete the address to invoice customer mapping for address "<strong><?= htmlspecialchars($item['address_name'] ?? '', ENT_QUOTES) ?></strong>" and customer "<strong><?= htmlspecialchars($item['customer_name'] ?? '', ENT_QUOTES) ?></strong>"?</p>
     
     <form method="post" action="/addresstoinvoicecustomermapping/<?= htmlspecialchars($item['id'], ENT_QUOTES) ?>">
         <input type="hidden" name="_method" value="DELETE">

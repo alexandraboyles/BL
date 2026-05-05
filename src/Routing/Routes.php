@@ -16,6 +16,9 @@ class Routes
         $router->resource('addressstrings', 'App\Controller\AddressStringsController');
         $router->resource('addresstodeliveryrunmapping', 'App\Controller\AddressToDeliveryRunMappingController');
         $router->resource('addresstoinvoicecustomermapping', 'App\Controller\AddressToInvoiceCustomerMappingController');
-        
+        $router->resource('contacts', 'App\Controller\ContactsController');
+        $router->resource('users', 'App\Controller\UsersController');
+        $router->resource('drivers', 'App\Controller\DriversController');
+        $router->resource('customers', 'App\Controller\CustomersController');
     }
 }
