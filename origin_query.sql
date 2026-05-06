@@ -132,9 +132,6 @@ CREATE TABLE Customer(
 SELECT * FROM Customer;
 DESCRIBE Customer;
 
-ALTER TABLE customer
-MODIFY COLUMN id CHAR(36) NOT NULL;
-
 CREATE TABLE driver(
     id CHAR(36) NOT NULL PRIMARY KEY,
     driver_name VARCHAR(100) NOT NULL,
