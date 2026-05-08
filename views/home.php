@@ -120,7 +120,7 @@
         <a href="/drivers" class="name">Drivers</a><p>Manage drivers and view their delivery history</p>    </div>
 
                 <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/Suppliers" class="name">Suppliers</a><p>Manage customers</p>    </div>
+        <a href="/suppliers" class="name">Suppliers</a><p>Manage customers</p>    </div>
 
     </section>
 
@@ -128,13 +128,8 @@
     <a id="Documents">
         <h2>Documents</h2>
     </a>
-
                 <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/Documents" class="name">Documents</a><p>View or Manage Uploaded Documents</p>    </div>
-
-                <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/DocumentTemplates" class="name">Document Templates</a><p>Manage Customizable Document Templates (POD, Packing Slips, etc)</p>    </div>
-
+        <a href="/documents" class="name">Documents</a><p>View or Manage Uploaded Documents</p>    </div>
     </section>
 
 <section class="site-map-section">
@@ -143,19 +138,10 @@
     </a>
 
                 <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/FtpUsers" class="name">FTP Users</a><p>Manage FTP users</p>    </div>
+        <a href="/ftpusers" class="name">FTP Users</a><p>Manage FTP users</p>    </div>
 
                 <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/EmailParsingLogs" class="name">Import Log</a><p>View results of imports into the system</p>    </div>
-
-                <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/Parsers/uploadFile" class="name">Parse a File</a><p>Upload a file to the parser</p>    </div>
-
-                <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/Parsers" class="name">Parsers</a><p>Manage Parsers</p>    </div>
-
-                <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/integrations" class="name">Self-Managed Integrations</a><p>Connect &amp; Manage your own Integrations</p>    </div>
+        <a href="/parsers" class="name">Parsers</a><p>Manage Parsers</p>    </div>
 
     </section>
 
@@ -169,9 +155,6 @@
 
                 <div class="site-map-entry">
         <a href="/Brisbane_Logistics/Bills" class="name">Bills</a><p>Create, manage, upload and send bills</p>    </div>
-
-                <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/FuelPriceHistories" class="name">Fuel Levy</a><p>Change the fuel levy</p>    </div>
 
                 <div class="site-map-entry">
         <a href="/Brisbane_Logistics/fee-categories" class="name">Fee Categories (Previously "Charge Subclasses")</a><p>Manage Fee Categories in different models</p>    </div>
@@ -190,49 +173,6 @@
 
     </section>
 
-<section class="site-map-section">
-    <a id="Logs">
-        <h2>Logs</h2>
-    </a>
-
-                <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/DeletionLogs" class="name">Deletion Logs</a><p>View or delete the deletion Logs</p>    </div>
-
-                <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/RemotePrinters" class="name">Print Log</a><p>View Print Logs</p>    </div>
-
-    </section>
-
-<section class="site-map-section">
-    <a id="Reports">
-        <h2>Reports</h2>
-    </a>
-
-                <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/SaleOrders/packReport" class="name">Sale Order Reports</a><p>View Sale Order summary reports</p>    </div>
-
-                <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/Products/stockMovement" class="name">Stock Movement Reports</a><p>View movements of stock</p>    </div>
-
-                <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/Customers/stockCustom" class="name">Customer Stock Reports</a><p>View stock reports for a given Customer</p>    </div>
-
-                <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/Consignments/report" class="name">Consignment Report</a><p>View reports on Consignments</p>    </div>
-
-                <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/Consignments/consignmentInvoiceReport" class="name">Consignment Invoice Reports</a><p>View reports on what Consignments have Invoices</p>    </div>
-
-                <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/DiscrepancyReports" class="name">Discrepancy Reports</a><p>View reports on Consignment Errors</p>    </div>
-
-                <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/Users/oldAppVersionReport" class="name">Mobile App Version Report</a><p>View reports on mobile app version usage</p>    </div>
-
-                <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/rate-cards/report" class="name">Rate Card Report</a><p>View rates for a Rate Card</p>    </div>
-
-    </section>
 
 <section class="site-map-section">
     <a id="Product_Settings">
@@ -263,16 +203,8 @@
     <a id="Tools">
         <h2>Tools</h2>
     </a>
-
-                <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/Tools" class="name">Tools</a><p>Various system-tools for advanced users</p>    </div>
-
                 <div class="site-map-entry">
         <a href="/Brisbane_Logistics/RegexDefinitions" class="name">Regex Definitions</a><p>Define regex definitions</p>    </div>
-
-                <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/document-templates/generate-zpl" class="name">ZPL Generator</a><p>Build, edit, and preview ZPL Document Templates</p>    </div>
-
     </section>
 
 <section class="site-map-section">
@@ -294,10 +226,6 @@
 
                 <div class="site-map-entry">
         <a href="/Brisbane_Logistics/ConsignmentErrors" class="name">Consignment Errors</a><p>Manage consignment errors and DMA reports from the field</p>    </div>
-
-                <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/DeliveryRuns/checkAvailableDate" class="name">View Service Days</a><p>Check which days a particular area is serviced via postcode/ suburb search</p>    </div>
-
                 <div class="site-map-entry">
         <a href="/Brisbane_Logistics/Consignments/bulkAllocation" class="name">Bulk Allocations</a><p>Manage consignments allocation, delivery run, delivery run date</p>    </div>
 
@@ -333,9 +261,6 @@
         <a href="/Brisbane_Logistics/ConsignmentErrors/configuration" class="name">Consignment Errors Settings</a><p>Consignment error settings</p>    </div>
 
                 <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/DeliveryRuns/customSort" class="name">Delivery Run List Sort</a><p>Sort the delivery run list</p>    </div>
-
-                <div class="site-map-entry">
         <a href="/Brisbane_Logistics/zone-sets" class="name">Zone Sets</a><p>Manage Zone Sets</p>    </div>
 
     </section>
@@ -368,12 +293,6 @@
         <a href="/Brisbane_Logistics/SaleOrders" class="name">Sale Orders</a><p>Manage Sale Orders (outgoing stock)</p>    </div>
 
                 <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/PurchaseOrderProducts/scanAllocation" class="name">Scan product allocation</a><p>Use the barcode scanner to allocate products in warehouse</p>    </div>
-
-                <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/outbound-orders/pack" class="name">Pack Sale Order</a><p>Pack Sale Orders for dispatch</p>    </div>
-
-                <div class="site-map-entry">
         <a href="/Brisbane_Logistics/StockTakes" class="name">Stocktakes</a><p>Take a Stocktake of current inventory</p>    </div>
 
                 <div class="site-map-entry">
@@ -384,12 +303,6 @@
 
                 <div class="site-map-entry">
         <a href="/Brisbane_Logistics/Containers" class="name">Containers</a><p>Manage incoming/outgoing Containers</p>    </div>
-
-                <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/Pallets/bulkPrint" class="name">Pallet Label Printing</a><p>Print Pallet Labels</p>    </div>
-
-                <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/SaleOrders/scanSaleOrderTote" class="name">Scan Order / Tote</a><p>Scan the barcode of a tote or sales order to quickly navigate to the packing screen</p>    </div>
 
                 <div class="site-map-entry">
         <a href="/Brisbane_Logistics/replenishments" class="name">Replenishments</a><p>Run a Replenishment</p>    </div>

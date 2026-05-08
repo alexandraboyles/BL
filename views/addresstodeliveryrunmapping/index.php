@@ -23,7 +23,7 @@
             <?php unset($_SESSION['flash_error']); ?>
         <?php endif; ?>
 
-        <h1>Address To Delivery Run Mapping List</h1>
+        <h1>Address To Delivery Run Mappings List</h1>
 
         <a href="/addresstodeliveryrunmapping/create">Create an address to delivery run mapping here</a><br><br>
 

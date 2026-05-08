@@ -23,7 +23,7 @@
             <?php unset($_SESSION['flash_error']); ?>
         <?php endif; ?>
 
-        <h1>Delivery Address to Onforwarder Address Mapping List</h1>
+        <h1>Delivery Address to Onforwarder Address Mappings List</h1>
 
         <a href="/deliveryaddresstoonforwarderaddressmapping/create">Create a delivery address to onforwarder address mapping here</a><br><br>
 

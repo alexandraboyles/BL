@@ -20,5 +20,9 @@ class Routes
         $router->resource('users', 'App\Controller\UsersController');
         $router->resource('drivers', 'App\Controller\DriversController');
         $router->resource('customers', 'App\Controller\CustomersController');
+        $router->resource('suppliers', 'App\Controller\SuppliersController');
+        $router->resource('documents', 'App\Controller\DocumentsController');
+        $router->resource('ftpusers', 'App\Controller\FTPUsersController');
+        $router->resource('parsers', 'App\Controller\ParsersController');
     }
 }

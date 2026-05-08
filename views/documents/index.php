@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Address To Invoice Customer Mapping</title>
+        <title>Document</title>
         <style>
             table, th, td {
                 border:1px solid black;
@@ -23,36 +23,44 @@
             <?php unset($_SESSION['flash_error']); ?>
         <?php endif; ?>
 
-        <h1>Address To Invoice Customer Mappings List</h1>
+        <h1>Documents List</h1>
 
-        <a href="/addresstoinvoicecustomermapping/create">Create an address to invoice customer mapping here</a><br><br>
+        <a href="/documents/create">Create a document here</a><br><br>
 
         <table style="width: 100%;">
             <tr>
                 <th>ID</th>
-                <th>Address Name</th>
+                <th>Sale Order ID</th>
                 <th>Customer Name</th>
+                <th>Consignment ID</th>
+                <th>File Type</th>
                 <th>Actions</th>
             </tr>
     <?php if (empty($items)): ?>
-            <tr><td colspan="3">No address to invoice customer mappings found</td></tr>
+            <tr><td colspan="3">No Documents found</td></tr>
         <?php else: ?>
-            <?php foreach ($items as $addresstoinvoicecustomermapping): ?>
+            <?php foreach ($items as $documents): ?>
                 <tr>
                     <td style="text-align: right;">
-                        <?= htmlspecialchars($addresstoinvoicecustomermapping['id']) ?>
+                        <?= htmlspecialchars($documents['id']) ?>
+                    </td>
+                    <td style="text-align: right;">
+                        <?= htmlspecialchars($documents['saleOrder_human_id']) ?>
                     </td>
                     <td style="text-align: left;">
-                        <?= htmlspecialchars($addresstoinvoicecustomermapping['address_name']) ?>
+                        <?= htmlspecialchars($documents['customer_name'] ?? 'N/A') ?>
                     </td>
-                    <td style="text-align: left;">
-                        <?= htmlspecialchars($addresstoinvoicecustomermapping['customer_name']) ?>
+                    <td style="text-align: right;">
+                        <?= htmlspecialchars($documents['consignment_human_id']) ?>
+                    </td>
+                        <td style="text-align: left;">
+                        <?= htmlspecialchars($documents['fileType']) ?>
                     </td>
                     <td style="text-align: center;">
-                        <a href="/addresstoinvoicecustomermapping/<?= $addresstoinvoicecustomermapping['id'] ?>" style="margin-right: 5px;">View</a>
-                        <a href="/addresstoinvoicecustomermapping/<?= $addresstoinvoicecustomermapping['id'] ?>/edit" style="margin-right: 5px;">Edit</a>
-                        <a href="/addresstoinvoicecustomermapping/<?= $addresstoinvoicecustomermapping['id'] ?>/delete" style="margin-right: 5px; color: red;" 
-                           onclick="return confirm('Delete id = <?= htmlspecialchars($addresstoinvoicecustomermapping['id']) ?>?')">Delete</a>
+                        <a href="/documents/<?= $documents['id'] ?>" style="margin-right: 5px;">View</a>
+                        <a href="/documents/<?= $documents['id'] ?>/edit" style="margin-right: 5px;">Edit</a>
+                        <a href="/documents/<?= $documents['id'] ?>/delete" style="margin-right: 5px; color: red;" 
+                           onclick="return confirm('Delete id = <?= htmlspecialchars($documents['id']) ?>?')">Delete</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

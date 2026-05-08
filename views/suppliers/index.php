@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Address Default Instructions</title>
+        <title>Supplier</title>
         <style>
             table, th, td {
                 border:1px solid black;
@@ -23,44 +23,48 @@
             <?php unset($_SESSION['flash_error']); ?>
         <?php endif; ?>
 
-        <h1>Address Default Instructions List</h1>
+        <h1>Suppliers List</h1>
 
-        <a href="/addressdefaultinstructions/create">Create an address default instruction here</a><br><br>
+        <a href="/suppliers/create">Create a supplier here</a><br><br>
 
         <table style="width: 100%;">
             <tr>
                 <th>ID</th>
-                <th>Address Name</th>
-                <th>Customer Name</th>
-                <th>Delivery Instruction</th>
-                <th>Packing Instruction</th>
+                <th>Rate Card</th>
+                <th>Company Name</th>
+                <th>Email</th>
+                <th>Telephone Number</th>
+                <th>Accounting Connector</th>
                 <th>Actions</th>
             </tr>
     <?php if (empty($items)): ?>
-            <tr><td colspan="5">No address default instructions found</td></tr>
+            <tr><td colspan="8">No suppliers found</td></tr>
         <?php else: ?>
-            <?php foreach ($items as $addressdefaultinstruction): ?>
+            <?php foreach ($items as $suppliers): ?>
                 <tr>
                     <td style="text-align: right;">
-                        <?= htmlspecialchars($addressdefaultinstruction['id']) ?>
+                        <?= htmlspecialchars($suppliers['id']) ?>
                     </td>
                     <td style="text-align: left;">
-                        <?= htmlspecialchars($addressdefaultinstruction['address_name']) ?>
+                        <?= htmlspecialchars($suppliers['rateCard_name']) ?>
                     </td>
                     <td style="text-align: left;">
-                        <?= htmlspecialchars($addressdefaultinstruction['customer_name']) ?>
+                        <?= htmlspecialchars($suppliers['companyName']) ?>
                     </td>
                     <td style="text-align: left;">
-                        <?= htmlspecialchars($addressdefaultinstruction['deliveryInstruction']) ?>
+                        <?= htmlspecialchars($suppliers['email']) ?>
+                    </td>
+                    <td style="text-align: right;">
+                        <?= htmlspecialchars($suppliers['telNo']) ?>
                     </td>
                     <td style="text-align: left;">
-                        <?= htmlspecialchars($addressdefaultinstruction['packingInstruction']) ?>
+                        <?= htmlspecialchars($suppliers['accountingConnector']) ?>
                     </td>
                     <td style="text-align: center;">
-                        <a href="/addressdefaultinstructions/<?= $addressdefaultinstruction['id'] ?>" style="margin-right: 5px;">View</a>
-                        <a href="/addressdefaultinstructions/<?= $addressdefaultinstruction['id'] ?>/edit" style="margin-right: 5px;">Edit</a>
-                        <a href="/addressdefaultinstructions/<?= $addressdefaultinstruction['id'] ?>/delete" style="margin-right: 5px; color: red;" 
-                           onclick="return confirm('Delete id = <?= htmlspecialchars($addressdefaultinstruction['id']) ?>?')">Delete</a>
+                        <a href="/suppliers/<?= $suppliers['id'] ?>" style="margin-right: 5px;">View</a>
+                        <a href="/suppliers/<?= $suppliers['id'] ?>/edit" style="margin-right: 5px;">Edit</a>
+                        <a href="/suppliers/<?= $suppliers['id'] ?>/delete" style="margin-right: 5px; color: red;" 
+                           onclick="return confirm('Delete id = <?= htmlspecialchars($suppliers['id']) ?>?')">Delete</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

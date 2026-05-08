@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Address To Invoice Customer Mapping</title>
+        <title>FTP Users</title>
         <style>
             table, th, td {
                 border:1px solid black;
@@ -23,36 +23,40 @@
             <?php unset($_SESSION['flash_error']); ?>
         <?php endif; ?>
 
-        <h1>Address To Invoice Customer Mappings List</h1>
+        <h1>FTP Users List</h1>
 
-        <a href="/addresstoinvoicecustomermapping/create">Create an address to invoice customer mapping here</a><br><br>
+        <a href="/ftpusers/create">Create a FTP User here</a><br><br>
 
         <table style="width: 100%;">
             <tr>
                 <th>ID</th>
-                <th>Address Name</th>
-                <th>Customer Name</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Subdirectory</th>
                 <th>Actions</th>
             </tr>
     <?php if (empty($items)): ?>
-            <tr><td colspan="3">No address to invoice customer mappings found</td></tr>
+            <tr><td colspan="3">No FTP Users found</td></tr>
         <?php else: ?>
-            <?php foreach ($items as $addresstoinvoicecustomermapping): ?>
+            <?php foreach ($items as $ftpUsers): ?>
                 <tr>
                     <td style="text-align: right;">
-                        <?= htmlspecialchars($addresstoinvoicecustomermapping['id']) ?>
+                        <?= htmlspecialchars($ftpUsers['ftpUser_id']) ?>
                     </td>
                     <td style="text-align: left;">
-                        <?= htmlspecialchars($addresstoinvoicecustomermapping['address_name']) ?>
+                        <?= htmlspecialchars($ftpUsers['username']) ?>
                     </td>
                     <td style="text-align: left;">
-                        <?= htmlspecialchars($addresstoinvoicecustomermapping['customer_name']) ?>
+                        <?= htmlspecialchars($ftpUsers['password']) ?>
+                    </td>
+                    <td style="text-align: left;">
+                        <?= htmlspecialchars($ftpUsers['subDirectory']) ?>
                     </td>
                     <td style="text-align: center;">
-                        <a href="/addresstoinvoicecustomermapping/<?= $addresstoinvoicecustomermapping['id'] ?>" style="margin-right: 5px;">View</a>
-                        <a href="/addresstoinvoicecustomermapping/<?= $addresstoinvoicecustomermapping['id'] ?>/edit" style="margin-right: 5px;">Edit</a>
-                        <a href="/addresstoinvoicecustomermapping/<?= $addresstoinvoicecustomermapping['id'] ?>/delete" style="margin-right: 5px; color: red;" 
-                           onclick="return confirm('Delete id = <?= htmlspecialchars($addresstoinvoicecustomermapping['id']) ?>?')">Delete</a>
+                        <a href="/ftpusers/<?= $ftpUsers['ftpUser_id'] ?>" style="margin-right: 5px;">View</a>
+                        <a href="/ftpusers/<?= $ftpUsers['ftpUser_id'] ?>/edit" style="margin-right: 5px;">Edit</a>
+                        <a href="/ftpusers/<?= $ftpUsers['ftpUser_id'] ?>/delete" style="margin-right: 5px; color: red;" 
+                           onclick="return confirm('Delete id = <?= htmlspecialchars($ftpUsers['ftpUser_id']) ?>?')">Delete</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

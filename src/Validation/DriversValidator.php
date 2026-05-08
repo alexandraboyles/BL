@@ -13,10 +13,10 @@ class DriversValidator
             $errors[] = "Invalid input. Driver Name can only contain letters.";
         }
 
-        // Email validation
+        // Email validation - Use filter_var for better validation
         $email = trim($data['email'] ?? '');
-        if (!preg_match('/^[A-Za-z0-9\-_.@]+$/', $email)) {
-            $errors[] = "Invalid input. Email contains restricted characters.";
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors[] = "Invalid input. Please enter a valid email address.";
         }
 
         // Is Online validation

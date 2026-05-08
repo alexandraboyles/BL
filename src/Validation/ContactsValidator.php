@@ -13,17 +13,18 @@ class ContactsValidator
             $errors[] = "Invalid input. Contact Name can only contain letters.";
         }
 
-        // Email validation
+        // Email validation - Use filter_var for better validation
         $email = trim($data['email'] ?? '');
-        if (!preg_match('/^[A-Za-z0-9\-_.@]+$/', $email)) {
-            $errors[] = "Invalid input. Email contains restricted characters.";
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors[] = "Invalid input. Please enter a valid email address.";
         }
 
-        // Phone validation
+        // Phone validation - Allow digits, spaces, +, (, ), and -
         $phone = trim($data['phone'] ?? '');
-        if (!preg_match('/^[z0-9]+$/', $phone)) {
-            $errors[] = "Invalid input. Phone can only contain numbers.";
+        if (!preg_match('/^[0-9+\s()\-]+$/', $phone)) {
+            $errors[] = "Invalid input. Phone can only contain digits, spaces, and +, -, (, ) symbols.";
         }
+
         return $errors;
     }
 }
