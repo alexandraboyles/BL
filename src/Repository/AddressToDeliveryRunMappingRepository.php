@@ -69,8 +69,8 @@ class AddressToDeliveryRunMappingRepository
              VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
         );
         $stmt->execute([
-            $data['id'],
-            $data['addressType_id'],
+            (int)$data['id'],
+            (int)$data['addressType_id'],
             $data['address_id'],
             $data['customer_id'],
             $data['product_id'],
@@ -88,8 +88,8 @@ class AddressToDeliveryRunMappingRepository
               WHERE id = ?"
         );
         return $stmt->execute([
-            $data['id'],
-            $data['addressType_id'],
+            (int)$data['id'],
+            (int)$data['addressType_id'],
             $data['address_id'],
             $data['customer_id'],
             $data['product_id'],

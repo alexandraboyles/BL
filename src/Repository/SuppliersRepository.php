@@ -44,8 +44,8 @@ class SuppliersRepository
              VALUES (?, ?, ?, ?, ?, ?)"
         );
         $stmt->execute([
-            $data['id'],
-            $data['rateCard_id'],
+            (int)$data['id'],
+            (int)$data['rateCard_id'],
             trim($data['companyName']),
             trim($data['email']),
             trim($data['telNo']),
@@ -61,8 +61,8 @@ class SuppliersRepository
               WHERE id = ?"
         );
         return $stmt->execute([
-            $data['id'],
-            $data['rateCard_id'],
+            (int)$data['id'],
+            (int)$data['rateCard_id'],
             trim($data['companyName']),
             trim($data['email']),
             trim($data['telNo']),

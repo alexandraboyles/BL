@@ -1,2 +1,3 @@
 origin_query.sql
 vendor/
+.gitignore

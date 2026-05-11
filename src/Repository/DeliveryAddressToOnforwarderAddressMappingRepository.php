@@ -53,7 +53,7 @@ class DeliveryAddressToOnforwarderAddressMappingRepository
              VALUES (?, ?, ?, ?)"
         );
         $stmt->execute([
-            $data['id'],
+            (int)$data['id'],
             $data['address_id'],
             $data['customer_id'],
             $data['product_id']
@@ -68,7 +68,7 @@ class DeliveryAddressToOnforwarderAddressMappingRepository
               WHERE id = ?"
         );
         return $stmt->execute([
-            $data['id'],
+            (int)$data['id'],
             $data['address_id'],
             $data['customer_id'],
             $data['product_id'],

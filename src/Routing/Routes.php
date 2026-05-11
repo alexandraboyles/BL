@@ -24,5 +24,7 @@ class Routes
         $router->resource('documents', 'App\Controller\DocumentsController');
         $router->resource('ftpusers', 'App\Controller\FTPUsersController');
         $router->resource('parsers', 'App\Controller\ParsersController');
+        $router->resource('invoices', 'App\Controller\InvoicesController');
+        $router->resource('feecategories', 'App\Controller\FeeCategoriesController');
     }
 }

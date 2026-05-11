@@ -44,7 +44,7 @@ class ParsersRepository
              VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
         );
         $stmt->execute([
-            $data['id'],
+            (int)$data['id'],
             $data['customer_id'],
             trim($data['parser_name']),
             trim($data['className']),
@@ -63,7 +63,7 @@ class ParsersRepository
               WHERE id = ?"
         );
         return $stmt->execute([
-            $data['id'],
+            (int)$data['id'],
             $data['customer_id'],
             trim($data['parser_name']),
             trim($data['className']),

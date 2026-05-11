@@ -50,7 +50,7 @@ class AddressStringsRepository
              VALUES (?, ?, ?, ?)"
         );
         $stmt->execute([
-            $data['id'],
+            (int)$data['id'],
             $data['address_id'],
             $data['customer_id'],
             trim($data['text'])
@@ -66,7 +66,7 @@ class AddressStringsRepository
               WHERE id = ?"
         );
         return $stmt->execute([
-            $data['id'],
+            (int)$data['id'],
             $data['address_id'],
             $data['customer_id'],
             trim($data['text']),

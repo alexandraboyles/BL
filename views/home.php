@@ -151,13 +151,13 @@
     </a>
 
                 <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/Invoices" class="name">Invoices</a><p>Create, manage, upload and send invoices</p>    </div>
+        <a href="/invoices" class="name">Invoices</a><p>Create, manage, upload and send invoices</p>    </div>
 
                 <div class="site-map-entry">
         <a href="/Brisbane_Logistics/Bills" class="name">Bills</a><p>Create, manage, upload and send bills</p>    </div>
 
                 <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/fee-categories" class="name">Fee Categories (Previously "Charge Subclasses")</a><p>Manage Fee Categories in different models</p>    </div>
+        <a href="/feecategories" class="name">Fee Categories (Previously "Charge Subclasses")</a><p>Manage Fee Categories in different models</p>    </div>
 
                 <div class="site-map-entry">
         <a href="/Brisbane_Logistics/DefaultAdhocChargeConfig" class="name">Adhoc Charges</a><p>Set up global adhoc charges</p>    </div>

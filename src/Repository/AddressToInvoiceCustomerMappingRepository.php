@@ -49,7 +49,7 @@ class AddressToInvoiceCustomerMappingRepository
              VALUES (?, ?, ?)"
         );
         $stmt->execute([
-            $data['id'],
+            (int)$data['id'],
             $data['address_id'],
             $data['customer_id']
         ]);
@@ -63,7 +63,7 @@ class AddressToInvoiceCustomerMappingRepository
               WHERE id = ?"
         );
         return $stmt->execute([
-            $data['id'],
+            (int)$data['id'],
             $data['address_id'],
             $data['customer_id'],
             $id

@@ -32,7 +32,7 @@
                value="<?= htmlspecialchars($old['id'] ?? '', ENT_QUOTES) ?>" required>
     </div>
     <div>
-        <label for="rateCard_id">Address Type:</label>
+        <label for="rateCard_id">Rate Card:</label>
         <select name="rateCard_id" id="rateCard_id" required>
             <option value="">-- Select Rate Card--</option>
             <?php foreach ($rateCards as $rateCard): ?>

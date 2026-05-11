@@ -52,7 +52,7 @@ class DocumentsRepository
              VALUES (?, ?, ?, ?, ?)"
         );
         $stmt->execute([
-            $data['id'],
+            (int)$data['id'],
             $data['saleOrder_id'],
             $data['customer_id'],
             $data['consignment_id'],
@@ -68,7 +68,7 @@ class DocumentsRepository
               WHERE id = ?"
         );
         return $stmt->execute([
-            $data['id'],
+            (int)$data['id'],
             $data['saleOrder_id'],
             $data['customer_id'],
             $data['consignment_id'],
