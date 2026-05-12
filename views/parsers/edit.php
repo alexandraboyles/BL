@@ -30,11 +30,6 @@
 
         <form method="post" action="/parsers/<?= htmlspecialchars($item['id'], ENT_QUOTES) ?>">
         <div>
-            <label for="id">ID:</label>
-            <input id="id" type="number" name="id"
-                   value="<?= htmlspecialchars($item['id'] ?? '', ENT_QUOTES) ?>" required>
-        </div>
-        <div>
                 <label for="customer_id">Customer:</label>
                 <select name="customer_id" id="customer_id" required>
                     <option value="">-- Select Customer --</option>

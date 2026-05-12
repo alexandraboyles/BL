@@ -23,10 +23,6 @@ class FeeCategoriesService
     }
     public function create(array $data): bool|array
     {
-        if ($this->repo->existsById((int)$data['id'])) {
-            return ["Fee Category ID is already in use."];
-        }
-
         if ($this->repo->existsByFeeCategoryName($data['feeCategory_name'])) {
             return ["Fee Category Name is already in use."];
         }
@@ -36,11 +32,7 @@ class FeeCategoriesService
     }
     public function update(int $originalId, array $data): bool|array
     {
-        if ((int)$originalId !== (int)$data['id'] && $this->repo->existsById((int)$data['id'])) {
-            return ["Fee Category ID is already in use."];
-        }
-
-        if ($this->repo->existsById(trim($data['feeCategory_name']))) {
+        if ($this->repo->existsByFeeCategoryName(trim($data['feeCategory_name']))) {
             return ["Fee Category Name is already in use."];
         }
 

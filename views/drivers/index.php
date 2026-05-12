@@ -29,7 +29,7 @@
             <tr>
                 <th>Driver Name</th>
                 <th>Email</th>
-                <th>Online</th>
+                <th>Is Online</th>
                 <th>Location Access Available</th>
                 <th>Actions</th>
             </tr>

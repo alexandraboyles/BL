@@ -1,14 +1,14 @@
 <?php
 namespace App\Service;
-use App\Repository\DocumentsRepository;
+use App\Repository\RateCardsRepository;
 use InvalidArgumentException;
-class DocumentsService
+class RateCardsService
 {
     private $repo;
 
     public function __construct()
     {
-        $this->repo = new DocumentsRepository();
+        $this->repo = new RateCardsRepository();
     }
     public function getAll(): array
     {
@@ -25,18 +25,24 @@ class DocumentsService
     public function getFormData(): array
     {
         return [
-            'saleOrders' => $this->repo->getAllSaleOrders(),
-            'customers' => $this->repo->getAllCustomers(),
-            'consignments' => $this->repo->getAllConsignments()
+            'customers' => $this->repo->getAllCustomers()
         ];
     }
     public function create(array $data): bool|array
     {
+        if ($this->repo->existsByRates($data['rates'])) {
+            return ["Rates is already in use."];
+        }
+
         $this->repo->save($data);
         return true;
     }
     public function update(int $id, array $data): bool|array
     {
+        if ($this->repo->existsByRates(trim($data['rates']))) {
+            return ["Rates is already in use."];
+        }
+
         return $this->repo->update($id, $data);
     }
     public function delete(int $id): bool

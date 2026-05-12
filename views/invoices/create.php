@@ -42,7 +42,7 @@
 
     <form method="post" action="/invoices">
         <div>
-            <label for="invoice_id">ID:</label>
+            <label for="invoice_id">Invoice ID:</label>
             <input id="invoice_id" type="number" name="invoice_id" 
                    value="<?= htmlspecialchars($old['invoice_id'] ?? '', ENT_QUOTES) ?>" required>
         </div>

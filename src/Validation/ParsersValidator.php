@@ -7,12 +7,6 @@ class ParsersValidator
     {
         $errors = [];
 
-        // ID validation
-        $id = trim($data['id'] ?? '');
-        if ($id !== '' && (!is_numeric($id) || (int)$id <= 0)) {
-            $errors[] = "ID should be a positive number.";
-        }
-
         $stringFields = [
             'parser_name'       => 'Parser Name',
             'className'         => 'Class Name',

@@ -28,11 +28,11 @@
 
         <form method="post" action="/ftpusers/<?= htmlspecialchars($item['ftpUser_id'], ENT_QUOTES) ?>">
             <div>
-                <label for="ftpUser_id">ID:</label>
+                <label for="ftpUser_id">FTP User ID:</label>
                 <input id="ftpUser_id" type="number" name="ftpUser_id" value="<?= htmlspecialchars($item['ftpUser_id'] ?? '', ENT_QUOTES) ?>" required>
             </div>
             <div>
-                <label for="username">Name:</label>
+                <label for="username">Username:</label>
                 <input id="username" type="text" name="username" value="<?= htmlspecialchars($item['username'] ?? '', ENT_QUOTES) ?>" required>
             </div>
             <div>

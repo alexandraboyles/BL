@@ -29,7 +29,7 @@
 
         <table style="width: 100%;">
             <tr>
-                <th>ID</th>
+                <th>Address ID</th>
                 <th>Address Name</th>
                 <th>Street 1</th>
                 <th>Street 2</th>

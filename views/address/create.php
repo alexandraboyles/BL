@@ -25,12 +25,12 @@
 
     <form method="post" action="/addresses">
         <div>
-            <label for="address_id">ID:</label>
+            <label for="address_id">Address ID:</label>
             <input id="address_id" type="number" name="address_id"
                    value="<?= htmlspecialchars($old['address_id'] ?? '', ENT_QUOTES) ?>" required>
         </div>
         <div>
-            <label for="address_name">Name:</label>
+            <label for="address_name">Address Name:</label>
             <input id="address_name" type="text" name="address_name" 
                    value="<?= htmlspecialchars($old['address_name'] ?? '', ENT_QUOTES) ?>" required>
         </div>

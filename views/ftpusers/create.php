@@ -25,7 +25,7 @@
 
     <form method="post" action="/ftpusers">
         <div>
-            <label for="ftpUser_id">ID:</label>
+            <label for="ftpUser_id">FTP User ID:</label>
             <input id="ftpUser_id" type="number" name="ftpUser_id"
                    value="<?= htmlspecialchars($old['ftpUser_id'] ?? '', ENT_QUOTES) ?>" required>
         </div>

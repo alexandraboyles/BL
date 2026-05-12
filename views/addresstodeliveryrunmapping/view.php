@@ -14,7 +14,7 @@
 
         <?php if ($item): ?> <!-- Check item -->
             <p><b>ID: </b><?= htmlspecialchars($item['id']) ?></p> <!-- UUID -->
-            <p><b>Address Type: </b><?= htmlspecialchars($item['addressType_id']) ?></p> <!-- AddressType ID -->
+            <p><b>Address Type ID: </b><?= htmlspecialchars($item['addressType_id']) ?></p> <!-- AddressType ID -->
             <p><b>Address ID: </b><?= htmlspecialchars($item['address_id']) ?></p> <!-- Address ID -->
             <p><b>Customer ID: </b><?= htmlspecialchars($item['customer_id']) ?></p> <!-- Customer ID -->
             <p><b>Product ID: </b><?= htmlspecialchars($item['product_id']) ?></p> <!-- Product ID -->

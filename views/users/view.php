@@ -11,11 +11,10 @@
         <h1>User Detail</h1> <!-- Heading -->
 
         <?php if ($item): ?>
-            <p><b>ID: </b><?= htmlspecialchars($item['id']) ?></p>
+            <p><b>UUID: </b><?= htmlspecialchars($item['id']) ?></p>
             <p><b>Customer ID: </b><?= htmlspecialchars($item['customer_id']) ?></p>
             <p><b>Full Name: </b><?= htmlspecialchars($item['fullName']) ?></p>
             <p><b>Email: </b><?= htmlspecialchars($item['email']) ?></p>
-            <p><b>MFA: </b><?= htmlspecialchars($item['mfa']) ?></p>
             <p><b>Roles: </b><?php
                 $rolesData = $item['roles'];
                 if ($rolesData) {
@@ -38,8 +37,9 @@
                     echo 'None';
                 }
             ?></p>
-            <p><b>Warehouse: </b><?= htmlspecialchars($item['warehouse'] ?? '') ?></p>
-            <p><b>Email Verified: </b><?= htmlspecialchars($item['is_email_verified']) ?></p>
+            <p><b>Warehouses ID: </b><?= htmlspecialchars($item['warehouses_id'] ?? '') ?></p>
+            <p><b>MFA: </b><?= htmlspecialchars($item['mfa']) ?></p>
+            <p><b>Is Email Verified: </b><?= htmlspecialchars($item['is_email_verified']) ?></p>
         <?php else: ?>
             <p>User not found</p>
         <?php endif; ?>

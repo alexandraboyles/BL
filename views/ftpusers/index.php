@@ -29,10 +29,11 @@
 
         <table style="width: 100%;">
             <tr>
-                <th>ID</th>
+                <th>FTP User sID</th>
                 <th>Username</th>
                 <th>Password</th>
                 <th>Subdirectory</th>
+                <th>Last Login</th>
                 <th>Actions</th>
             </tr>
     <?php if (empty($items)): ?>
@@ -51,6 +52,9 @@
                     </td>
                     <td style="text-align: left;">
                         <?= htmlspecialchars($ftpUsers['subDirectory']) ?>
+                    </td>
+                    <td style="text-align: right;">
+                        <?= htmlspecialchars($ftpUsers['lastLogin']) ?>
                     </td>
                     <td style="text-align: center;">
                         <a href="/ftpusers/<?= $ftpUsers['ftpUser_id'] ?>" style="margin-right: 5px;">View</a>

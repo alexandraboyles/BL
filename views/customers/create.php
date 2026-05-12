@@ -27,17 +27,17 @@
 
     <form method="post" action="/customers">
         <div>
-            <label for="customer_name">Name:</label>
+            <label for="customer_name">Customer Name:</label>
             <input id="customer_name" type="text" name="customer_name" 
                    value="<?= htmlspecialchars($old['customer_name'] ?? '', ENT_QUOTES) ?>" required>
         </div>
         <div>
-            <label for="contact_phone">Phone:</label>
+            <label for="contact_phone">Contact Phone:</label>
             <input id="contact_phone" type="text" name="contact_phone" 
                    value="<?= htmlspecialchars($old['contact_phone'] ?? '', ENT_QUOTES) ?>" required>
         </div>
         <div>
-            <label for="contact_email">Email:</label>
+            <label for="contact_email">Contact Email:</label>
             <input id="contact_email" type="text" name="contact_email" 
                    value="<?= htmlspecialchars($old['contact_email'] ?? '', ENT_QUOTES) ?>" required>
         </div>

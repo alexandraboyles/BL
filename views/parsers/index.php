@@ -44,7 +44,7 @@
         <?php else: ?>
             <?php foreach ($items as $parsers): ?>
                 <tr>
-                    <td style="text-align: left;">
+                    <td style="text-align: right;">
                         <?= htmlspecialchars($parsers['id']) ?>
                     </td>
                     <td style="text-align: left;">

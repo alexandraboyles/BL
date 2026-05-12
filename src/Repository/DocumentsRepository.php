@@ -48,11 +48,10 @@ class DocumentsRepository
     public function save(array $data): int
     {
         $stmt = $this->pdo->prepare(
-            "INSERT INTO document (id, saleOrder_id, customer_id, consignment_id, fileType)
-             VALUES (?, ?, ?, ?, ?)"
+            "INSERT INTO document (saleOrder_id, customer_id, consignment_id, fileType)
+             VALUES (?, ?, ?, ?)"
         );
         $stmt->execute([
-            (int)$data['id'],
             $data['saleOrder_id'],
             $data['customer_id'],
             $data['consignment_id'],
@@ -64,11 +63,10 @@ class DocumentsRepository
     {
         $stmt = $this->pdo->prepare(
             "UPDATE document
-                SET id = ?, saleOrder_id = ?, customer_id = ?, consignment_id = ?, fileType = ?
+                SET saleOrder_id = ?, customer_id = ?, consignment_id = ?, fileType = ?
               WHERE id = ?"
         );
         return $stmt->execute([
-            (int)$data['id'],
             $data['saleOrder_id'],
             $data['customer_id'],
             $data['consignment_id'],
@@ -88,12 +86,6 @@ class DocumentsRepository
             }
             throw $e;
         }
-    }
-    public function existsById(int $id): bool
-    {
-        $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM document WHERE id = ?");
-        $stmt->execute([$id]);
-        return (int)$stmt->fetchColumn() > 0;
     }
     // New methods to populate dropdowns
     public function getAllSaleOrders(): array

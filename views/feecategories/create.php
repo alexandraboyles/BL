@@ -27,11 +27,6 @@
 
     <form method="post" action="/feecategories">
         <div>
-            <label for="id">ID:</label>
-            <input id="id" type="number" name="id" 
-                   value="<?= htmlspecialchars($old['id'] ?? '', ENT_QUOTES) ?>" required>
-        </div>
-        <div>
             <label for="appliesTo">Applies To:</label>
             <input id="appliesTo" type="text" name="appliesTo" 
                    value="<?= htmlspecialchars($old['appliesTo'] ?? '', ENT_QUOTES) ?>" required>
@@ -55,7 +50,7 @@
             </select>
         </div>
         <div>
-            <label for="is_name_editable">Name Editable:</label>
+            <label for="is_name_editable">Is Name Editable:</label>
             <select id="is_name_editable" name="is_name_editable" required>
                 <option value="">-- Select --</option>
                 <option value="1" <?= (($old['is_name_editable'] ?? '') == '1' || strtolower($old['is_name_editable'] ?? '') == 'yes') ? 'selected' : '' ?>>Yes</option>

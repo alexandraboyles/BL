@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Create Parser</title>
+    <title>Create Rate Card</title>
     <style>
        label { display: inline-block; width: 150px; text-align: left; padding: 10px; }
        .error { color: red; }
@@ -15,7 +15,7 @@
 </head>
 <body>
 <?php /** @var array|null $errors @var array $old @var array $customers */ ?>
-<h1>Create Parser</h1>
+<h1>Create Rate Card</h1>
     <?php if (!empty($errors)): ?>
         <div style="color: red; background: #fee;">
             <ul>
@@ -25,7 +25,7 @@
             </ul>
         </div>
     <?php endif; ?>
-<form method="post" action="/parsers">
+<form method="post" action="/ratecards">
     <div>
         <label for="customer_id">Customer:</label>
         <select name="customer_id" id="customer_id" required>
@@ -39,39 +39,19 @@
         </select>
     </div>
     <div>
-            <label for="parser_name">Parser Name:</label>
-            <input id="parser_name" type="text" name="parser_name" 
-                   value="<?= htmlspecialchars($old['parser_name'] ?? '', ENT_QUOTES) ?>" required>
+            <label for="rates">Rates:</label>
+            <input id="rates" type="text" name="rates" 
+                   value="<?= htmlspecialchars($old['rates'] ?? '', ENT_QUOTES) ?>" required>
     </div>  
     <div>
-            <label for="className">Class Name:</label>
-            <input id="className" type="text" name="className" 
-                   value="<?= htmlspecialchars($old['className'] ?? '', ENT_QUOTES) ?>" required>
-    </div> 
-    <div>
-            <label for="class">Class:</label>
-            <input id="class" type="text" name="class" 
-                   value="<?= htmlspecialchars($old['class'] ?? '', ENT_QUOTES) ?>" required>
-    </div>   
-    <div>
-            <label for="type">Type:</label>
-            <input id="type" type="text" name="type" 
-                   value="<?= htmlspecialchars($old['type'] ?? '', ENT_QUOTES) ?>" required>
-    </div>
-    <div>
-            <label for="acceptedFileTypes">Accepted Files:</label>
-            <input id="acceptedFileTypes" type="text" name="acceptedFileTypes" 
-                   value="<?= htmlspecialchars($old['acceptedFileTypes'] ?? '', ENT_QUOTES) ?>" required>
-    </div>  
-    <div>
-            <label for="toAddress">To Address:</label>
-            <input id="toAddress" type="text" name="toAddress" 
-                   value="<?= htmlspecialchars($old['toAddress'] ?? '', ENT_QUOTES) ?>" required>
+            <label for="contact_email">Contact Email:</label>
+            <input id="contact_email" type="text" name="contact_email" 
+                   value="<?= htmlspecialchars($old['contact_email'] ?? '', ENT_QUOTES) ?>" required>
     </div>              
     <br>
     <button type="submit">Save</button>
 </form>
 <br><br>
-<a href="/parsers">Back to List</a>
+<a href="/ratecards">Back to List</a>
 </body>
 </html>

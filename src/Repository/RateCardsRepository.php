@@ -2,7 +2,7 @@
 namespace App\Repository;
 
 use PDO;
-class ParsersRepository
+class RateCardsRepository
 {
     private PDO $pdo;
     public function __construct()
@@ -16,21 +16,21 @@ class ParsersRepository
 
     public function findAll(): array
     {
-        $sql = "SELECT p.*, 
+        $sql = "SELECT rc.*, 
                        c.customer_name AS customer_name
-                  FROM parser p
-             LEFT JOIN Customer c ON p.customer_id = c.id
-              ORDER BY p.id DESC";
+                  FROM rateCard rc
+             LEFT JOIN Customer c ON rc.customer_id = c.id
+              ORDER BY rc.id DESC";
         $stmt = $this->pdo->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function find(int $id): ?array
     {
-        $sql = "SELECT p.*, 
+        $sql = "SELECT rc.*, 
                        c.customer_name AS customer_name
-                  FROM parser p
-             LEFT JOIN Customer c ON p.customer_id = c.id
-              WHERE p.id = ?
+                  FROM rateCard rc
+             LEFT JOIN Customer c ON rc.customer_id = c.id
+              WHERE rc.id = ?
         ";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$id]);
@@ -40,60 +40,52 @@ class ParsersRepository
     public function save(array $data): int
     {
         $stmt = $this->pdo->prepare(
-            "INSERT INTO parser (customer_id, parser_name, className, class, type, acceptedFileTypes, toAddress)
-             VALUES (?, ?, ?, ?, ?, ?, ?)"
+            "INSERT INTO rateCard (customer_id, rates, contact_email)
+             VALUES (?, ?, ?)"
         );
         $stmt->execute([
             $data['customer_id'],
-            trim($data['parser_name']),
-            trim($data['className']),
-            trim($data['class']),
-            trim($data['type']),
-            trim($data['acceptedFileTypes']),
-            trim($data['toAddress'])
+            trim($data['rates']),
+            trim($data['contact_email'])
         ]);
         return (int)$this->pdo->lastInsertId();
     }
     public function update(int $id, array $data): bool
     {
         $stmt = $this->pdo->prepare(
-            "UPDATE parser
-                SET customer_id = ?, parser_name = ?, className = ?, class = ?, type = ?, acceptedFileTypes = ?, toAddress = ?
+            "UPDATE rateCard
+                SET customer_id = ?, rates = ?, contact_email = ?
               WHERE id = ?"
         );
         return $stmt->execute([
             $data['customer_id'],
-            trim($data['parser_name']),
-            trim($data['className']),
-            trim($data['class']),
-            trim($data['type']),
-            trim($data['acceptedFileTypes']),
-            trim($data['toAddress']),
+            trim($data['rates']),
+            trim($data['contact_email']),
             $id
         ]);
     }
     public function delete(int $id): bool
     {
         try {
-            $stmt = $this->pdo->prepare("DELETE FROM parser WHERE id = ?");
+            $stmt = $this->pdo->prepare("DELETE FROM rateCard WHERE id = ?");
             return $stmt->execute([$id]);
         } catch (\PDOException $e) {
             if ($e->getCode() === '23000') {
                 // Integrity constraint violation (e.g., foreign key)
-                throw new \Exception("Cannot delete parser: it is referenced by other data.");
+                throw new \Exception("Cannot delete rate card: it is referenced by other data.");
             }
             throw $e;
         }
     }
 
-    public function existsByParserName(string $ParserName, ?string $excludeParserId = null): bool
+    public function existsByRates(string $rates, ?string $excludeRateCardId = null): bool
     {
-        if ($excludeParserId === null) {
-            $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM parser WHERE parser_name = ?");
-            $stmt->execute([trim($ParserName)]);
+        if ($excludeRateCardId === null) {
+            $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM rateCard WHERE rates = ?");
+            $stmt->execute([trim($rates)]);
         } else {
-            $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM parser WHERE parser_name = ? AND id <> ?");
-            $stmt->execute([trim($ParserName), $excludeParserId]);
+            $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM rateCard WHERE rates = ? AND id <> ?");
+            $stmt->execute([trim($rates), $excludeRateCardId]);
         }
         return (int)$stmt->fetchColumn() > 0;
     }

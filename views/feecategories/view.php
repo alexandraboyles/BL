@@ -16,7 +16,7 @@
             <p><b>Account: </b><?= htmlspecialchars($item['account']) ?></p>
             <p><b>Fee Category Name: </b><?= htmlspecialchars($item['feeCategory_name']) ?></p>
             <p><b>Counts Toward Minimum Charges: </b><?= htmlspecialchars($item['counts_toward_minimum_charges']) ?></p>
-            <p><b>Name Editable: </b><?= htmlspecialchars($item['is_name_editable']) ?></p>
+            <p><b>Is Name Editable: </b><?= htmlspecialchars($item['is_name_editable']) ?></p>
         <?php else: ?>
             <p>Fee Category not found</p>
         <?php endif; ?>

@@ -101,7 +101,7 @@
                    value="<?= htmlspecialchars($old['mfa'] ?? '', ENT_QUOTES) ?>" required>
         </div>
          <div>
-            <label for="is_email_verified">Email Verified:</label>
+            <label for="is_email_verified">Is Email Verified:</label>
             <select id="is_email_verified" name="is_email_verified" required>
                 <option value="">-- Select --</option>
                 <option value="1" <?= (($old['is_email_verified'] ?? '') == '1' || strtolower($old['is_email_verified'] ?? '') == 'yes') ? 'selected' : '' ?>>Yes</option>

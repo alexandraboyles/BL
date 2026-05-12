@@ -28,11 +28,11 @@
 
         <form method="post" action="/addresses/<?= htmlspecialchars($item['address_id'], ENT_QUOTES) ?>">
             <div>
-                <label for="address_id">ID:</label>
+                <label for="address_id">Address ID:</label>
                 <input id="address_id" type="number" name="address_id" value="<?= htmlspecialchars($item['address_id'] ?? '', ENT_QUOTES) ?>" required>
             </div>
             <div>
-                <label for="address_name">Name:</label>
+                <label for="address_name">Address Name:</label>
                 <input id="address_name" type="text" name="address_name" value="<?= htmlspecialchars($item['address_name'] ?? '', ENT_QUOTES) ?>" required>
             </div>
             <div>

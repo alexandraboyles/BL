@@ -18,7 +18,7 @@
             <p><b>Customer ID: </b><?= htmlspecialchars($item['customer_id']) ?></p> <!-- Customer ID -->
             <p><b>Text: </b><?= htmlspecialchars($item['text']) ?></p> <!-- Text -->
             <p><b>Date Added: </b><?= htmlspecialchars($item['dateAdded']) ?></p> <!-- Date Added -->
-            <p><b>Date Modified: </b><?= htmlspecialchars($item['lastModified']) ?></p> <!-- Date Modified -->
+            <p><b>Last Modified: </b><?= htmlspecialchars($item['lastModified']) ?></p> <!-- Last Modified -->
         <?php else: ?> <!-- If not found -->
             <p>Address String not found</p> <!-- Message -->
         <?php endif; ?>

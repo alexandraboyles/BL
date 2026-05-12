@@ -36,11 +36,10 @@ class FeeCategoriesRepository
     public function save(array $data): int
     {
         $stmt = $this->pdo->prepare(
-            "INSERT INTO feeCategory (id, appliesTo, account, feeCategory_name, counts_toward_minimum_charges, is_name_editable)
-             VALUES (?, ?, ?, ?, ?, ?)"
+            "INSERT INTO feeCategory (appliesTo, account, feeCategory_name, counts_toward_minimum_charges, is_name_editable)
+             VALUES (?, ?, ?, ?, ?)"
         );
         $stmt->execute([
-            (int)$data['id'],
             trim($data['appliesTo']),
             trim($data['account']),
             trim($data['feeCategory_name']),
@@ -53,11 +52,10 @@ class FeeCategoriesRepository
     {
         $stmt = $this->pdo->prepare(
             "UPDATE feeCategory
-                SET id = ?, appliesTo = ?, account = ?, feeCategory_name = ?, counts_toward_minimum_charges = ?, is_name_editable = ?
+                SET appliesTo = ?, account = ?, feeCategory_name = ?, counts_toward_minimum_charges = ?, is_name_editable = ?
               WHERE id = ?"
         );
         return $stmt->execute([
-            (int)$data['id'],
             trim($data['appliesTo']),
             trim($data['account']),
             trim($data['feeCategory_name']),
@@ -78,13 +76,6 @@ class FeeCategoriesRepository
             }
             throw $e;
         }
-    }
-
-    public function existsById(int $id): bool
-    {
-        $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM feeCategory WHERE id = ?");
-        $stmt->execute([$id]);
-        return (int)$stmt->fetchColumn() > 0;
     }
 
     public function existsByFeeCategoryName(string $FeeCategoryName, ?string $excludeFeeCategoryId = null): bool

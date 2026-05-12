@@ -13,7 +13,7 @@
         <h1>Invoice Detail</h1> <!-- Heading -->
 
         <?php if ($item): ?> <!-- Check item -->
-            <p><b>ID: </b><?= htmlspecialchars($item['id']) ?></p> <!-- UUID -->
+            <p><b>UUID: </b><?= htmlspecialchars($item['id']) ?></p> <!-- UUID -->
             <p><b>Invoice ID: </b><?= htmlspecialchars($item['invoice_id']) ?></p> <!-- Invoice ID -->
             <p><b>Customer ID: </b><?= htmlspecialchars($item['customer_id']) ?></p> <!-- Customer ID -->
             <p><b>Rate Card ID: </b><?= htmlspecialchars($item['rateCard_id']) ?></p> <!-- Rate Card ID -->

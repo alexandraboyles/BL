@@ -32,7 +32,7 @@
                 <th>Account</th>
                 <th>Fee Category Name</th>
                 <th>Counts Toward Minimum Charges</th>
-                <th>Name Editable</th>
+                <th>Is Name Editable</th>
                 <th>Actions</th>
             </tr>
     <?php if (empty($items)): ?>
@@ -56,7 +56,7 @@
                         <?= htmlspecialchars((bool)$feecategories['counts_toward_minimum_charges'] ? 'Yes' : 'No') ?>
                     </td>
                     <td style="text-align: left;">
-                        <?= htmlspecialchars((bool)$feecategories['is_name_available'] ? 'Yes' : 'No') ?>
+                        <?= htmlspecialchars((bool)$feecategories['is_name_editable'] ? 'Yes' : 'No') ?>
                     </td>
                     <td style="text-align: center;">
                         <a href="/feecategories/<?= $feecategories['id'] ?>" style="margin-right: 5px;">View</a>

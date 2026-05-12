@@ -27,11 +27,6 @@
     <?php endif; ?>
 <form method="post" action="/suppliers">
     <div>
-        <label for="id">ID:</label>
-        <input id="id" type="number" name="id"
-               value="<?= htmlspecialchars($old['id'] ?? '', ENT_QUOTES) ?>" required>
-    </div>
-    <div>
         <label for="rateCard_id">Rate Card:</label>
         <select name="rateCard_id" id="rateCard_id" required>
             <option value="">-- Select Rate Card--</option>
@@ -55,7 +50,7 @@
     </div>
     <div>
             <label for="telNo">Telephone Number:</label>
-            <input id="telNo" type="text" name="telNo" 
+            <input id="telNo" type="number" name="telNo" 
                    value="<?= htmlspecialchars($old['telNo'] ?? '', ENT_QUOTES) ?>" required>
     </div>     
      <div>

@@ -29,9 +29,9 @@
 
         <table style="width: 100%;">
             <tr>
-                <th>ID</th>
+                <th>Invoice ID</th>
                 <th>Customer Name</th>
-                <th>Rate Card ID</th>
+                <th>Rate Card Name</th>
                 <th>Manifest ID</th>
                 <th>Income</th>
                 <th>Expense</th>
@@ -55,7 +55,7 @@
                     <td style="text-align: left;">
                         <?= htmlspecialchars($invoices['customer_name']) ?>
                     </td>
-                    <td style="text-align: right;">
+                    <td style="text-align: left;">
                         <?= htmlspecialchars($invoices['rateCard_name']) ?>
                     </td>
                     <td style="text-align: right;">

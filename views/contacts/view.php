@@ -13,7 +13,7 @@
         <h1>Contact Detail</h1> <!-- Heading -->
 
         <?php if ($item): ?> <!-- Check item -->
-            <p><b>ID: </b><?= htmlspecialchars($item['id']) ?></p> <!-- UUID -->
+            <p><b>UUID: </b><?= htmlspecialchars($item['id']) ?></p> <!-- UUID -->
             <p><b>Customer ID: </b><?= htmlspecialchars($item['customer_id']) ?></p> <!-- Contact ID -->
             <p><b>Contact Name: </b><?= htmlspecialchars($item['contact_name']) ?></p> <!-- Contact Name -->
             <p><b>Email: </b><?= htmlspecialchars($item['email']) ?></p> <!-- Email -->

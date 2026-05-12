@@ -30,10 +30,6 @@ class ParsersService
     }
     public function create(array $data): bool|array
     {
-        if ($this->repo->existsById((int)$data['id'])) {
-            return ["Parser ID is already in use."];
-        }
-
         if ($this->repo->existsByParserName($data['parser_name'])) {
             return ["Parser Name is already in use."];
         }
@@ -43,10 +39,6 @@ class ParsersService
     }
     public function update(int $id, array $data): bool|array
     {
-        if ((int)$id !== (int)$data['id'] && $this->repo->existsById((int)$data['id'])) {
-            return ["Parser ID is already in use."];
-        }
-
         if ($this->repo->existsByParserName($data['parser_name'], (string)$id)) {
             return ["Parser Name is already in use."];
         }

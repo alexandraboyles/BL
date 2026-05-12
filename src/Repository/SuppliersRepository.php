@@ -40,11 +40,10 @@ class SuppliersRepository
     public function save(array $data): int
     {
         $stmt = $this->pdo->prepare(
-            "INSERT INTO supplier (id, rateCard_id, companyName, email, telNo, accountingConnector)
-             VALUES (?, ?, ?, ?, ?, ?)"
+            "INSERT INTO supplier (rateCard_id, companyName, email, telNo, accountingConnector)
+             VALUES (?, ?, ?, ?, ?)"
         );
         $stmt->execute([
-            (int)$data['id'],
             (int)$data['rateCard_id'],
             trim($data['companyName']),
             trim($data['email']),
@@ -57,11 +56,10 @@ class SuppliersRepository
     {
         $stmt = $this->pdo->prepare(
             "UPDATE supplier
-                SET id = ?, rateCard_id = ?, companyName = ?, email = ?, telNo = ?, accountingConnector = ?
+                SET rateCard_id = ?, companyName = ?, email = ?, telNo = ?, accountingConnector = ?
               WHERE id = ?"
         );
         return $stmt->execute([
-            (int)$data['id'],
             (int)$data['rateCard_id'],
             trim($data['companyName']),
             trim($data['email']),
@@ -82,13 +80,6 @@ class SuppliersRepository
             }
             throw $e;
         }
-    }
-
-    public function existsById(int $id): bool
-    {
-        $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM supplier WHERE id = ?");
-        $stmt->execute([$id]);
-        return (int)$stmt->fetchColumn() > 0;
     }
 
     public function existsByCompanyName(string $CompanyName, ?string $excludeSupplierId = null): bool

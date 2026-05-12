@@ -15,7 +15,7 @@
         <?php if ($item): ?> <!-- Check item -->
             <p><b>ID: </b><?= htmlspecialchars($item['id']) ?></p>
             <p><b>Sale Order ID: </b><?= htmlspecialchars($item['saleOrder_id']) ?></p>
-            <p><b>Customer Name: </b><?= htmlspecialchars($item['customer_name'] ?? 'N/A') ?></p>
+            <p><b>Customer ID: </b><?= htmlspecialchars($item['customer_id'] ?? 'N/A') ?></p>
             <p><b>Consignment ID: </b><?= htmlspecialchars($item['consignment_id']) ?></p>
             <p><b>File Type: </b><?= htmlspecialchars($item['fileType']) ?></p>
             <?php else: ?> <!-- If not found -->

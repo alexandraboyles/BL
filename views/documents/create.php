@@ -27,11 +27,6 @@
     <?php endif; ?>
 <form method="post" action="/documents">
     <div>
-        <label for="id">ID:</label>
-        <input id="id" type="number" name="id"
-               value="<?= htmlspecialchars($old['id'] ?? '', ENT_QUOTES) ?>" required>
-    </div>
-    <div>
         <label for="saleOrder_id">Sale Order:</label>
         <select name="saleOrder_id" id="saleOrder_id" required>
             <option value="">-- Select Sale Order --</option>

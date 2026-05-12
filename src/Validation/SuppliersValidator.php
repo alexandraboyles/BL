@@ -19,12 +19,6 @@ class SuppliersValidator
             $errors[] = "Invalid input. Please enter a valid email address.";
         }
 
-        // Telephone Number validation - Allow digits, spaces, +, (, ), and -
-        $telNo = trim($data['telNo'] ?? '');
-        if (!preg_match('/^[0-9+\s()\-]+$/', $telNo)) {
-            $errors[] = "Invalid input. Telephone Number can only contain digits, spaces, and +, -, (, ) symbols.";
-        }
-
         // Accounting Connector validation - Allow letters, numbers and spaces
         $accountingConnector = trim($data['accountingConnector'] ?? '');
         if (!preg_match('/^[A-Za-z0-9\s]+$/', $accountingConnector)) {

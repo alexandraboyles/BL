@@ -27,7 +27,7 @@
 
     <form method="post" action="/drivers">
         <div>
-            <label for="driver_name">Name:</label>
+            <label for="driver_name">Driver Name:</label>
             <input id="driver_name" type="text" name="driver_name" 
                    value="<?= htmlspecialchars($old['driver_name'] ?? '', ENT_QUOTES) ?>" required>
         </div>
@@ -37,7 +37,7 @@
                    value="<?= htmlspecialchars($old['email'] ?? '', ENT_QUOTES) ?>" required>
         </div>
         <div>
-            <label for="is_online">Online:</label>
+            <label for="is_online">Is Online:</label>
             <select id="is_online" name="is_online" required>
                 <option value="">-- Select --</option>
                 <option value="1" <?= (($old['is_online'] ?? '') == '1' || strtolower($old['is_online'] ?? '') == 'yes') ? 'selected' : '' ?>>Yes</option>

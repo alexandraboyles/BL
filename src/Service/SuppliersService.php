@@ -30,10 +30,6 @@ class SuppliersService
     }
     public function create(array $data): bool|array
     {
-        if ($this->repo->existsById($data['id'])) {
-            return ["Supplier ID is already in use."];
-        }
-
         if ($this->repo->existsByCompanyName($data['companyName'])) {
             return ["Company Name is already in use."];
         }
@@ -47,9 +43,6 @@ class SuppliersService
     }
     public function update(int $id, array $data): bool|array
     {
-        if ((int)$id !== (int)$data['id'] && $this->repo->existsById((int)$data['id'])) {
-            return ["Supplier ID is already in use."];
-        }
         if ($this->repo->existsByCompanyName(trim($data['companyName']), (int)$id)) {
             return ["Company Name is already in use."];
         }

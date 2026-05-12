@@ -31,9 +31,9 @@
                 <th>Full Name</th>
                 <th>Email</th>
                 <th>Roles</th>
-                <th>Warehouse</th>
+                <th>Warehouses</th>
                 <th>MFA</th>
-                <th>Email Verified</th>
+                <th>Is Email Verified</th>
                 <th>Actions</th>
             </tr>
     <?php if (empty($items)): ?>

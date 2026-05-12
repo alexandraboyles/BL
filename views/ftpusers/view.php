@@ -13,11 +13,12 @@
         <h1>FTP User Detail</h1> <!-- Heading -->
 
         <?php if ($item): ?> <!-- Check item -->
-            <p><b>ID: </b><?= htmlspecialchars($item['id']) ?></p> <!-- UUID -->
+            <p><b>UUID: </b><?= htmlspecialchars($item['id']) ?></p> <!-- UUID -->
             <p><b>FTP User ID: </b><?= htmlspecialchars($item['ftpUser_id']) ?></p> <!-- FTP User ID -->
             <p><b>Username: </b><?= htmlspecialchars($item['username']) ?></p> <!-- Username -->
             <p><b>Password: </b><?= htmlspecialchars($item['password']) ?></p> <!-- Password -->
             <p><b>Subdirectory: </b><?= htmlspecialchars($item['subDirectory']) ?></p> <!-- Subdirectory -->
+            <p><b>Last Login: </b><?= htmlspecialchars($item['lastLogin']) ?></p> <!-- Last Login -->
         <?php else: ?> <!-- If not found -->
             <p>FTP User not found</p> <!-- Message -->
         <?php endif; ?>
