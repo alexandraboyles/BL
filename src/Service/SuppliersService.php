@@ -54,7 +54,9 @@ class SuppliersService
     }
     public function delete(int $id): bool
     {
-        if ($id <= 0) throw new InvalidArgumentException("Invalid ID");
+        if (trim($id) === '') {
+            throw new InvalidArgumentException("Invalid ID");
+        }
         return $this->repo->delete($id);
     }
 }

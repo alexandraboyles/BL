@@ -75,18 +75,6 @@ class CustomersRepository
         ]);
     }
 
-    public function existsByCustomerName(string $CustomerName, ?string $excludeCustomerId = null): bool
-    {
-        if ($excludeCustomerId === null) {
-            $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM Customer WHERE customer_name = ?");
-            $stmt->execute([trim($CustomerName)]);
-        } else {
-            $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM Customer WHERE customer_name = ? AND id <> ?");
-            $stmt->execute([trim($CustomerName), $excludeCustomerId]);
-        }
-        return (int)$stmt->fetchColumn() > 0;
-    }
-
     public function delete(string $id): bool
     {
         try {
@@ -99,5 +87,17 @@ class CustomersRepository
             }
             throw $e;
         }
+    }
+
+    public function existsByCustomerName(string $CustomerName, ?string $excludeCustomerId = null): bool
+    {
+        if ($excludeCustomerId === null) {
+            $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM Customer WHERE customer_name = ?");
+            $stmt->execute([trim($CustomerName)]);
+        } else {
+            $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM Customer WHERE customer_name = ? AND id <> ?");
+            $stmt->execute([trim($CustomerName), $excludeCustomerId]);
+        }
+        return (int)$stmt->fetchColumn() > 0;
     }
 }

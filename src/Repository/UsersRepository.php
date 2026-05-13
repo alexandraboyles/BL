@@ -102,18 +102,6 @@ class UsersRepository
         ]);
     }
 
-    public function existsByFullName(string $FullName, ?string $excludeUserId = null): bool
-    {
-        if ($excludeUserId === null) {
-            $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM user WHERE fullName = ?");
-            $stmt->execute([trim($FullName)]);
-        } else {
-            $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM user WHERE fullName = ? AND id <> ?");
-            $stmt->execute([trim($FullName), $excludeUserId]);
-        }
-        return (int)$stmt->fetchColumn() > 0;
-    }
-
     public function delete(string $id): bool
     {
         try {
@@ -126,6 +114,30 @@ class UsersRepository
             }
             throw $e;
         }
+    }
+
+    public function existsByFullName(string $FullName, ?string $excludeUserId = null): bool
+    {
+        if ($excludeUserId === null) {
+            $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM user WHERE fullName = ?");
+            $stmt->execute([trim($FullName)]);
+        } else {
+            $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM user WHERE fullName = ? AND id <> ?");
+            $stmt->execute([trim($FullName), $excludeUserId]);
+        }
+        return (int)$stmt->fetchColumn() > 0;
+    }
+
+    public function existsByEmail(string $Email, ?string $excludeUserId = null): bool
+    {
+        if ($excludeUserId === null) {
+            $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM user WHERE email = ?");
+            $stmt->execute([trim($Email)]);
+        } else {
+            $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM user WHERE email = ? AND id <> ?");
+            $stmt->execute([trim($Email), $excludeUserId]);
+        }
+        return (int)$stmt->fetchColumn() > 0;
     }
 
     // New method to populate dropdowns

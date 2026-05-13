@@ -1,14 +1,14 @@
 <?php
 namespace App\Service;
-use App\Repository\FeeCategoriesRepository;
+use App\Repository\AccountsRepository;
 use InvalidArgumentException;
-class FeeCategoriesService
+class AccountsService
 {
     private $repo;
 
     public function __construct()
     {
-        $this->repo = new FeeCategoriesRepository();
+        $this->repo = new AccountsRepository();
     }
     public function getAll(): array
     {
@@ -23,8 +23,8 @@ class FeeCategoriesService
     }
     public function create(array $data): bool|array
     {
-        if ($this->repo->existsByFeeCategoryName($data['feeCategory_name'])) {
-            return ["Fee Category Name is already in use."];
+        if ($this->repo->existsByAccountName($data['account_name'])) {
+            return ["Account Name is already in use."];
         }
 
         $this->repo->save($data);
@@ -32,8 +32,8 @@ class FeeCategoriesService
     }
     public function update(int $originalId, array $data): bool|array
     {
-        if ($this->repo->existsByFeeCategoryName($data['feeCategory_name'], (string)$originalId)) {
-            return ["Fee Category Name is already in use."];
+        if ($this->repo->existsByAccountName($data['account_name'], (string)$originalId)) {
+            return ["Account Name is already in use."];
         }
 
         return $this->repo->update($originalId, $data);

@@ -154,7 +154,7 @@
         <a href="/invoices" class="name">Invoices</a><p>Create, manage, upload and send invoices</p>    </div>
 
                 <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/Bills" class="name">Bills</a><p>Create, manage, upload and send bills</p>    </div>
+        <a href="/bills" class="name">Bills</a><p>Create, manage, upload and send bills</p>    </div>
 
                 <div class="site-map-entry">
         <a href="/feecategories" class="name">Fee Categories (Previously "Charge Subclasses")</a><p>Manage Fee Categories in different models</p>    </div>
@@ -169,7 +169,7 @@
         <a href="/Brisbane_Logistics/calculator-templates" class="name">Surcharges</a><p>Manage Surcharges for Transport Rates</p>    </div>
 
                 <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/configurations/accounts" class="name">Accounts</a><p>Manage Accounts</p>    </div>
+        <a href="/accounts" class="name">Accounts</a><p>Manage Accounts</p>    </div>
 
     </section>
 

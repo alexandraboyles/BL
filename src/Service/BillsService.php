@@ -1,14 +1,14 @@
 <?php
 namespace App\Service;
-use App\Repository\FeeCategoriesRepository;
+use App\Repository\BillsRepository;
 use InvalidArgumentException;
-class FeeCategoriesService
+class BillsService
 {
     private $repo;
 
     public function __construct()
     {
-        $this->repo = new FeeCategoriesRepository();
+        $this->repo = new BillsRepository();
     }
     public function getAll(): array
     {
@@ -21,22 +21,23 @@ class FeeCategoriesService
         }
         return $this->repo->find($id);
     }
+    // Provide dropdown lists
+    public function getFormData(): array
+    {
+        return [
+            'suppliers' => $this->repo->getAllSuppliers(),
+            'invoices' => $this->repo->getAllInvoices(),
+            'manifests' => $this->repo->getAllManifests()
+        ];
+    }
     public function create(array $data): bool|array
     {
-        if ($this->repo->existsByFeeCategoryName($data['feeCategory_name'])) {
-            return ["Fee Category Name is already in use."];
-        }
-
         $this->repo->save($data);
         return true;
     }
-    public function update(int $originalId, array $data): bool|array
+    public function update(int $id, array $data): bool|array
     {
-        if ($this->repo->existsByFeeCategoryName($data['feeCategory_name'], (string)$originalId)) {
-            return ["Fee Category Name is already in use."];
-        }
-
-        return $this->repo->update($originalId, $data);
+        return $this->repo->update($id, $data);
     }
     public function delete(int $id): bool
     {

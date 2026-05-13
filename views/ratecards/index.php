@@ -36,7 +36,7 @@
                 <th>Actions</th>
             </tr>
     <?php if (empty($items)): ?>
-            <tr><td colspan="8">No Rate Cards found</td></tr>
+            <tr><td colspan="8">No rate cards found</td></tr>
         <?php else: ?>
             <?php foreach ($items as $ratecards): ?>
                 <tr>

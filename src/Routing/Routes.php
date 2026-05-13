@@ -27,5 +27,7 @@ class Routes
         $router->resource('invoices', 'App\Controller\InvoicesController');
         $router->resource('feecategories', 'App\Controller\FeeCategoriesController');
         $router->resource('ratecards', 'App\Controller\RateCardsController');
+        $router->resource('accounts', 'App\Controller\AccountsController');
+        $router->resource('bills', 'App\Controller\BillsController');
     }
 }

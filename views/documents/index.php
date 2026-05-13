@@ -37,7 +37,7 @@
                 <th>Actions</th>
             </tr>
     <?php if (empty($items)): ?>
-            <tr><td colspan="3">No Documents found</td></tr>
+            <tr><td colspan="3">No documents found</td></tr>
         <?php else: ?>
             <?php foreach ($items as $documents): ?>
                 <tr>

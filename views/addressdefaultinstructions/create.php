@@ -50,14 +50,12 @@
         </select>
     </div>
     <div>
-        <label for="deliveryInstruction">Delivery Instruction:</label>
-        <input id="deliveryInstruction" type="text" name="deliveryInstruction"
-               value="<?= htmlspecialchars($old['deliveryInstruction'] ?? '', ENT_QUOTES) ?>" required>
+            <label for="deliveryInstruction">Delivery Instruction:</label>
+            <textarea id="deliveryInstruction" name="deliveryInstruction" rows="4" cols="50" placeholder="Enter delivery instruction.." required><?= htmlspecialchars($old['deliveryInstruction'] ?? '', ENT_QUOTES) ?></textarea>
     </div>
     <div>
         <label for="packingInstruction">Packing Instruction:</label>
-        <input id="packingInstruction" type="text" name="packingInstruction"
-               value="<?= htmlspecialchars($old['packingInstruction'] ?? '', ENT_QUOTES) ?>" required>
+        <textarea id="packingInstruction" name="packingInstruction" rows="4" cols="50" placeholder="Enter packing instruction.." required><?= htmlspecialchars($old['packingInstruction'] ?? '', ENT_QUOTES) ?></textarea>
     </div>
     <br>
     <button type="submit">Save</button>

@@ -2,18 +2,15 @@
 namespace App\Service;
 
 use App\Repository\ContactsRepository;
-use App\Validation\ContactsValidator;
 use InvalidArgumentException;
 
 class ContactsService
 {
     private $repo;
-    private $validator;
 
     public function __construct()
     {
         $this->repo = new ContactsRepository();
-        $this->validator = new ContactsValidator();
     }
 
     public function getAll(): array
@@ -23,7 +20,7 @@ class ContactsService
 
     public function getById(string $id): ?array
     {
-        if (trim($id) === '') {
+        if ($id <= 0) {
             throw new InvalidArgumentException("Invalid ID");
         }
         return $this->repo->find($id);
@@ -39,12 +36,7 @@ class ContactsService
 
     public function create(array $data): bool|array
     {
-        $errors = $this->validator->validate($data);
-        if (!empty($errors)) {
-            return $errors;
-        }
-
-        if ($this->repo->existsByContactName(trim($data['contact_name']))) {
+        if ($this->repo->existsByContactName($data['contact_name'])) {
             return ["Contact name is already in use."];
         }
 
@@ -54,11 +46,10 @@ class ContactsService
 
     public function update(string $originalContactId, array $data): bool|array
     {
-        $errors = $this->validator->validate($data);
-        if (!empty($errors)) {
-            return $errors;
+        if ($this->repo->existsByContactName($data['contact_name'], (string)$originalContactId)) {
+            return ["Contact Name is already in use."];
         }
-
+        
         return $this->repo->update($originalContactId, $data);
     }
 

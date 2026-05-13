@@ -80,18 +80,6 @@ class ContactsRepository
         ]);
     }
 
-    public function existsByContactName(string $contactName, ?string $excludeContactId = null): bool
-    {
-        if ($excludeContactId === null) {
-            $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM Contact WHERE contact_name = ?");
-            $stmt->execute([trim($contactName)]);
-        } else {
-            $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM Contact WHERE contact_name = ? AND id <> ?");
-            $stmt->execute([trim($contactName), $excludeContactId]);
-        }
-        return (int)$stmt->fetchColumn() > 0;
-    }
-
     public function delete(string $id): bool
     {
         try {
@@ -104,6 +92,18 @@ class ContactsRepository
             }
             throw $e;
         }
+    }
+
+    public function existsByContactName(string $contactName, ?string $excludeContactId = null): bool
+    {
+        if ($excludeContactId === null) {
+            $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM Contact WHERE contact_name = ?");
+            $stmt->execute([trim($contactName)]);
+        } else {
+            $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM Contact WHERE contact_name = ? AND id <> ?");
+            $stmt->execute([trim($contactName), $excludeContactId]);
+        }
+        return (int)$stmt->fetchColumn() > 0;
     }
 
     // New method to populate dropdowns

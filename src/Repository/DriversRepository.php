@@ -89,6 +89,18 @@ class DriversRepository
         return (int)$stmt->fetchColumn() > 0;
     }
 
+    public function existsByEmail(string $Email, ?string $excludeDriverId = null): bool
+    {
+        if ($excludeDriverId === null) {
+            $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM driver WHERE email = ?");
+            $stmt->execute([trim($Email)]);
+        } else {
+            $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM driver WHERE email = ? AND id <> ?");
+            $stmt->execute([trim($Email), $excludeDriverId]);
+        }
+        return (int)$stmt->fetchColumn() > 0;
+    }
+
     public function delete(string $id): bool
     {
         try {

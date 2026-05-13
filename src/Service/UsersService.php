@@ -2,18 +2,15 @@
 namespace App\Service;
 
 use App\Repository\UsersRepository;
-use App\Validation\UsersValidator;
 use InvalidArgumentException;
 
 class UsersService
 {
     private $repo;
-    private $validator;
 
     public function __construct()
     {
         $this->repo = new UsersRepository();
-        $this->validator = new UsersValidator();
     }
 
     public function getAll(): array
@@ -23,7 +20,7 @@ class UsersService
 
     public function getById(string $id): ?array
     {
-        if (trim($id) === '') {
+        if ($id <= 0) {
             throw new InvalidArgumentException("Invalid ID");
         }
         return $this->repo->find($id);
@@ -41,13 +38,12 @@ class UsersService
 
     public function create(array $data): bool|array
     {
-        $errors = $this->validator->validate($data);
-        if (!empty($errors)) {
-            return $errors;
-        }
-
         if ($this->repo->existsByFullName(trim($data['fullName']))) {
             return ["User full name is already in use."];
+        }
+
+        if ($this->repo->existsByEmail($data['email'])) {
+            return ["Email is already in use."];
         }
 
         $this->repo->save($data);
@@ -56,9 +52,12 @@ class UsersService
 
     public function update(string $originalUserId, array $data): bool|array
     {
-        $errors = $this->validator->validate($data);
-        if (!empty($errors)) {
-            return $errors;
+        if ($this->repo->existsByFullName($data['fullName'], (string)$originalUserId)) {
+            return ["Full Name is already in use."];
+        }
+
+        if ($this->repo->existsByEmail(trim($data['email']), (string)$originalUserId)) {
+            return ["Email is already in use."];
         }
 
         return $this->repo->update($originalUserId, $data);

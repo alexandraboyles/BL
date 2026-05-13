@@ -19,10 +19,10 @@ class FeeCategoriesValidator
             $errors[] = "Invalid input. Account can only contain letters.";
         }
 
-        // Fee Category validation
+        // Fee Category Name validation
         $feeCategory_name = trim($data['feeCategory_name'] ?? '');
         if (!preg_match('/^[A-Za-z ]+$/',$feeCategory_name)) {
-            $errors[] = "Invalid input. Fee Category can only contain letters.";
+            $errors[] = "Invalid input. Fee Category Name can only contain letters.";
         }
 
 

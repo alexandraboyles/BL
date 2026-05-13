@@ -1,26 +1,23 @@
 <?php
 namespace App\Controller;
 
-use App\Service\FeeCategoriesService;
-use App\Validation\FeeCategoriesValidator;
+use App\Service\BillsService;
 use Exception;
 
-class FeeCategoriesController extends BaseController
+class BillsController extends BaseController
 {
-    private FeeCategoriesService $service;
-    private FeeCategoriesValidator $validator;
+    private BillsService $service;
 
     public function __construct()
     {
-        $this->service = new FeeCategoriesService();
-        $this->validator = new FeeCategoriesValidator();
+        $this->service = new BillsService();
     }
 
     public function index()
     {
         try {
             $items = $this->service->getAll();
-            $this->render('feecategories/index', ['items' => $items]);
+            $this->render('bills/index', ['items' => $items]);
         } catch (Exception $e) {
             $this->flashError("Failed to load items: " . $e->getMessage());
             $this->redirect('/');
@@ -31,9 +28,13 @@ class FeeCategoriesController extends BaseController
     {
         $errors = $this->getFlash('create_errors') ?? [];
         $oldInput = $this->getFlash('create_old_input') ?? [];
-        $this->render('feecategories/create', [
+        $formData = $this->service->getFormData();
+        $this->render('bills/create', [
             'errors' => $errors,
-            'old' => $oldInput
+            'old' => $oldInput,
+            'suppliers' => $formData['suppliers'],
+            'invoices' => $formData['invoices'],
+            'manifests' => $formData['manifests']
         ]);
     }
 
@@ -41,45 +42,38 @@ class FeeCategoriesController extends BaseController
     {
         try {
             $data = $_POST;
-            $errors = $this->validator->validate($data);
-            
-            if (!empty($errors)) {
-                $_SESSION['create_errors'] = $errors;
-                $_SESSION['create_old_input'] = $data;
-                $this->redirect('/feecategories/create');
-            }
 
             $result = $this->service->create($data);
             if (is_array($result)) {
                 $_SESSION['create_errors'] = $result;
                 $_SESSION['create_old_input'] = $data;
-                $this->redirect('/feecategories/create');
+                $this->redirect('/bills/create');
             }
             
             $this->flashSuccess("Item created successfully");
-            $this->redirect('/feecategories');
+            $this->redirect('/bills');
         } catch (Exception $e) {
             $_SESSION['create_errors'] = ["Failed to create item: " . $e->getMessage()];
             $_SESSION['create_old_input'] = $_POST;
-            $this->redirect('/feecategories/create');
+            $this->redirect('/bills/create');
         }
     }
 
     public function show($id)
     {
-       if (!$this->isValidId($id)) {
+        if (!$this->isValidId($id)) {
             $this->notFound("Invalid item ID");
         }
 
         try {
-            $item = $this->service->getById($id);
+            $item = $this->service->getById((int)$id);
             if (!$item) {
                 $this->notFound("Item not found");
             }
-            $this->render('feecategories/view', ['item' => $item]);
+            $this->render('bills/view', ['item' => $item]); // Fixed
         } catch (Exception $e) {
             $this->flashError("Failed to load item: " . $e->getMessage());
-            $this->redirect('/feecategories');
+            $this->redirect('/bills');
         }
     }
 
@@ -91,22 +85,26 @@ class FeeCategoriesController extends BaseController
             if (!$item) $this->notFound("Item not found");
             $errors = $this->getFlash("edit_errors_{$id}") ?? [];
             $oldInput = $this->getFlash("edit_old_input_{$id}") ?? [];
-            $this->render('feecategories/edit', [
+            $formData = $this->service->getFormData();
+            $this->render('bills/edit', [
                 'item' => $item,
                 'errors' => $errors,
-                'old' => $oldInput
+                'old' => $oldInput,
+                'suppliers' => $formData['suppliers'],
+                'invoices' => $formData['invoices'],
+                'manifests' => $formData['manifests']
             ]);
         } catch (Exception $e) {
             $this->flashError("Failed to load item: " . $e->getMessage());
-            $this->redirect('/feecategories');
+            $this->redirect('/bills');
         }
     }
-
+    
     public function update($id)
     {
         if (!$this->isValidId($id)) {
             $this->flashError("Invalid item ID");
-            $this->redirect('/feecategories');
+            $this->redirect('/bills');
         }
 
         if (isset($_POST['_method']) && strtoupper($_POST['_method']) === 'DELETE') {
@@ -115,28 +113,20 @@ class FeeCategoriesController extends BaseController
 
         try {
             $data = $_POST;
-            $result = $this->service->update($id, $data);
-
-            if (!empty($errors)) {
-                $_SESSION["edit_errors_{$id}"] = $errors;
-                $_SESSION["edit_old_input_{$id}"] = $data;
-                $this->redirect("/feecategories/{$id}/edit");
-            }
-
             $result = $this->service->update((int)$id, $data);
             
             if (is_array($result)) {
                 $_SESSION["edit_errors_{$id}"] = $result;
                 $_SESSION["edit_old_input_{$id}"] = $data;
-                $this->redirect("/feecategories/{$id}/edit");
+                $this->redirect("/bills/{$id}/edit");
             }
 
             $this->flashSuccess("Item updated successfully");
-            $this->redirect('/feecategories');
+            $this->redirect('/bills');
         } catch (Exception $e) {
             $_SESSION["edit_errors_{$id}"] = ["Failed to update item: " . $e->getMessage()];
             $_SESSION["edit_old_input_{$id}"] = $_POST;
-            $this->redirect("/feecategories/{$id}/edit");
+            $this->redirect("/bills/{$id}/edit");
         }
     }
 
@@ -147,33 +137,33 @@ class FeeCategoriesController extends BaseController
         }
 
         try {
-            $item = $this->service->getById($id);
+            $item = $this->service->getById((int)$id);
             if (!$item) {
                 $this->notFound("Item not found");
             }
-            $this->render('feecategories/delete', ['item' => $item]);
+            $this->render('bills/delete', ['item' => $item]); // Fixed
         } catch (Exception $e) {
             $this->flashError("Failed to load item: " . $e->getMessage());
-            $this->redirect('/feecategories');
+            $this->redirect('/bills');
         }
     }
 
     public function delete($id = null)
     {
-        $deleteId = $id ?? ($_POST['id'] ?? null);
+        $deleteId = $id ?? ($_POST['id'] ?? null); // Fixed: consistent with form
         
         if (!$this->isValidId($deleteId)) {
             $this->flashError("Invalid item ID");
-            $this->redirect('/feecategories');
+            $this->redirect('/bills');
         }
 
         try {
             $this->service->delete((int)$deleteId);
             $this->flashSuccess("Item deleted successfully");
-            $this->redirect('/feecategories');
-        } catch (\Exception $e) {
+            $this->redirect('/bills');
+        } catch (Exception $e) {
             $this->flashError($e->getMessage());
-            $this->redirect('/feecategories');
+            $this->redirect('/bills');
         }
     }
 }

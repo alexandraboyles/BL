@@ -2,18 +2,15 @@
 namespace App\Service;
 
 use App\Repository\CustomersRepository;
-use App\Validation\CustomersValidator;
 use InvalidArgumentException;
 
 class CustomersService
 {
     private $repo;
-    private $validator;
 
     public function __construct()
     {
         $this->repo = new CustomersRepository();
-        $this->validator = new CustomersValidator();
     }
 
     public function getAll(): array
@@ -23,7 +20,7 @@ class CustomersService
 
     public function getById(string $id): ?array
     {
-        if (trim($id) === '') {
+        if ($id <= 0) {
             throw new InvalidArgumentException("Invalid ID");
         }
         return $this->repo->find($id);
@@ -31,11 +28,6 @@ class CustomersService
 
     public function create(array $data): bool|array
     {
-        $errors = $this->validator->validate($data);
-        if (!empty($errors)) {
-            return $errors;
-        }
-
         if ($this->repo->existsByCustomerName(trim($data['customer_name']))) {
             return ["Customer name is already in use."];
         }
@@ -46,9 +38,8 @@ class CustomersService
 
     public function update(string $originalCustomerId, array $data): bool|array
     {
-        $errors = $this->validator->validate($data);
-        if (!empty($errors)) {
-            return $errors;
+        if ($this->repo->existsByCustomerName($data['customer_name'], (string)$originalCustomerId)) {
+            return ["Customer Name is already in use."];
         }
 
         return $this->repo->update($originalCustomerId, $data);

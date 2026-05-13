@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>FTP Users</title>
+        <title>Bill</title>
         <style>
             table, th, td {
                 border:1px solid black;
@@ -23,44 +23,40 @@
             <?php unset($_SESSION['flash_error']); ?>
         <?php endif; ?>
 
-        <h1>FTP Users List</h1>
+        <h1>Bill List</h1>
 
-        <a href="/ftpusers/create">Create a FTP User here</a><br><br>
+        <a href="/bills/create">Create a bill here</a><br><br>
 
         <table style="width: 100%;">
             <tr>
-                <th>FTP User ID</th>
-                <th>Username</th>
-                <th>Password</th>
-                <th>Subdirectory</th>
-                <th>Last Login</th>
+                <th>ID</th>
+                <th>Supplier Name</th>
+                <th>Invoice ID</th>
+                <th>Manifest ID</th>
                 <th>Actions</th>
             </tr>
     <?php if (empty($items)): ?>
-            <tr><td colspan="3">No ftp users found</td></tr>
+            <tr><td colspan="5">No bills found</td></tr>
         <?php else: ?>
-            <?php foreach ($items as $ftpUsers): ?>
+            <?php foreach ($items as $bills): ?>
                 <tr>
                     <td style="text-align: right;">
-                        <?= htmlspecialchars($ftpUsers['ftpUser_id']) ?>
+                        <?= htmlspecialchars($bills['id']) ?>
                     </td>
                     <td style="text-align: left;">
-                        <?= htmlspecialchars($ftpUsers['username']) ?>
-                    </td>
-                    <td style="text-align: left;">
-                        <?= htmlspecialchars($ftpUsers['password']) ?>
-                    </td>
-                    <td style="text-align: left;">
-                        <?= htmlspecialchars($ftpUsers['subDirectory']) ?>
+                        <?= htmlspecialchars($bills['supplier_name']) ?>
                     </td>
                     <td style="text-align: right;">
-                        <?= htmlspecialchars($ftpUsers['lastLogin']) ?>
+                        <?= htmlspecialchars($bills['invoice_id']) ?>
+                    </td>
+                    <td style="text-align: right;">
+                        <?= htmlspecialchars($bills['manifest_id']) ?>
                     </td>
                     <td style="text-align: center;">
-                        <a href="/ftpusers/<?= $ftpUsers['ftpUser_id'] ?>" style="margin-right: 5px;">View</a>
-                        <a href="/ftpusers/<?= $ftpUsers['ftpUser_id'] ?>/edit" style="margin-right: 5px;">Edit</a>
-                        <a href="/ftpusers/<?= $ftpUsers['ftpUser_id'] ?>/delete" style="margin-right: 5px; color: red;" 
-                           onclick="return confirm('Delete id = <?= htmlspecialchars($ftpUsers['ftpUser_id']) ?>?')">Delete</a>
+                        <a href="/bills/<?= $bills['id'] ?>" style="margin-right: 5px;">View</a>
+                        <a href="/bills/<?= $bills['id'] ?>/edit" style="margin-right: 5px;">Edit</a>
+                        <a href="/bills/<?= $bills['id'] ?>/delete" style="margin-right: 5px; color: red;" 
+                           onclick="return confirm('Delete id = <?= htmlspecialchars($bills['id']) ?>?')">Delete</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

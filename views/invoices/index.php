@@ -45,7 +45,7 @@
                 <th>Actions</th>
             </tr>
     <?php if (empty($items)): ?>
-            <tr><td colspan="8">No Invoices found</td></tr>
+            <tr><td colspan="8">No invoices found</td></tr>
         <?php else: ?>
             <?php foreach ($items as $invoices): ?>
                 <tr>

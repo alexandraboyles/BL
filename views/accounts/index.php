@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>FTP Users</title>
+        <title>Account</title>
         <style>
             table, th, td {
                 border:1px solid black;
@@ -11,9 +11,7 @@
         </style>
     </head>
     <body>
-        <?php
-        /** @var array $items */
-        ?>
+        <?php /** @var array $items */ ?>
         <?php if (isset($_SESSION['flash_success'])): ?>
             <div style="color: green; margin-bottom: 10px;"><?= htmlspecialchars($_SESSION['flash_success']) ?></div>
             <?php unset($_SESSION['flash_success']); ?>
@@ -23,44 +21,40 @@
             <?php unset($_SESSION['flash_error']); ?>
         <?php endif; ?>
 
-        <h1>FTP Users List</h1>
+        <h1>Accounts List</h1>
 
-        <a href="/ftpusers/create">Create a FTP User here</a><br><br>
+        <a href="/accounts/create">Create an account here</a><br><br>
 
         <table style="width: 100%;">
             <tr>
-                <th>FTP User ID</th>
-                <th>Username</th>
-                <th>Password</th>
-                <th>Subdirectory</th>
-                <th>Last Login</th>
+                <th>ID</th>
+                <th>Account Name</th>
+                <th>Description</th>
+                <th>Display When No Value</th>
                 <th>Actions</th>
             </tr>
     <?php if (empty($items)): ?>
-            <tr><td colspan="3">No ftp users found</td></tr>
+            <tr><td colspan="8">No accounts found</td></tr>
         <?php else: ?>
-            <?php foreach ($items as $ftpUsers): ?>
+            <?php foreach ($items as $accounts): ?>
                 <tr>
                     <td style="text-align: right;">
-                        <?= htmlspecialchars($ftpUsers['ftpUser_id']) ?>
+                        <?= htmlspecialchars($accounts['id']) ?>
                     </td>
                     <td style="text-align: left;">
-                        <?= htmlspecialchars($ftpUsers['username']) ?>
+                        <?= htmlspecialchars($accounts['account_name']) ?>
                     </td>
                     <td style="text-align: left;">
-                        <?= htmlspecialchars($ftpUsers['password']) ?>
+                        <?= htmlspecialchars($accounts['description']) ?>
                     </td>
                     <td style="text-align: left;">
-                        <?= htmlspecialchars($ftpUsers['subDirectory']) ?>
-                    </td>
-                    <td style="text-align: right;">
-                        <?= htmlspecialchars($ftpUsers['lastLogin']) ?>
+                        <?= htmlspecialchars((bool)$accounts['display_when_no_value'] ? 'Yes' : 'No') ?>
                     </td>
                     <td style="text-align: center;">
-                        <a href="/ftpusers/<?= $ftpUsers['ftpUser_id'] ?>" style="margin-right: 5px;">View</a>
-                        <a href="/ftpusers/<?= $ftpUsers['ftpUser_id'] ?>/edit" style="margin-right: 5px;">Edit</a>
-                        <a href="/ftpusers/<?= $ftpUsers['ftpUser_id'] ?>/delete" style="margin-right: 5px; color: red;" 
-                           onclick="return confirm('Delete id = <?= htmlspecialchars($ftpUsers['ftpUser_id']) ?>?')">Delete</a>
+                        <a href="/accounts/<?= $accounts['id'] ?>" style="margin-right: 5px;">View</a>
+                        <a href="/accounts/<?= $accounts['id'] ?>/edit" style="margin-right: 5px;">Edit</a>
+                        <a href="/accounts/<?= $accounts['id'] ?>/delete" style="margin-right: 5px; color: red;" 
+                           onclick="return confirm('Delete account `<?= htmlspecialchars($accounts['account_name']) ?>`?')">Delete</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

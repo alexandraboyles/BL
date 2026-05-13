@@ -2,7 +2,6 @@
 namespace App\Service;
 
 use App\Repository\DriversRepository;
-use App\Validation\DriversValidator;
 use InvalidArgumentException;
 
 class DriversService
@@ -13,7 +12,6 @@ class DriversService
     public function __construct()
     {
         $this->repo = new DriversRepository();
-        $this->validator = new DriversValidator();
     }
 
     public function getAll(): array
@@ -23,7 +21,7 @@ class DriversService
 
     public function getById(string $id): ?array
     {
-        if (trim($id) === '') {
+        if ($id <= 0) {
             throw new InvalidArgumentException("Invalid ID");
         }
         return $this->repo->find($id);
@@ -31,13 +29,11 @@ class DriversService
 
     public function create(array $data): bool|array
     {
-        $errors = $this->validator->validate($data);
-        if (!empty($errors)) {
-            return $errors;
-        }
-
         if ($this->repo->existsByDriverName(trim($data['driver_name']))) {
             return ["Driver name is already in use."];
+        }
+        if ($this->repo->existsByEmail(trim($data['email']))) {
+            return ["Email is already in use."];
         }
 
         $this->repo->save($data);
@@ -46,11 +42,13 @@ class DriversService
 
     public function update(string $originalDriverId, array $data): bool|array
     {
-        $errors = $this->validator->validate($data);
-        if (!empty($errors)) {
-            return $errors;
+        if ($this->repo->existsByDriverName($data['driver_name'], (string)$originalDriverId)) {
+            return ["Driver Name is already in use."];
         }
 
+        if ($this->repo->existsByEmail(trim($data['email']), (string)$originalDriverId)) {
+            return ["Email is already in use."];
+        }
         return $this->repo->update($originalDriverId, $data);
     }
 
