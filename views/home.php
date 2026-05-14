@@ -160,13 +160,13 @@
         <a href="/feecategories" class="name">Fee Categories (Previously "Charge Subclasses")</a><p>Manage Fee Categories in different models</p>    </div>
 
                 <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/DefaultAdhocChargeConfig" class="name">Adhoc Charges</a><p>Set up global adhoc charges</p>    </div>
+        <a href="/adhoccharges" class="name">Adhoc Charges</a><p>Set up global adhoc charges</p>    </div>
 
                 <div class="site-map-entry">
         <a href="/ratecards" class="name">Rate Cards</a><p>Manage charges standard for different customers</p>    </div>
 
                 <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/calculator-templates" class="name">Surcharges</a><p>Manage Surcharges for Transport Rates</p>    </div>
+        <a href="/surcharges" class="name">Surcharges</a><p>Manage Surcharges for Transport Rates</p>    </div>
 
                 <div class="site-map-entry">
         <a href="/accounts" class="name">Accounts</a><p>Manage Accounts</p>    </div>

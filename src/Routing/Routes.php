@@ -29,5 +29,7 @@ class Routes
         $router->resource('ratecards', 'App\Controller\RateCardsController');
         $router->resource('accounts', 'App\Controller\AccountsController');
         $router->resource('bills', 'App\Controller\BillsController');
+        $router->resource('adhoccharges', 'App\Controller\AdhocChargesController');
+        $router->resource('surcharges', 'App\Controller\SurchargesController');
     }
 }
