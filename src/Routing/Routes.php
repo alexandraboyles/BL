@@ -31,5 +31,6 @@ class Routes
         $router->resource('bills', 'App\Controller\BillsController');
         $router->resource('adhoccharges', 'App\Controller\AdhocChargesController');
         $router->resource('surcharges', 'App\Controller\SurchargesController');
+        $router->resource('products', 'App\Controller\ProductsController');
     }
 }

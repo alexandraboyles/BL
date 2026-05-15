@@ -180,7 +180,7 @@
     </a>
 
                 <div class="site-map-entry">
-        <a href="/Brisbane_Logistics/Products" class="name">Products</a><p>Manage Products</p>    </div>
+        <a href="/products" class="name">Products</a><p>Manage Products</p>    </div>
 
                 <div class="site-map-entry">
         <a href="/Brisbane_Logistics/ProductGroups" class="name">Product Groups</a><p>Manage Product groups</p>    </div>

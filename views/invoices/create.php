@@ -108,7 +108,7 @@
                    value="<?= htmlspecialchars($old['status'] ?? '', ENT_QUOTES) ?>" required>
         </div>
         <div>
-            <label for="pamentStatus">Payment Status:</label>
+            <label for="paymentStatus">Payment Status:</label>
             <input id="paymentStatus" type="text" name="paymentStatus" 
                    value="<?= htmlspecialchars($old['paymentStatus'] ?? '', ENT_QUOTES) ?>" required>
         </div>
